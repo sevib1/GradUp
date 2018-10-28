@@ -11,15 +11,21 @@ import { ProfilePage } from '../pages/profile/profile';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { TitleLogoComponent } from '../components/title-logo/title-logo';
 
 @NgModule({
   declarations: [
     MyApp,   
+
+    // pages
     TabsPage,
     JournalPage,
     InformationPage,
     HelpPage,
     ProfilePage,
+
+    // components
+    TitleLogoComponent
   ],
   imports: [
     BrowserModule,
@@ -41,3 +47,5 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ]
 })
 export class AppModule {}
+
+

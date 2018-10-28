@@ -14,3 +14,34 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+// .toolbar-ios {
+//     height: 100px;
+
+//     .toolbar-title-ios {
+//         position: absolute;
+//         top: 0;
+//         left: 0;
+//         width: 100%;
+//         text-align: left;
+//     }
+
+//     .title-image {
+//         margin: 20px;
+//     }
+// }
+
+.toolbar-title {
+    text-align: right;
+    position: relative;
+    height: 80px;
+    line-height: 120px;
+    vertical-align: bottom;
+    
+    .title-image {
+        height: 70px;
+        position: absolute;
+        top: 8px;
+        left: 0;
+    }
+}
