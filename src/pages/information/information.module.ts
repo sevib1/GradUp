@@ -10,4 +10,8 @@ import { InformationPage } from './information';
     IonicPageModule.forChild(InformationPage),
   ],
 })
-export class InformationPageModule {}
+export class InformationPageModule {
+
+
+
+}

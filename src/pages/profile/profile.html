@@ -8,5 +8,24 @@
 </ion-header>
 
 <ion-content padding>
-  <p>Blah Blah</p>
+  <p>Hier können Sie sämtliche Angaben und Einstellungen verwalten, sowie die getätigten Zugriffsrechte Widerrufen.</p>
+
+  <p>Mehr:</p>
+
+  <!--
+     https://ionicframework.com/docs/components/#lists
+   -->
+   <ion-list>
+      <ion-item (click)="gotoProfileImpressumPage()">
+          Impressum
+      </ion-item> 
+
+      <ion-item (click)="gotoProfilePrivacyPage()">
+          Datenschutzerklärung
+      </ion-item> 
+
+      <ion-item (click)="gotoProfileTermsPage()">
+          Nutzungsbedingungen
+      </ion-item> 
+    </ion-list>
 </ion-content>

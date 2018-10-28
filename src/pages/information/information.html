@@ -2,11 +2,33 @@
   <ion-navbar>
     <ion-title>
       <title-logo></title-logo>
-      Information
+      Informationen
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <p>Hier erhalten Sie einige Informationen über Anorexie, die Folgen der Anorexie und zu Anatomie sowie Physiologie des menschlichen Körpers.</p>
+
+   <!--
+     https://ionicframework.com/docs/components/#lists
+   -->
+   <ion-list>
+      <ion-item (click)="gotoInformationAnorexiaPage()">
+          Anorexie
+      </ion-item> 
+
+      <ion-item (click)="gotoInformationConsequencesPage()">
+          Zu den Folgen
+      </ion-item> 
+
+      <ion-item (click)="gotoInformationPsychePage()">
+          Zu Psyche / Umfeld / Arbeitsalltag
+      </ion-item> 
+
+      <ion-item (click)="gotoInformationAnatomyPage()">
+          Zu Anatomie und Physiologie
+      </ion-item>
+    </ion-list>
+
 </ion-content>
