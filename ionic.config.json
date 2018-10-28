@@ -1,0 +1,7 @@
+{
+  "name": "GradUp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
