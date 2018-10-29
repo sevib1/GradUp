@@ -1,0 +1,35 @@
+<ion-header>
+
+    <ion-navbar hideBackButton="true">
+        <ion-title>
+            <title-logo text="Kontakt erfassen"></title-logo>            
+        </ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <p>Daten und Texte für die Bezugsperson erfassen.</p>
+    <p>Name der Bezugsperson:</p>
+    <p>Telefonnummer:</p>
+    <p>SMS-Text:</p>
+    <p>E-Mail-Adresse:</p>
+    <p>E-Mail-Text:</p>
+    <p>* Die Telefonnummer, die E-Mailadresse und die Texte werden lokal auf Ihrem Smartphone gespeichert.</p>
+
+    <ion-footer no-shadow>
+        <ion-toolbar position="bottom">
+            <ion-buttons left>
+                <button ion-button icon-only (click)="gotoWelcomeContactPage()" class="my-style-for-modal">
+                    <ion-icon name="arrow-back"></ion-icon>
+                </button>
+            </ion-buttons>
+            <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="gotoWelcomeContact3Page()">
+                Speichern
+            </button>
+        </ion-toolbar>
+    </ion-footer>
+
+</ion-content>

@@ -35,6 +35,10 @@ export class InformationPage {
     this.navCtrl.push(InformationConsequencesPage, {});
   }
 
+  public gotoInformationPsychePage() {
+    this.navCtrl.push(InformationPsychePage, {});
+  }
+
   public gotoInformationAnatomyPage() {
     this.navCtrl.push(InformationAnatomyPage, {});
   }

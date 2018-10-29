@@ -1,0 +1,34 @@
+<ion-header>
+
+    <ion-navbar hideBackButton="true">
+        <ion-title>
+            <title-logo text="Kontakt erfassen"></title-logo>            
+        </ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <p>Daten und Texte für die Fachperson erfassen.</p>
+    <p>Name der Fachperson:</p>
+    <p>Praxis-Telefonnummer:</p>
+    <p>E-Mail-Adresse:</p>
+    <p>E-Mail-Text:</p>
+    <p>* Die Telefonnummer, die E-Mailadresse und der Text werden lokal auf Ihrem Smartphone gespeichert.</p>
+
+    <ion-footer no-shadow>
+        <ion-toolbar position="bottom">
+            <ion-buttons left>
+                <button ion-button icon-only (click)="gotoWelcomeContactPage()" class="my-style-for-modal">
+                    <ion-icon name="arrow-back"></ion-icon>
+                </button>
+            </ion-buttons>
+            <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="gotoWelcomeConnectPage()">
+                Speichern
+            </button>
+        </ion-toolbar>
+    </ion-footer>
+
+</ion-content>

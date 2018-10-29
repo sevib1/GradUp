@@ -1,31 +1,33 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      <title-logo></title-logo>
-      Profil
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+
+        <ion-navbar hideBackButton="true">
+            <ion-title>
+                <title-logo text="Profil"></title-logo>
+            </ion-title>
+        </ion-navbar>
+    
+    </ion-header>
 
 <ion-content padding>
-  <p>Hier können Sie sämtliche Angaben und Einstellungen verwalten, sowie die getätigten Zugriffsrechte Widerrufen.</p>
+    <p>Hier können Sie sämtliche Angaben und Einstellungen verwalten, sowie die getätigten Zugriffsrechte Widerrufen.</p>
 
-  <p>Mehr:</p>
+    <h3 ion-text color="primary">Mehr:</h3>
 
-  <!--
+    <!--
      https://ionicframework.com/docs/components/#lists
    -->
-   <ion-list>
-      <ion-item (click)="gotoProfileImpressumPage()">
-          Impressum
-      </ion-item> 
+    <ion-list class="with-borders">
+        <button ion-item (click)="gotoProfileImpressumPage()">
+            Impressum
+        </button>
 
-      <ion-item (click)="gotoProfilePrivacyPage()">
-          Datenschutzerklärung
-      </ion-item> 
+        <button ion-item (click)="gotoProfilePrivacyPage()">
+            Datenschutzerklärung
+        </button>
 
-      <ion-item (click)="gotoProfileTermsPage()">
-          Nutzungsbedingungen
-      </ion-item> 
+        <button ion-item (click)="gotoProfileTermsPage()">
+            Nutzungsbedingungen
+        </button>
     </ion-list>
+
 </ion-content>

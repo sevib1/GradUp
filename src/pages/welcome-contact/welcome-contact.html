@@ -1,0 +1,30 @@
+<ion-header>
+
+    <ion-navbar hideBackButton="true">
+        <ion-title>
+            <title-logo text="Kontakte erfassen"></title-logo>
+        </ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <p>Hier können Sie Kontaktdaten Ihrer Bezugsperson sowie Ihrer Fachperson erfassen, damit Sie diese in einer
+        schwierigen Situation direkt anrufen oder anschreiben können.</p>
+    <p>Sie können dies im Profil auch später nacherfassen</p>
+
+    <ion-footer no-shadow>
+        <ion-toolbar position="bottom">
+            <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="gotoWelcomeConnectPage()">
+                Ablehnen
+            </button>
+
+            <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="gotoWelcomeContact2Page()">
+                Akzeptieren
+            </button>
+        </ion-toolbar>
+    </ion-footer>
+
+</ion-content>

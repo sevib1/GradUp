@@ -1,0 +1,30 @@
+<ion-header>
+
+    <ion-navbar hideBackButton="true">
+        <ion-title>
+            <title-logo text="MIDATA verbinden"></title-logo>
+        </ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+    <p>Hier kommt der ganze Text zu MIDATA, bevor wir aber die Besprechung hatten, bleibt die Seite blank, wird erst
+        erstellt, wenn wir wissen was Sache ist....</p>
+
+    <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="gotoWelcomeConnect3Page()">
+        Registrieren
+    </button>
+
+    <ion-footer no-shadow>
+        <ion-toolbar position="bottom">
+            <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="gotoTabsPage()">
+                Anmelden
+            </button>
+        </ion-toolbar>
+    </ion-footer>
+
+
+
+</ion-content>

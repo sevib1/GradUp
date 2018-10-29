@@ -1,0 +1,29 @@
+<ion-header>
+
+    <ion-navbar hideBackButton="true">
+        <ion-title>
+            <title-logo text="Datenschutzerklärung"></title-logo>            
+        </ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+    <p>Datenschutzerklärung.........</p>
+
+    <ion-footer no-shadow>
+        <ion-toolbar position="bottom">
+            <ion-buttons left>
+                <button ion-button icon-only (click)="gotoWelcomePrivacyPage()" class="my-style-for-modal">
+                    <ion-icon name="arrow-back"></ion-icon>
+                </button>
+            </ion-buttons>
+
+            <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="gotoWelcomeTermsPage()">
+                Akzeptieren
+            </button>
+
+        </ion-toolbar>
+    </ion-footer>
+
+</ion-content>

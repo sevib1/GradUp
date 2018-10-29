@@ -35,13 +35,65 @@
     text-align: right;
     position: relative;
     height: 80px;
-    line-height: 120px;
     vertical-align: bottom;
-    
+
     .title-image {
         height: 70px;
         position: absolute;
         top: 8px;
         left: 0;
+    }
+
+    .title-text {
+        text-overflow: ellipsis;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        padding: 0 10px 0 85px;
+        white-space: normal;
+        vertical-align: bottom;
+        text-align: right;
+        overflow: hidden;
+        max-height: 74px;
+    }
+}
+
+.content {
+    h3 {
+        font-size: 1.4em;
+        margin: 1em 0 0.2em 0;
+    }
+
+    p {
+        font-size: 1.2em;
+        margin: 0.1em 0 1em 0;
+    }    
+}
+
+.toolbar-content-ios,
+.toolbar-content-md {
+    text-align: center;
+}
+
+.with-borders {
+
+    .item-block:last-child, 
+    .item-wrapper:last-child .item-block {
+        border-bottom: 0.55px solid #c8c7cc;
+    }
+
+    .item-block:first-child {
+        border-top: 0.55px solid #c8c7cc;
+    }
+
+    .item-inner {
+        background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2012%2020'><path%20d='M2,20l-2-2l8-8L0,2l2-2l10,10L2,20z'%20fill='%23c8c7cc'/></svg>");
+        padding-right: 32px;
+        background-position: right 14px center;
+        background-position: right calc(14px + constant(safe-area-inset-right)) center;
+        background-position: right calc(14px + env(safe-area-inset-right)) center;
+        background-repeat: no-repeat;
+        background-size: 14px 14px;
     }
 }

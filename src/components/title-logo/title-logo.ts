@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 /**
  * Generated class for the TitleLogoComponent component.
@@ -12,11 +12,11 @@ import { Component } from '@angular/core';
 })
 export class TitleLogoComponent {
 
-  text: string;
+  @Input() text: string;
 
   constructor() {
     console.log('Hello TitleLogoComponent Component');
-    this.text = 'Hello World';
+    this.text = '';
   }
 
 }

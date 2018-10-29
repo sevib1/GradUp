@@ -1,34 +1,36 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      <title-logo></title-logo>
-      Informationen
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+
+        <ion-navbar hideBackButton="true">
+            <ion-title>
+                <title-logo text="Informationen"></title-logo>
+            </ion-title>
+        </ion-navbar>
+    
+    </ion-header>
 
 <ion-content padding>
-  <p>Hier erhalten Sie einige Informationen über Anorexie, die Folgen der Anorexie und zu Anatomie sowie Physiologie des menschlichen Körpers.</p>
+    <p>Hier erhalten Sie einige Informationen über Anorexie, die Folgen der Anorexie und zu Anatomie sowie Physiologie
+        des menschlichen Körpers.</p>
 
-   <!--
+    <!--
      https://ionicframework.com/docs/components/#lists
    -->
-   <ion-list>
-      <ion-item (click)="gotoInformationAnorexiaPage()">
-          Anorexie
-      </ion-item> 
+    <ion-list class="with-borders">
+        <button ion-item (click)="gotoInformationAnorexiaPage()">
+            Anorexie
+        </button>
 
-      <ion-item (click)="gotoInformationConsequencesPage()">
-          Zu den Folgen
-      </ion-item> 
+        <button ion-item (click)="gotoInformationConsequencesPage()">
+            Zu den Folgen
+        </button>
 
-      <ion-item (click)="gotoInformationPsychePage()">
-          Zu Psyche / Umfeld / Arbeitsalltag
-      </ion-item> 
+        <button ion-item (click)="gotoInformationPsychePage()">
+            Zu Psyche / Umfeld / Arbeitsalltag
+        </button>
 
-      <ion-item (click)="gotoInformationAnatomyPage()">
-          Zu Anatomie und Physiologie
-      </ion-item>
+        <button ion-item (click)="gotoInformationAnatomyPage()">
+            Zu Anatomie und Physiologie
+        </button>
     </ion-list>
 
 </ion-content>

@@ -1,0 +1,31 @@
+<ion-header>
+
+    <ion-navbar hideBackButton="true">
+        <ion-title>
+            <title-logo text="Datenschutzerklärung"></title-logo>
+        </ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+    <p>
+        Bevor Sie GradUp nutzen, lesen Sie bitte die Datenschutzerklärung. 
+        Darin erfahren Sie, wie Ihre persönlichen Daten erhoben, verwendet und geschützt werden.
+    </p>
+
+    <ion-list class="with-borders">
+        <button ion-item (click)="gotoWelcomePrivacy2Page()">
+            Datenschutzerklärung
+        </button>
+    </ion-list>
+
+    <ion-footer no-shadow>
+        <ion-toolbar position="bottom">
+            <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="gotoWelcomePage()">
+                Ablehnen
+            </button>
+        </ion-toolbar>
+    </ion-footer>
+
+</ion-content>

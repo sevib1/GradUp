@@ -1,0 +1,29 @@
+<ion-header>
+    
+    <ion-navbar hideBackButton="true">
+        <ion-title>
+            <title-logo text="Profil erfassen"></title-logo>
+        </ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+    <h3 ion-text color="primary">Obligatorisch:</h3>
+    <p>Benutzername</p>
+    <p>Geschlecht</p>
+    <p>Tätigkeit</p>
+    <p>Aktuelles Gewicht</p>
+    <p>Mein Wochenfortschritt</p>
+    <h3 ion-text color="primary">Optional:</h3>
+
+    <ion-footer no-shadow>
+        <ion-toolbar position="bottom">
+            <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="gotoWelcomeContactPage()">
+                Speichern
+            </button>
+        </ion-toolbar>
+    </ion-footer>
+
+</ion-content>

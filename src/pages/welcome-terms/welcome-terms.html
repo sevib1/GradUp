@@ -1,0 +1,30 @@
+<ion-header>
+
+    <ion-navbar hideBackButton="true">
+        <ion-title>
+            <title-logo text="Allgemeine Geschäftsbedingungen"></title-logo>
+        </ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <p>Bitte lesen Sie bitte die Nutzungsbedingungen sorgfältig durch, denn damit erklären Sie sich mit den allgemeinen
+        Geschäftsbedingungen einverstanden.</p>
+
+    <ion-list class="with-borders">
+        <button ion-item (click)="gotoWelcomeTerms2Page()">
+            Nutzungsbedingungen
+        </button>
+    </ion-list>
+
+    <ion-footer no-shadow>
+        <ion-toolbar position="bottom">
+            <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="gotoWelcomePage()">
+                Ablehnen
+            </button>
+        </ion-toolbar>
+    </ion-footer>
+
+</ion-content>

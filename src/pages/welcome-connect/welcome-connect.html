@@ -1,0 +1,33 @@
+<ion-header>
+
+  <ion-navbar hideBackButton="true">
+    <ion-title>
+      <title-logo text="Biovotion Everion Sensor verbinden"></title-logo>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <p>Verbinden Sie nun ihren Biovotion Everion Sensor mit GradUp.</p>
+
+  <ion-list class="with-borders">
+
+    <button ion-item (click)="gotoWelcomeConnect2Page()">
+      <ion-toggle [(ngModel)]="pepperoni"></ion-toggle>
+    </button>
+  </ion-list>
+
+
+  <p>Sie können diesen im Profil auch später noch verbinden</p>
+
+  <ion-footer no-shadow>
+    <ion-toolbar position="bottom">
+      <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="gotoTabsPage()">
+        Überspringen
+      </button>
+    </ion-toolbar>
+  </ion-footer>
+
+</ion-content>
