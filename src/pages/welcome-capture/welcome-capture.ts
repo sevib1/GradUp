@@ -26,5 +26,5 @@ export class WelcomeCapturePage {
   public gotoWelcomeContactPage() {
     this.navCtrl.push(WelcomeContactPage, {});
   }
-
+  
 }

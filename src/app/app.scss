@@ -71,6 +71,11 @@
     }    
 }
 
+.hilight {
+    color: #488aff;
+    font-weight: bold;
+}
+
 .toolbar-content-ios,
 .toolbar-content-md {
     text-align: center;
@@ -96,4 +101,8 @@
         background-repeat: no-repeat;
         background-size: 14px 14px;
     }
-}
+
+    .item-md {
+        padding-left: 0;
+    }
+}    

@@ -1,14 +1,31 @@
 <ion-header>
 
-        <ion-navbar hideBackButton="true">
-            <ion-title>
-                <title-logo text="Mein Tagebuch"></title-logo>
-            </ion-title>
-        </ion-navbar>
-    
-    </ion-header>
+    <ion-navbar hideBackButton="true">
+        <ion-title>
+            <title-logo text="Mein Tagebuch"></title-logo>
+        </ion-title>
+    </ion-navbar>
+
+</ion-header>
 
 <ion-content padding>
+    <p></p>
     <p>In Ihrem persönlichen Tagebuch können Sie Ausflüge / Unternehmungen / Erlebnisse oder auch Rückmeldungen usw.
         nach Lust und Laune erfassen.</p>
+    <p>Sei es als Text, als Text und mit einem Foto ergänzt oder auch nur ein Foto hochladen.</p>
+
+
+    <!--
+     https://ionicframework.com/docs/components/#lists
+   -->
+    <ion-list class="with-borders">
+        <button ion-item (click)="gotoJournalEntryPage()">
+            Eintrag erstellen
+        </button>
+
+        <button ion-item (click)="gotoJournalDeletePage()">
+            Alle Einträge ansehen und bearbeiten
+        </button>
+    </ion-list>
+
 </ion-content>

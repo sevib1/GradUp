@@ -4,12 +4,7 @@ import { InformationAnorexiaPage } from '../information-anorexia/information-ano
 import { InformationConsequencesPage } from '../information-consequences/information-consequences';
 import { InformationPsychePage } from '../information-psyche/information-psyche';
 import { InformationAnatomyPage } from '../information-anatomy/information-anatomy';
-/**
- * Generated class for the InformationPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({

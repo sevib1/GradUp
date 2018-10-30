@@ -19,6 +19,8 @@ import { WelcomeConnect2Page } from '../pages/welcome-connect2/welcome-connect2'
 import { WelcomeConnect3Page } from '../pages/welcome-connect3/welcome-connect3';
 
 import { JournalPage } from '../pages/journal/journal';
+import { JournalEntryPage } from '../pages/journal-entry/journal-entry';
+import { JournalDeletePage } from '../pages/journal-delete/journal-delete';
 
 import { InformationPage } from '../pages/information/information';
 import { InformationAnorexiaPage } from '../pages/information-anorexia/information-anorexia';
@@ -27,8 +29,15 @@ import { InformationPsychePage } from '../pages/information-psyche/information-p
 import { InformationAnatomyPage } from '../pages/information-anatomy/information-anatomy';
 
 import { HelpPage } from '../pages/help/help';
+import { HelpPointsofcontactPage } from '../pages/help-pointsofcontact/help-pointsofcontact';
+import { HelpCopingPage } from '../pages/help-coping/help-coping';
+import { HelpRelaxationPage } from '../pages/help-relaxation/help-relaxation';
 
 import { ProfilePage } from '../pages/profile/profile';
+import { ProfileCustomizePage } from '../pages/profile-customize/profile-customize';
+import { ProfileCustomizecontactsPage } from '../pages/profile-customizecontacts/profile-customizecontacts';
+import { ProfileBiovotionPage } from '../pages/profile-biovotion/profile-biovotion';
+import { ProfileAccessrightsPage } from '../pages/profile-accessrights/profile-accessrights';
 import { ProfileImpressumPage } from '../pages/profile-impressum/profile-impressum';
 import { ProfilePrivacyPage } from '../pages/profile-privacy/profile-privacy';
 import { ProfileTermsPage } from '../pages/profile-terms/profile-terms';
@@ -58,13 +67,22 @@ import { TitleLogoComponent } from '../components/title-logo/title-logo';
     
     TabsPage,
     JournalPage,
+    JournalEntryPage,
+    JournalDeletePage,
     InformationPage,
     InformationAnorexiaPage,
     InformationConsequencesPage,
     InformationPsychePage,
     InformationAnatomyPage,
     HelpPage,
+    HelpPointsofcontactPage,
+    HelpCopingPage,
+    HelpRelaxationPage,
     ProfilePage,
+    ProfileCustomizePage,
+    ProfileCustomizecontactsPage,
+    ProfileBiovotionPage,
+    ProfileAccessrightsPage,
     ProfileImpressumPage,
     ProfilePrivacyPage,
     ProfileTermsPage,
@@ -94,13 +112,22 @@ import { TitleLogoComponent } from '../components/title-logo/title-logo';
     WelcomeConnect3Page,
     TabsPage,
     JournalPage,
+    JournalEntryPage,
+    JournalDeletePage,
     InformationPage,
     InformationAnorexiaPage,
     InformationConsequencesPage,
     InformationPsychePage,
     InformationAnatomyPage,
     HelpPage,
+    HelpPointsofcontactPage,
+    HelpCopingPage,
+    HelpRelaxationPage,
     ProfilePage,
+    ProfileCustomizePage,
+    ProfileCustomizecontactsPage,
+    ProfileBiovotionPage,
+    ProfileAccessrightsPage,
     ProfileImpressumPage,
     ProfilePrivacyPage,
     ProfileTermsPage

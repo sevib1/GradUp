@@ -9,7 +9,26 @@
     </ion-header>
 
 <ion-content padding>
+    <p></p>
     <p>Hier können Sie sämtliche Angaben und Einstellungen verwalten, sowie die getätigten Zugriffsrechte Widerrufen.</p>
+
+    <ion-list class="with-borders">
+            <button ion-item (click)="gotoProfileCustomizePage()">
+                Profil anpassen
+            </button>
+    
+            <button ion-item (click)="gotoProfileCustomizecontactsPage()">
+                Kontakte anpassen / erfassen
+            </button>
+    
+            <button ion-item (click)="gotoProfileBiovotionPage()">
+                Biovotion Everion Sensor verbinden
+            </button>
+    
+            <button ion-item (click)="gotoProfileAccessrightsPage()">
+                Zugriffsrechte widerrufen / erteilen
+            </button>
+        </ion-list>
 
     <h3 ion-text color="primary">Mehr:</h3>
 
