@@ -19,7 +19,7 @@ export class HelpRelaxationPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HelpRelaxationPage');
+    console.log('ionViewDidLoad HelpPointsofcontactPage');
   }
 
 }
