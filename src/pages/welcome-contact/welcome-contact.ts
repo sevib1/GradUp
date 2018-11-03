@@ -3,13 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WelcomeConnectPage } from '../welcome-connect/welcome-connect';
 import { WelcomeContact2Page } from '../welcome-contact2/welcome-contact2';
 
-/**
- * Generated class for the WelcomeContactPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-welcome-contact',

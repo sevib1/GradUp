@@ -1,13 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { WelcomePrivacyPage } from '../welcome-privacy/welcome-privacy';
-
-/**
- * Generated class for the WelcomePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { WelcomeAppexplanationPage } from '../welcome-appexplanation/welcome-appexplanation';
 
 @IonicPage()
 @Component({
@@ -23,8 +16,8 @@ export class WelcomePage {
     console.log('ionViewDidLoad WelcomePage');
   }
 
-  public gotoWelcomePrivacyPage() {
-    this.navCtrl.push(WelcomePrivacyPage, {});
+  public gotoWelcomeAppexplanationPage() {
+    this.navCtrl.push(WelcomeAppexplanationPage, {});
   }
 
 }

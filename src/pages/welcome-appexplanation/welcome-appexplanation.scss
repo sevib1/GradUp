@@ -1,0 +1,28 @@
+page-welcome-appexplanation {
+
+    .header {
+        display: none;
+    }
+
+    .scroll-content {
+        padding-top: 15px !important;
+    }
+
+    .centered {
+        text-align: center;
+    }
+
+    .welcome-image {
+        width: 100px
+    }
+
+    .welcome h1 {
+        display: block;
+        margin: 30px 0 30px 0 !important;
+    }
+
+    .scroll-content {
+        overflow-y: hidden;
+    }
+
+}

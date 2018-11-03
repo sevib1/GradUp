@@ -7,9 +7,9 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { WelcomePage } from '../pages/welcome/welcome';
 import { WelcomePrivacyPage } from '../pages/welcome-privacy/welcome-privacy';
-import { WelcomePrivacy2Page } from '../pages/welcome-privacy2/welcome-privacy2';
+import { WelcomeAppexplanationPage } from '../pages/welcome-appexplanation/welcome-appexplanation';
 import { WelcomeTermsPage } from '../pages/welcome-terms/welcome-terms';
-import { WelcomeTerms2Page } from '../pages/welcome-terms2/welcome-terms2';
+import { WelcomeTermsgradupPage } from '../pages/welcome-termsgradup/welcome-termsgradup';
 import { WelcomeCapturePage } from '../pages/welcome-capture/welcome-capture';
 import { WelcomeContactPage } from '../pages/welcome-contact/welcome-contact';
 import { WelcomeContact2Page } from '../pages/welcome-contact2/welcome-contact2';
@@ -53,10 +53,10 @@ import { TitleLogoComponent } from '../components/title-logo/title-logo';
     // pages
     TabsPage,
     WelcomePage,
+    WelcomeAppexplanationPage,
     WelcomePrivacyPage,
-    WelcomePrivacy2Page,
     WelcomeTermsPage,
-    WelcomeTerms2Page,
+    WelcomeTermsgradupPage,
     WelcomeCapturePage,
     WelcomeContactPage,
     WelcomeContact2Page,
@@ -99,10 +99,10 @@ import { TitleLogoComponent } from '../components/title-logo/title-logo';
     MyApp,
     TabsPage,
     WelcomePage,
+    WelcomeAppexplanationPage,
     WelcomePrivacyPage,
-    WelcomePrivacy2Page,
-    WelcomeTerms2Page,
     WelcomeTermsPage,
+    WelcomeTermsgradupPage,
     WelcomeCapturePage,
     WelcomeContactPage,
     WelcomeContact2Page,
