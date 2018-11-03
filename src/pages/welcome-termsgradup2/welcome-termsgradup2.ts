@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WelcomeCapturePage } from '../welcome-capture/welcome-capture';
 
 /**
- * Generated class for the WelcomeConnect3Page page.
+ * Generated class for the WelcomeTermsgradup2Page page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,16 +11,16 @@ import { WelcomeCapturePage } from '../welcome-capture/welcome-capture';
 
 @IonicPage()
 @Component({
-  selector: 'page-welcome-connect3',
-  templateUrl: 'welcome-connect3.html',
+  selector: 'page-welcome-termsgradup2',
+  templateUrl: 'welcome-termsgradup2.html',
 })
-export class WelcomeConnect3Page {
+export class WelcomeTermsgradup2Page {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad WelcomeConnect3Page');
+    console.log('ionViewDidLoad WelcomeTermsgradup2Page');
   }
 
   public gotoWelcomeCapturePage() {

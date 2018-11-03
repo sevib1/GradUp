@@ -1,14 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WelcomeConnect3Page } from '../welcome-connect3/welcome-connect3';
-import { TabsPage } from '../tabs/tabs';
-
-/**
- * Generated class for the WelcomeConnect2Page page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { WelcomeTermsgradup2Page } from '../welcome-termsgradup2/welcome-termsgradup2';
 
 @IonicPage()
 @Component({
@@ -28,8 +21,8 @@ export class WelcomeConnect2Page {
     this.navCtrl.push(WelcomeConnect3Page, {});
   }
 
-  public gotoTabsPage() {
-    this.navCtrl.push(TabsPage, {});
+  public gotoWelcomeTermsgradup2Page() {
+    this.navCtrl.push(WelcomeTermsgradup2Page, {});
   }
 
 }

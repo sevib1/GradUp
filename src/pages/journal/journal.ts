@@ -20,5 +20,6 @@ export class JournalPage {
   public gotoJournalDeletePage() {
     this.navCtrl.push(JournalDeletePage, {});
   }
+  
 
 }

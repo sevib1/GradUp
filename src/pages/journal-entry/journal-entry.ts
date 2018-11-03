@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { JournalPage } from '../journal/journal';
 
 @IonicPage()
 @Component({
@@ -13,6 +14,10 @@ export class JournalEntryPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad JournalEntryPage');
+  }
+
+  public gotoWelcomeContact2Page() {
+    this.navCtrl.push(JournalPage, {});
   }
 
 }

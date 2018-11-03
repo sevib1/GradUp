@@ -10,6 +10,7 @@ import { WelcomePrivacyPage } from '../pages/welcome-privacy/welcome-privacy';
 import { WelcomeAppexplanationPage } from '../pages/welcome-appexplanation/welcome-appexplanation';
 import { WelcomeTermsPage } from '../pages/welcome-terms/welcome-terms';
 import { WelcomeTermsgradupPage } from '../pages/welcome-termsgradup/welcome-termsgradup';
+import { WelcomeTermsgradup2Page } from '../pages/welcome-termsgradup2/welcome-termsgradup2';
 import { WelcomeCapturePage } from '../pages/welcome-capture/welcome-capture';
 import { WelcomeContactPage } from '../pages/welcome-contact/welcome-contact';
 import { WelcomeContact2Page } from '../pages/welcome-contact2/welcome-contact2';
@@ -57,6 +58,7 @@ import { TitleLogoComponent } from '../components/title-logo/title-logo';
     WelcomePrivacyPage,
     WelcomeTermsPage,
     WelcomeTermsgradupPage,
+    WelcomeTermsgradup2Page,
     WelcomeCapturePage,
     WelcomeContactPage,
     WelcomeContact2Page,
@@ -103,6 +105,7 @@ import { TitleLogoComponent } from '../components/title-logo/title-logo';
     WelcomePrivacyPage,
     WelcomeTermsPage,
     WelcomeTermsgradupPage,
+    WelcomeTermsgradup2Page,
     WelcomeCapturePage,
     WelcomeContactPage,
     WelcomeContact2Page,

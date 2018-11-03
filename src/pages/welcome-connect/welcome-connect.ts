@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { WelcomeConnect2Page } from '../welcome-connect2/welcome-connect2';
+import { WelcomePage } from '../welcome/welcome';
 import { TabsPage } from '../tabs/tabs';
 
 
@@ -25,8 +25,8 @@ export class WelcomeConnectPage {
     console.log('ionViewDidLoad WelcomeConnectPage');
   }
 
-  public gotoWelcomeConnect2Page() {
-    this.navCtrl.push(WelcomeConnect2Page, {});
+  public gotoWelcomePage() {
+    this.navCtrl.push(WelcomePage, {});
   }
 
   public gotoTabsPage() {
