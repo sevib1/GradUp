@@ -1,6 +1,11 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { SecureStorage } from "@ionic-native/secure-storage";
+import { Network } from "@ionic-native/network";
+import { NativeStorage } from '@ionic-native/native-storage';
+import { IonicStorageModule } from '@ionic/storage';
+ 
 import { MyApp } from './app.component';
 
 import { TabsPage } from '../pages/tabs/tabs';
@@ -46,6 +51,7 @@ import { ProfileTermsPage } from '../pages/profile-terms/profile-terms';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TitleLogoComponent } from '../components/title-logo/title-logo';
+import { MidataService } from '../services/MidataService';
 
 @NgModule({
   declarations: [
@@ -94,7 +100,8 @@ import { TitleLogoComponent } from '../components/title-logo/title-logo';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -138,9 +145,11 @@ import { TitleLogoComponent } from '../components/title-logo/title-logo';
   providers: [
     StatusBar,
     SplashScreen,
+    MidataService,
+    NativeStorage,
+    SecureStorage,
+    Network,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
 export class AppModule {}
-
-

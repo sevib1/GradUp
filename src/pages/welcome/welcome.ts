@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WelcomeAppexplanationPage } from '../welcome-appexplanation/welcome-appexplanation';
+import { WelcomeCapturePage } from '../welcome-capture/welcome-capture';
 
 @IonicPage()
 @Component({
@@ -18,6 +19,11 @@ export class WelcomePage {
 
   public gotoWelcomeAppexplanationPage() {
     this.navCtrl.push(WelcomeAppexplanationPage, {});
+  }
+
+
+  public gotoProfilePage() {
+    this.navCtrl.push(WelcomeCapturePage, {});
   }
 
 }
