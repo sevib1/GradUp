@@ -13,6 +13,16 @@
     <h3 ion-text color="primary">Obligatorisch:</h3>
     <p>Benutzername:</p>
     <p>Tätigkeit:</p>
+    <ion-item>
+        <ion-label>Wählen Sie Ihr Tätigkeit</ion-label>
+        <ion-select [(ngModel)]="gender">
+          <ion-option value="a">Sitzende Tätigkeit</ion-option>
+          <ion-option value="b">Handwerkliche Tätigkeit</ion-option>
+          <ion-option value="c">Student/in</ion-option>
+          <ion-option value="d">Hausfrau/mann</ion-option>
+          <ion-option value="e">Pflegende oder betreuende Tätigkeit</ion-option>
+        </ion-select>
+      </ion-item>
     <p>Aktuelles Gewicht:</p>
     <p>Mein Wochenfortschritt:</p>
     <h3 ion-text color="primary">Optional:</h3>
