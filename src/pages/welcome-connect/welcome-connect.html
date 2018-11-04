@@ -1,28 +1,37 @@
 <ion-header>
 
-  <ion-navbar hideBackButton="true">
-    <ion-title>
-      <title-logo text="Biovotion Everion Sensor verbinden"></title-logo>
-    </ion-title>
-  </ion-navbar>
+    <ion-navbar hideBackButton="true">
+        <ion-title>
+            <title-logo text="Biovotion Everion Sensor verbinden"></title-logo>
+        </ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
 
-  <p></p>
-  <p>Verbinden Sie nun Ihren Biovotion Everion Sensor mit GradUp.</p>
-    
-  <ion-footer no-shadow>
-    <ion-toolbar position="bottom">
-        <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="gotoWelcomePage()">
-                Ablehnen
-        </button>
+    <p></p>
+    <p>Verbinden Sie nun Ihren Biovotion Everion Sensor mit GradUp.</p>
 
-        <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="gotoTabsPage()">
-                Verbinden
+    <ion-list class="no-borders">
+
+        <button ion-item (click)="gotoTabsPage()">
+            <ion-toggle [(ngModel)]="Pips"></ion-toggle>
         </button>
-    </ion-toolbar>
-</ion-footer>
+    </ion-list>
+
+    <p>Der Slider ist hier nur provisorisch mit der nächsten Seite verbunden..... Hier müssen nun die Popups kommen,
+        mit Bluetooth wirklich verbunden werden und erst wenn dies alles erfolgt ist, geht es wirklich zur nächsten
+        Seite......</p>
+
+    <p>Sie können diesen im Profil auch später noch verbinden</p>
+
+    <ion-footer no-shadow>
+        <ion-toolbar position="bottom">
+            <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="gotoTabsPage()">
+                Überspringen
+            </button>
+        </ion-toolbar>
+    </ion-footer>
 
 </ion-content>
