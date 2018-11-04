@@ -16,7 +16,7 @@ export class JournalEntryPage {
     console.log('ionViewDidLoad JournalEntryPage');
   }
 
-  public gotoWelcomeContact2Page() {
+  public gotoJournalPage() {
     this.navCtrl.push(JournalPage, {});
   }
 

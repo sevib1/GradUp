@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { JournalPage } from '../journal/journal';
 
 @IonicPage()
 @Component({
@@ -14,6 +14,10 @@ export class JournalDeletePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad JournalDeletePage');
+  }
+
+  public gotoJournalPage() {
+    this.navCtrl.push(JournalPage, {});
   }
 
 }
