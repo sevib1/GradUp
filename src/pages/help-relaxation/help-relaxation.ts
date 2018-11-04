@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the HelpRelaxationPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { HelpPage } from '../help/help';
 
 @IonicPage()
 @Component({
@@ -20,6 +14,10 @@ export class HelpRelaxationPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HelpPointsofcontactPage');
+  }
+
+  public gotoHelpPage() {
+    this.navCtrl.push(HelpPage, {});
   }
 
 }

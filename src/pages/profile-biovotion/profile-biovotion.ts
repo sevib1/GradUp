@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the ProfileBiovotionPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ProfilePage } from '../profile/profile';
 
 @IonicPage()
 @Component({
@@ -20,6 +14,10 @@ export class ProfileBiovotionPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfileBiovotionPage');
+  }
+
+  public gotoProfilePage() {
+    this.navCtrl.push(ProfilePage, {});
   }
 
 }

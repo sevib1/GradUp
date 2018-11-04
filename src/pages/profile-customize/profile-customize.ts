@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the ProfileCustomizePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ProfilePage } from '../profile/profile';
 
 @IonicPage()
 @Component({
@@ -20,6 +14,10 @@ export class ProfileCustomizePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfileCustomizePage');
+  }
+
+  public gotoProfilePage() {
+    this.navCtrl.push(ProfilePage, {});
   }
 
 }

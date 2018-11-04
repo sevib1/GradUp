@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the InformationConsequencesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { InformationPage } from '../information/information';
 
 @IonicPage()
 @Component({
@@ -20,6 +14,10 @@ export class InformationConsequencesPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InformationConsequencesPage');
+  }
+
+  public gotoInformationPage() {
+    this.navCtrl.push(InformationPage, {});
   }
 
 }

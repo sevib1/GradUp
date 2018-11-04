@@ -1,6 +1,9 @@
 <ion-header>
 
-    <!--TODO: Seitenname umbenennen, beschreibt diese nicht korrekt und verwirrt-->
+    <!--TODO: Seitenname umbenennen, beschreibt diese nicht korrekt und verwirrt 
+    Welchen Namen möchtest Du genau umbenennen? Mein Tagebuch oder journal-delete?
+Mein Tagebuch ist in der Familie Tagebuch wie auch alle Informationen....
+journal-delete ja nicht umbenennen, gibt ein riesen Chaos und ist ja nur für uns zum programmieren, das sieht niemand ausser uns....-->
 
         <ion-navbar hideBackButton="true">
             <ion-title>
@@ -15,12 +18,12 @@
     <p>Hier können Sie ihre getätigten Einträge bearbeiten oder löschen</p>
     <p>Korrekturen speichern..... sollte ein Link sein.... steht aktuell nur als Platzhalter hier...</p>
 
+    <ion-footer class="footer-no-borders">
+        <ion-buttons left>
+            <button ion-button icon-only (click)="gotoJournalPage()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-footer>
 
-    <ion-footer>
-            <ion-buttons left>
-                <button ion-button icon-only (click)="gotoJournalPage()" class="my-style-for-modal">
-                    <ion-icon name="arrow-back"></ion-icon>
-                </button>
-            </ion-buttons>
-</ion-footer> 
 </ion-content>
