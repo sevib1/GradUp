@@ -10,10 +10,19 @@
 
 <ion-content padding>
     <p></p>
-    <p>Datum:</p>
-    <p>Foto hizufügen: ..... sollte ein Link sein.... steht aktuell nur als Platzhalter hier... Siehe auch ganzer Ablauf mit den PopUps.....</p>
-    <p>Hier muss noch die ganze Geschichte mit den Smilies erfolgen, gemäss Besprechung mit Herr Lehmann.....</p>
-    <p>Einträge speichern..... sollte ein Link sein.... steht aktuell nur als Platzhalter hier...</p>
+    <p>Datum: <input type="date" placeholder = "06.11.2018" ng-model="dt"></p>
+    <ion-item>
+        <ion-textarea placeholder = "Erfassen Sie hier Ihr heutiges Erlebnis." rows ="8"></ion-textarea>
+    </ion-item>
+    
+    <br>
+    
+    <ion-fab bottom right>
+        <button ion-fab>+Foto</button> <!--provisorisch-->
+        <button ion-fab>Save</button> <!--dito-->
+    </ion-fab>
+    <p>Wie hast du dich dabei gefühlt?</p>
+    <p>Smilies: wunderbar, gut, geht so, schlecht, miserabel</p>
 
     <ion-footer class="footer-no-borders">
         <ion-buttons left>
