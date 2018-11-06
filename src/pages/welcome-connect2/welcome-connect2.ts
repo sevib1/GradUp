@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WelcomeConnect3Page } from '../welcome-connect3/welcome-connect3';
-import { WelcomeTermsgradup2Page } from '../welcome-termsgradup2/welcome-termsgradup2';
 
 @IonicPage()
 @Component({
@@ -19,10 +18,6 @@ export class WelcomeConnect2Page {
 
   public gotoWelcomeConnect3Page() {
     this.navCtrl.push(WelcomeConnect3Page, {});
-  }
-
-  public gotoWelcomeTermsgradup2Page() {
-    this.navCtrl.push(WelcomeTermsgradup2Page, {});
   }
 
 }
