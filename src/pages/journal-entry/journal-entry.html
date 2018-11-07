@@ -9,20 +9,25 @@
     </ion-header>
 
 <ion-content padding>
-    <p></p>
-    <p>Datum: <input type="date" placeholder = "06.11.2018" ng-model="dt"></p>
+    <br>
+    <ion-item>
+        <ion-label>Datum:</ion-label> <!--must be an ion-label here!-->
+        <ion-datetime displayFormat ="DD.MM.YYYY" pickerFormat = "DD MM YYYY" [(ngModel)]="myDate"></ion-datetime> 
+    </ion-item>
+    <!--<input type="date" [ngModel]= "dt" placeholder = "">-->
     <ion-item>
         <ion-textarea placeholder = "Erfassen Sie hier Ihr heutiges Erlebnis." rows ="8"></ion-textarea>
     </ion-item>
     
+   
     <br>
     
     <ion-fab bottom right>
-        <button ion-fab>+Foto</button> <!--provisorisch-->
-        <button ion-fab>Save</button> <!--dito-->
+        <button ion-fab>"Btn1"</button> <!--provisorisch-->
+        <button ion-fab>"Btn2"</button> <!--dito-->
     </ion-fab>
     <p>Wie hast du dich dabei gefühlt?</p>
-    <p>Smilies: wunderbar, gut, geht so, schlecht, miserabel</p>
+    <p>Smilies: gut, geht so, schlecht</p>
 
     <ion-footer class="footer-no-borders">
         <ion-buttons left>

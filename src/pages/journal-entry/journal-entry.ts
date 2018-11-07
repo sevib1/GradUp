@@ -20,4 +20,8 @@ export class JournalEntryPage {
     this.navCtrl.push(JournalPage, {});
   }
 
+  //kochd1: This codeline below is necessary to display the today's date.
+  myDate: any = new Date().toISOString();
+
+
 }
