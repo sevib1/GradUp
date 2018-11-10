@@ -85,4 +85,5 @@
     <plugin name="cordova-plugin-inappbrowser" spec="3.0.0" />
     <plugin name="cordova-plugin-secure-storage" spec="3.0.0" />
     <engine name="android" spec="7.1.1" />
+    <plugin name="cordova-sqlite-storage" spec="2.5.1" />
 </widget>
