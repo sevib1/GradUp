@@ -1,3 +1,27 @@
 page-journal-entry {
 
+    .no-scroll .scroll-content{
+        overflow: hidden;
+    }
+
+    .smileyBtn{
+        width: 56px;
+        height: 56px;
+    }
+
+    ion-icon{
+        font-size: 56px;
+    }
+
+    .fab1{
+        top: 260px;
+        left: 210px;
+        right: 10px;
+    }
+
+    .checkmark-circle{
+        width: 56px;
+        height: 56px;
+        margin-right: 10px;
+    }
 }
