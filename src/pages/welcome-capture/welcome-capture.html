@@ -12,23 +12,35 @@
     <p></p>
     <h3 ion-text color="primary">Obligatorisch:</h3>
     <p>Benutzername:</p>
+    <ion-item id="textfield">
+        <ion-input type="text" value=""></ion-input>
+    </ion-item>
+    <p id="text-benutzername">Wählen Sie einen Namen, mit welchem Sie in Zukunft durch GradUp angesprochen werden möchten.</p>
     <p>Tätigkeit:</p>
-    <ion-item>
-        <ion-label>Wählen Sie Ihr Tätigkeit</ion-label>
-        <ion-select [(ngModel)]="gender">
-          <ion-option value="a">Sitzende Tätigkeit</ion-option>
-          <ion-option value="b">Handwerkliche Tätigkeit</ion-option>
-          <ion-option value="c">Student/in</ion-option>
-          <ion-option value="d">Hausfrau/mann</ion-option>
-          <ion-option value="e">Pflegende oder betreuende Tätigkeit</ion-option>
+    <ion-item id="select-popover">
+        <ion-label>Wählen Sie Ihr Tätigkeit:</ion-label>
+        <ion-select interface="popover" [(ngModel)]="userType">
+          <ion-option value="1">Sitzende Tätigkeit</ion-option>
+          <ion-option value="2">Handwerkliche Tätigkeit</ion-option>
+          <ion-option value="3">Student/in</ion-option>
+          <ion-option value="4">Hausfrau/mann</ion-option>
+          <ion-option value="5">Pflegende oder betreuende Tätigkeit</ion-option>
         </ion-select>
-      </ion-item>
+    </ion-item>
     <p>Aktuelles Gewicht:</p>
+    <ion-item id="textfield">  
+        <ion-input type="text" value=""></ion-input>
+        <ion-label color="primary" class="fixedLabel" fixed>kg</ion-label>
+    </ion-item>
     <p>Mein Wochenfortschritt:</p>
+    <ion-item id="textfield">  
+        <ion-input type="text" value=""></ion-input>
+        <ion-label color="primary" class="fixedLabel" fixed>(500-1500gr)</ion-label>
+    </ion-item>
     <h3 ion-text color="primary">Optional:</h3>
-    <p>Beziehungsstatus (v)</p>
-    <p>Wohnsituation (v)</p>
-    <p>Haustiere (v)</p>
+    <p>Beziehungsstatus</p>
+    <p>Wohnsituation</p>
+    <p>Haustiere</p>
 
     <ion-footer no-shadow>
         <ion-toolbar position="bottom">

@@ -1,3 +1,21 @@
 page-welcome-capture {
+    #textfield {
+        padding-left: 0;
+        bottom: 20px;
+    }
 
+    #text-benutzername {
+        font-size: 0.5em;
+        margin: -1em 0 1em 0;
+    }
+
+    #select-popover {
+        padding-left: 0;
+        bottom: 15px;
+    }
+
+    .fixedLabel {
+        text-align: right;
+        order: 2
+    }
 }
