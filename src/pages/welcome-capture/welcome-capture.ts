@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WelcomeContactPage } from '../welcome-contact/welcome-contact';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the WelcomeCapturePage page.
@@ -16,7 +17,11 @@ import { WelcomeContactPage } from '../welcome-contact/welcome-contact';
 })
 export class WelcomeCapturePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  inputtext:string;
+  key:string="username";
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
   }
 
   ionViewDidLoad() {
@@ -27,4 +32,11 @@ export class WelcomeCapturePage {
     this.navCtrl.push(WelcomeContactPage, {});
   }
   
+  saveData() {
+    this.storage.set(this.key, this.inputtext);
+    this.storage.get(this.key).then((val) => {
+      console.log('Your username is', val);
+    });
+  }
+
 }

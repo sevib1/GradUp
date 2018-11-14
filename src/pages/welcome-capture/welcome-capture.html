@@ -13,7 +13,7 @@
     <h3 ion-text color="primary">Obligatorisch:</h3>
     <p>Benutzername:</p>
     <ion-item id="textfield">
-        <ion-input type="text" value=""></ion-input>
+        <ion-input [(ngModel)]="inputtext" type="text" value=""></ion-input>
     </ion-item>
     <p id="text-benutzername">Wählen Sie einen Namen, mit welchem Sie in Zukunft durch GradUp angesprochen werden möchten.</p>
     <p>Tätigkeit:</p>
@@ -64,7 +64,7 @@
 
     <ion-footer no-shadow>
         <ion-toolbar position="bottom">
-            <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="gotoWelcomeContactPage()">
+            <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="saveData(); gotoWelcomeContactPage();">
                 Speichern
             </button>
         </ion-toolbar>
