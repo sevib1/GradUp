@@ -8,28 +8,51 @@
     
     </ion-header>
 
-<ion-content padding>
-    <p></p>
-    <p>Datum: <input type="date" placeholder = "06.11.2018" ng-model="dt"></p>
-    <ion-item>
-        <ion-textarea placeholder = "Erfassen Sie hier Ihr heutiges Erlebnis." rows ="8"></ion-textarea>
-    </ion-item>
-    
+<ion-content class = "no-scroll" padding>
     <br>
-    
-    <ion-fab bottom right>
-        <button ion-fab>+Foto</button> <!--provisorisch-->
-        <button ion-fab>Save</button> <!--dito-->
-    </ion-fab>
+    <ion-item>
+        <ion-label>Datum:</ion-label> <!--must be an ion-label here!-->
+        <ion-datetime displayFormat ="DD.MM.YYYY" pickerFormat = "DD MM YYYY" [(ngModel)]="myDate"></ion-datetime> 
+    </ion-item>
+    <!--<input type="date" [ngModel]= "dt" placeholder = "">-->
+    <ion-item>
+        <ion-textarea placeholder = "Erfassen Sie hier Ihr heutiges Erlebnis." rows ="5"></ion-textarea>
+    </ion-item>
+
+    <br>
+
     <p>Wie hast du dich dabei gefühlt?</p>
-    <p>Smilies: wunderbar, gut, geht so, schlecht, miserabel</p>
+    <button ion-button icon-only clear class ="smileyBtn">
+        <ion-img [width]= "56" [height]= "56" src = "assets/imgs/001-happy.png"> </ion-img>
+    </button>
 
-    <ion-footer class="footer-no-borders">
-        <ion-buttons left>
-            <button ion-button icon-only (click)="gotoJournalPage()">
-                <ion-icon name="arrow-back"></ion-icon>
-            </button>
-        </ion-buttons>
-    </ion-footer>
+    <button ion-button icon-only clear class ="smileyBtn">
+        <ion-img [width]= "56" [height]= "56" src = "assets/imgs/002-meh.png"> </ion-img>
+    </button>
 
+    <button ion-button icon-only clear class ="smileyBtn">
+        <ion-img [width]= "56" [height]= "56" src = "assets/imgs/003-sad.png"> </ion-img>
+    </button>
+
+   <ion-fab class = "fab1" #fab1>
+        <button ion-fab mini (click) = "clickMainFAB()"><ion-icon name ="add"></ion-icon></button>
+            <ion-fab-list>
+                <button ion-fab (click)="openCamera('camera', fab1)"><ion-icon name = "camera"></ion-icon></button>
+                <button ion-fab (click)="openGallery('gallery', fab1)"><ion-icon name = "images"></ion-icon></button>
+            </ion-fab-list>
+    </ion-fab>
+       
+    <ion-fab bottom right> <!--this button must not scroll-->
+        <button ion-button clear class ="checkmark-circle" (click) = "saveEntry()"><ion-icon name="checkmark-circle"></ion-icon></button>
+    </ion-fab>
+    
+   
 </ion-content>
+
+<ion-footer class="footer-no-borders">
+    <ion-buttons left>
+        <button ion-button icon-only (click)="gotoJournalPage()">
+            <ion-icon name="arrow-back"></ion-icon>
+        </button>
+    </ion-buttons>
+</ion-footer>

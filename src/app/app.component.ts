@@ -4,15 +4,15 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
-import { WelcomePage } from '../pages/welcome/welcome';
 import { MidataService } from '../services/MidataService';
+import { WelcomeCapturePage } from '../pages/welcome-capture/welcome-capture';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
 
-  rootPage: any = WelcomePage;
+  rootPage: any = WelcomeCapturePage;
   loadingDisplay: Loading;
 
   constructor(
