@@ -27,11 +27,13 @@
           <ion-option value="5">Pflegende oder betreuende Tätigkeit</ion-option>
         </ion-select>
     </ion-item>
+
     <p>Aktuelles Gewicht:</p>
-    <ion-item id="textfield">  
-        <ion-input type="text" value=""></ion-input>
+    <ion-item id="textfield"> 
+        <ion-input [(ngModel)]="currentWeight" type="decimal" value=""></ion-input>
         <ion-label color="primary" class="fixedLabel" fixed>kg</ion-label>
     </ion-item>
+
     <p>Mein Wochenfortschritt:</p>
     <ion-item id="textfield">  
         <ion-input type="text" value=""></ion-input>
