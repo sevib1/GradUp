@@ -4,6 +4,10 @@ page-journal-entry {
         overflow: hidden;
     }
 
+    .JEntryDiv{
+        margin-left: -15px;
+    }
+
     .smileyBtn{
         width: 56px;
         height: 56px;
@@ -14,8 +18,8 @@ page-journal-entry {
     }
 
     .fab1{
-        top: 260px;
-        left: 210px;
+        top: 220px;
+        left: 270px;
         right: 10px;
     }
 
@@ -23,5 +27,6 @@ page-journal-entry {
         width: 56px;
         height: 56px;
         margin-right: 10px;
+        bottom: -5px;
     }
 }

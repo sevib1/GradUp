@@ -6,33 +6,37 @@
             </ion-title>
         </ion-navbar>
     
-    </ion-header>
+</ion-header>
+
 
 <ion-content class = "no-scroll" padding>
     <br>
-    <ion-item>
+    <div class = "JEntryDiv">
+        <ion-item>
         <ion-label>Datum:</ion-label> <!--must be an ion-label here!-->
         <ion-datetime displayFormat ="DD.MM.YYYY" pickerFormat = "DD MM YYYY" [(ngModel)]="myDate"></ion-datetime> 
-    </ion-item>
+        </ion-item>
     <!--<input type="date" [ngModel]= "dt" placeholder = "">-->
-    <ion-item>
-        <ion-textarea placeholder = "Erfassen Sie hier Ihr heutiges Erlebnis." rows ="5"></ion-textarea>
-    </ion-item>
+        <ion-item>
+        <ion-textarea [(ngModel)]="journalEntry" placeholder = "Erfassen Sie hier Ihr heutiges Erlebnis." rows ="5"></ion-textarea>
+        </ion-item>
 
+    </div>
     <br>
+    <div text-left>
+        <p>Wie haben Sie sich dabei gefühlt?</p>
+        <button ion-button icon-only clear class ="smileyBtn">
+            <ion-img [width]= "56" [height]= "56" src = "assets/imgs/happy.png"> </ion-img>
+        </button>
 
-    <p>Wie hast du dich dabei gefühlt?</p>
-    <button ion-button icon-only clear class ="smileyBtn">
-        <ion-img [width]= "56" [height]= "56" src = "assets/imgs/001-happy.png"> </ion-img>
-    </button>
+        <button ion-button icon-only clear class ="smileyBtn">
+            <ion-img [width]= "56" [height]= "56" src = "assets/imgs/meh.png"> </ion-img>
+        </button>
 
-    <button ion-button icon-only clear class ="smileyBtn">
-        <ion-img [width]= "56" [height]= "56" src = "assets/imgs/002-meh.png"> </ion-img>
-    </button>
-
-    <button ion-button icon-only clear class ="smileyBtn">
-        <ion-img [width]= "56" [height]= "56" src = "assets/imgs/003-sad.png"> </ion-img>
-    </button>
+        <button ion-button icon-only clear class ="smileyBtn">
+            <ion-img [width]= "56" [height]= "56" src = "assets/imgs/sad.png"> </ion-img>
+        </button>
+    </div>
 
    <ion-fab class = "fab1" #fab1>
         <button ion-fab mini (click) = "clickMainFAB()"><ion-icon name ="add"></ion-icon></button>
