@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WelcomeAppexplanationPage } from '../welcome-appexplanation/welcome-appexplanation';
 import { WelcomeCapturePage } from '../welcome-capture/welcome-capture';
+import { TabsPage } from '../tabs/tabs';
 
 @IonicPage()
 @Component({
@@ -24,6 +25,10 @@ export class WelcomePage {
 
   public gotoProfilePage() {
     this.navCtrl.push(WelcomeCapturePage, {});
+  }
+
+  public gotoTabsPage() {
+    this.navCtrl.push(TabsPage, {});
   }
 
 }
