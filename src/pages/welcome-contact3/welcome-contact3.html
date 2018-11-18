@@ -12,24 +12,36 @@
 <ion-content padding>
 
     <p></p>
-    <p>Daten und Text für die <span class="hilight">Fachperson</span> erfassen.</p>
+    <p>Daten und Text für die <span class="highlight">Fachperson</span> erfassen.</p>
     <p>Name der Fachperson:</p>
+    <ion-item id="textfield">
+        <ion-input [(ngModel)]="inputtext" type="text" value=""></ion-input>
+    </ion-item>
     <p>Praxis-Telefonnummer:</p>
+    <ion-item id="telefonnummer">
+        <ion-input [(ngModel)]="inputtext" type="tel" value=""></ion-input>
+    </ion-item>
     <p>E-Mail-Adresse:</p>
+    <ion-item id="e-mail">
+        <ion-input [(ngModel)]="inputtext" type="email" value=""></ion-input>
+    </ion-item>
     <p>E-Mail-Text:</p>
-    <p>* Die Telefonnummer, die E-Mailadresse und der Text werden lokal auf Ihrem Smartphone gespeichert.</p>
-
-    <ion-footer no-shadow>
-        <ion-toolbar position="bottom">
-            <ion-buttons left>
-                <button ion-button icon-only (click)="gotoWelcomeContactPage()">
-                    <ion-icon name="arrow-back"></ion-icon>
-                </button>
-            </ion-buttons>
-            <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="gotoWelcomeConnectPage()">
-                Speichern
-            </button>
-        </ion-toolbar>
-    </ion-footer>
+    <ion-item id="text">
+        <ion-textarea [(ngModel)]="emailtext" rows ="1"></ion-textarea>
+    </ion-item>
+    <p id="save-text">* Die Telefonnummer, die E-Mailadresse und der Text werden lokal auf Ihrem Smartphone gespeichert.</p>
 
 </ion-content>
+
+<ion-footer no-shadow>
+    <ion-toolbar position="bottom">
+        <ion-buttons left>
+            <button ion-button icon-only (click)="gotoWelcomeContactPage()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </button>
+        </ion-buttons>
+        <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="gotoWelcomeConnectPage()">
+            Speichern
+        </button>
+    </ion-toolbar>
+</ion-footer>
