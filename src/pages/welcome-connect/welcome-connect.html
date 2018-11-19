@@ -24,14 +24,19 @@
         mit Bluetooth wirklich verbunden werden und erst wenn dies alles erfolgt ist, geht es wirklich zur nächsten
         Seite......</p>
 
-    <p>Sie können diesen im Profil auch später noch verbinden</p>
-
-    <ion-footer no-shadow>
-        <ion-toolbar position="bottom">
-            <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="gotoTabsPage()">
-                Überspringen
-            </button>
-        </ion-toolbar>
-    </ion-footer>
+        <ion-footer class="footer-no-borders">
+                <ion-buttons left>                   
+                        <p>Sie können diesen Sensor im Profil auch später noch verbinden</p>
+                        <p></p>
+                </ion-buttons>
+            </ion-footer>          
 
 </ion-content>
+
+<ion-footer no-shadow>
+    <ion-toolbar position="bottom">
+        <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="gotoTabsPage()">
+            Überspringen
+        </button>
+    </ion-toolbar>
+</ion-footer>
