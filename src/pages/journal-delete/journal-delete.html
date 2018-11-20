@@ -17,7 +17,7 @@
     <ion-list>
         <ion-card *ngFor="let journalEntry of journalEntryCollection; let i = index ">
             <ion-card-header>
-                {{ journalEntry.entryDate }}
+                <b>{{ journalEntry.entryDate }}</b>
             </ion-card-header>
 
             <ion-card-content>
@@ -26,22 +26,20 @@
 
             <ion-row>
                 <ion-col text-right>
-                  <button ion-button clear small (click)="showJournalEntry()">Ansehen</button>
+                  <button ion-button clear small (click)="showJournalEntry()"><ion-icon name = "create"></ion-icon></button>
+                  <button ion-button clear small (click)="presentAlert()"><ion-icon name = "trash"></ion-icon></button>
                 </ion-col>
             </ion-row>
 
         </ion-card>
     </ion-list>
-    
-
-    <button ion-button>  Änderungen speichern</button>
-
-    <ion-footer class="footer-no-borders">
-        <ion-buttons left>
-            <button ion-button icon-only (click)="gotoJournalPage()">
-                <ion-icon name="arrow-back"></ion-icon>
-            </button>
-        </ion-buttons>
-    </ion-footer>
 
 </ion-content>
+
+<ion-footer class="footer-no-borders">
+    <ion-buttons left>
+        <button  ion-button icon-only (click)="gotoJournalPage()">
+            <ion-icon name="arrow-back"></ion-icon>
+        </button>
+    </ion-buttons>
+</ion-footer>

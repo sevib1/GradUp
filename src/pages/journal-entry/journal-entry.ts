@@ -19,14 +19,11 @@ export class JournalEntryPage {
 
   //journal Entry
   journalEntry: JournalEntry;
-  journalEntryCollection: JournalEntry[] = []; //[] notwendig?!
+  journalEntryCollection: JournalEntry[] = [];
 
   //without db provider
   //entryDate:Date;
   //key:string="date";
-
-  //journalEntry:string;
-  //key2:string="JE1" //just for now, there can only be one entry
 
 
   constructor(public navCtrl: NavController, 

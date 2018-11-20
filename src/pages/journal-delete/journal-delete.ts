@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { JournalPage } from '../journal/journal';
 
 import { JournalEntry } from '../../UtilityClasses/journalEntry';
@@ -21,7 +21,8 @@ export class JournalDeletePage {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    public dbp: DatabaseProvider) {
+    public dbp: DatabaseProvider,
+    private alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
@@ -32,8 +33,6 @@ export class JournalDeletePage {
     console.log("ionHomeViewWillEnter");
     this.journalEntry = this.navParams.data; //was macht diese funktion?
     
-
-
     this.dbp.getJournalEntryCollection().then((val) => {
       if(val == null) {
         // no isbarNote exist
@@ -50,6 +49,33 @@ export class JournalDeletePage {
 
   showJournalEntry(){
 
+  }
+
+  presentAlert(){
+    let alert = this.alertCtrl.create({
+      title: "Achtung!",
+      subTitle: "Wollen Sie diesen Eintrag wirklich löschen?",
+      buttons: [
+        {
+          text: 'Ja',
+          role: 'ja',
+          handler: () => {this.deleteJournalEntry();
+          }
+        },
+
+        {
+          text: 'Abbrechen',
+          role: 'abbrechen',
+          handler: () => {console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  deleteJournalEntry(){ //in bearbeitung
+   
   }
 
 }
