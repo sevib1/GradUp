@@ -20,6 +20,7 @@ import { WelcomeConnectPage } from '../pages/welcome-connect/welcome-connect';
 import { WelcomeConnect2Page } from '../pages/welcome-connect2/welcome-connect2';
 import { WelcomeConnect3Page } from '../pages/welcome-connect3/welcome-connect3';
 
+//journal pages
 import { JournalPage } from '../pages/journal/journal';
 import { JournalEntryPage } from '../pages/journal-entry/journal-entry';
 import { JournalDeletePage } from '../pages/journal-delete/journal-delete';
@@ -48,6 +49,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TitleLogoComponent } from '../components/title-logo/title-logo';
 import { MidataService } from '../services/MidataService';
+
+
+import { DatabaseProvider } from '../providers/database/database';
 
 @NgModule({
   declarations: [
@@ -137,7 +141,8 @@ import { MidataService } from '../services/MidataService';
     NativeStorage,
     SecureStorage,
     Network,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DatabaseProvider
   ]
 })
 export class AppModule {}

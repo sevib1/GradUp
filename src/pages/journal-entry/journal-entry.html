@@ -14,12 +14,13 @@
     <div class = "JEntryDiv">
         <ion-item>
         <ion-label>Datum:</ion-label> <!--must be an ion-label here!-->
-        <ion-datetime displayFormat ="DD.MM.YYYY" pickerFormat = "DD MM YYYY" [(ngModel)]="myDate"></ion-datetime> 
+        <ion-datetime displayFormat ="DD-MM-YYYY" pickerFormat = "DD MM YYYY" [(ngModel)]="journalEntry.entryDate"></ion-datetime> 
         </ion-item>
+
     <!--<input type="date" [ngModel]= "dt" placeholder = "">-->
         <ion-item>
-        <ion-textarea [(ngModel)]="journalEntry" placeholder = "Erfassen Sie hier Ihr heutiges Erlebnis." rows ="5"></ion-textarea>
-        </ion-item>
+        <ion-textarea [(ngModel)]="journalEntry.entryText" [ngModelOptions]="{standalone: true}" placeholder = "Erfassen Sie hier Ihr heutiges Erlebnis." rows ="5"></ion-textarea>
+        </ion-item> <!--journal-entry.entryText-->
 
     </div>
     <br>

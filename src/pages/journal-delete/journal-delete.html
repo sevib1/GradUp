@@ -1,10 +1,5 @@
 <ion-header>
-
-    <!--TODO: Seitenname umbenennen, beschreibt diese nicht korrekt und verwirrt 
-    Welchen Namen möchtest Du genau umbenennen? Mein Tagebuch oder journal-delete?
-Mein Tagebuch ist in der Familie Tagebuch wie auch alle Informationen....
-journal-delete ja nicht umbenennen, gibt ein riesen Chaos und ist ja nur für uns zum programmieren, das sieht niemand ausser uns....-->
-
+    
         <ion-navbar hideBackButton="true">
             <ion-title>
                 <title-logo text="Mein Tagebuch"></title-logo>
@@ -15,8 +10,31 @@ journal-delete ja nicht umbenennen, gibt ein riesen Chaos und ist ja nur für un
 
 <ion-content padding>
     <p></p>
-    <p>Hier können Sie ihre getätigten Einträge bearbeiten oder löschen</p>
-    <p>Korrekturen speichern..... sollte ein Link sein.... steht aktuell nur als Platzhalter hier...</p>
+    <p>Hier können Sie ihre getätigten Einträge ansehen, bearbeiten oder löschen.</p>
+
+    <!--Auflistung Tagebucheinträge-->
+
+    <ion-list>
+        <ion-card *ngFor="let journalEntry of journalEntryCollection; let i = index ">
+            <ion-card-header>
+                {{ journalEntry.entryDate }}
+            </ion-card-header>
+
+            <ion-card-content>
+                {{ journalEntry.entryText }}
+            </ion-card-content>
+
+            <ion-row>
+                <ion-col text-right>
+                  <button ion-button clear small (click)="showJournalEntry()">Ansehen</button>
+                </ion-col>
+            </ion-row>
+
+        </ion-card>
+    </ion-list>
+    
+
+    <button ion-button>  Änderungen speichern</button>
 
     <ion-footer class="footer-no-borders">
         <ion-buttons left>
