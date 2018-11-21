@@ -5,6 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { MidataService } from '../services/MidataService';
+
+
 import { WelcomePage } from '../pages/welcome/welcome';
 
 @Component({

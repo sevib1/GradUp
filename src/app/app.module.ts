@@ -52,6 +52,9 @@ import { MidataService } from '../services/MidataService';
 
 
 import { DatabaseProvider } from '../providers/database/database';
+import { HttpModule } from '@angular/http';
+
+
 
 @NgModule({
   declarations: [
@@ -96,6 +99,7 @@ import { DatabaseProvider } from '../providers/database/database';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
   ],
