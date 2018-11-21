@@ -14,10 +14,10 @@ import { JournalEntry } from '../../UtilityClasses/journalEntry';
 @Injectable()
 export class DatabaseProvider {
 
-  // journalEntry
+  // journalEntry key
   journalEntryCollection_key: string = 'journalEntryCollection';
 
-  //dbp = databaseprovider
+  //dbp = databaseprovider of type (ionic) storage
   constructor(public dbp: Storage) {
     console.log('Hello DatabaseProvider Provider');
   }
@@ -26,6 +26,10 @@ export class DatabaseProvider {
   saveJournalEntry(entries: JournalEntry[]):void {
     this.dbp.set(this.journalEntryCollection_key, entries);
     console.log("save entry: " + entries);
+  }
+
+  deleteJournalEntry(entries: JournalEntry[]):void {
+    
   }
 
   //get all journal entries

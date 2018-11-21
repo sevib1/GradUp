@@ -75,7 +75,10 @@ export class JournalDeletePage {
   }
 
   deleteJournalEntry(){ //in bearbeitung
-   
+  
+  
+   //this.journalEntryCollection.delete(this.journalEntry.getJournalEntryID());
+   this.dbp.getJournalEntryCollection;
   }
 
 }

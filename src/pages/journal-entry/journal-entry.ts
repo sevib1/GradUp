@@ -19,29 +19,23 @@ export class JournalEntryPage {
 
   //journal Entry
   journalEntry: JournalEntry;
+
   journalEntryCollection: JournalEntry[] = [];
-
-  //without db provider
-  //entryDate:Date;
-  //key:string="date";
-
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     private storage: Storage,
     public dbp: DatabaseProvider) {
     this.journalEntry = new JournalEntry();
-
-      
-     
-      
+  
   }
 
-
+  //Runs when the page is about to enter and become the active page.
   ionViewWillEnter(){
   
   }
 
+  //Runs when the page has loaded.
   ionViewDidLoad() {
     console.log("ionHomeViewWillEnter");
     this.dbp.getJournalEntryCollection().then((val) => {
@@ -55,7 +49,7 @@ export class JournalEntryPage {
     
     console.log('ionViewDidLoad JournalEntryPage');
 
-    this.journalEntry = this.navParams.data; //was macht diese funktion?
+    //this.journalEntry = this.navParams.data; //-> could fetch data from another page
 
     this.dbp.getJournalEntryCollection().then((val) => {
       if(val == null){
@@ -66,8 +60,13 @@ export class JournalEntryPage {
     });
   }
 
+    //kochd1: This codeline below is necessary to display the today's date.
+    myDate: any = new Date().toISOString();
+
+
     // save journal Entry to database
     saveEntry(){
+     
       //this.storage.set(this.key, this.journalEntry);
   
       //this.storage.get(this.key).then((val) => {
@@ -76,6 +75,8 @@ export class JournalEntryPage {
 
       console.log(this.journalEntry);
     
+
+      this.journalEntry.setJournalEntryID(this.myDate);
       console.log("saveJournalEntry button was clicked")
       this.dbp.getJournalEntryCollection()
       .then((val) => {
@@ -88,14 +89,11 @@ export class JournalEntryPage {
           this.journalEntryCollection = val;
           this.journalEntryCollection.push(this.journalEntry);
           this.dbp.saveJournalEntry(this.journalEntryCollection);
-  
+          
+          console.log(this.journalEntry.getJournalEntryID)
         }
       })
       
-
-      
-
-  
       this.navCtrl.pop();
     }
 
@@ -103,8 +101,7 @@ export class JournalEntryPage {
     this.navCtrl.push(JournalPage, {});
   }
 
-  //kochd1: This codeline below is necessary to display the today's date.
-  myDate: any = new Date().toISOString();
+
 
   clickMainFAB(){
     console.log("Clicked open menu")
