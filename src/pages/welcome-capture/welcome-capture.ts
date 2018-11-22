@@ -28,11 +28,19 @@ export class WelcomeCapturePage {
 
   currentWeight;
 
+  //#MIDATA -> array for the weight, which is persisted on MIDATA
+  weightData: Array<{date: Date, value: number }>; //store the raw data in this array.
+
   constructor(public navCtrl: NavController, private http: Http, public navParams: NavParams, private storage: Storage, private midataService: MidataService) {
     let localData = http.get('assets/information.json').map(res => res.json().items);
     localData.subscribe(data => {
       this.information = data;
     })
+
+    //#MIDATA
+    //this.dailyData = this.navParams.get('data');
+    this.weightData = new Array<{ date: Date, value: number }>();
+
   }
 
   toggleSection(i) {
@@ -45,6 +53,9 @@ export class WelcomeCapturePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WelcomeCapturePage');
+
+    //#MIDATA -> load the elements
+    this.loadData();
   }
 
   public gotoWelcomeContactPage() {
@@ -58,11 +69,22 @@ export class WelcomeCapturePage {
       console.log('Your username is', val);
     });
 
-    //MIDATA persistance
+    //#MIDATA persistance
     this.midataService.save(new BodyWeight(+this.currentWeight, new Date().toISOString()));
 
   }
 
+  //#MIDATA
+  addWeightMeasure(measure: number, date: Date): void {
+    /*if (moment().diff(date) >= 0){
+
+    }*/
+
+    //push the data to the array
+    this.weightData.push({ date: date, value: measure });
+  }
+
+  //#MIDATA: loads the data (FHIR Observations with code "body weight") from the MIDATA server
   private loadData(): void {
     this.midataService.search('Observation/$lastn', { max: 1000, _sort: '-date', code: Globals.BODYWEIGHT.toString, patient: this.midataService.getUser().id })
       .then(response => {
@@ -70,8 +92,8 @@ export class WelcomeCapturePage {
 
 
           response.forEach((measure: Observation) => {
-            console.log(measure.getProperty('valueQuantity')['value'], measure.getProperty('effectiveDateTime'));
-            //this.addPulseMeasure(measure.getProperty('valueQuantity')['value'], measure.getProperty('effectiveDateTime'));
+            //console.log(measure.getProperty('valueQuantity')['value'], measure.getProperty('effectiveDateTime'));
+            this.addWeightMeasure(measure.getProperty('valueQuantity')['value'], measure.getProperty('effectiveDateTime'));
           });
           /* TODO:  to test */
           /* TODO: catch error */
@@ -79,5 +101,9 @@ export class WelcomeCapturePage {
       }
       );
   }
+
+  /*formatDate(date: Date, format: string): string {
+    return moment(date).format(format);
+  }*/ // -> what is "moment"?!
 
 }

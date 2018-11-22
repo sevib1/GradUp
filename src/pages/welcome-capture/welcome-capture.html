@@ -17,6 +17,25 @@
     </ion-item>
     <p id="text-benutzername">Wählen Sie einen Namen, mit welchem Sie in Zukunft durch GradUp angesprochen werden möchten.</p>
     
+    <!--the ion-card and its content in this view is only for testing purposes-->
+    <ion-card *ngFor="let measure of weightData">
+        <ion-card-header>
+            {{measure.date}}
+        </ion-card-header>
+
+        <ion-card-content>
+            {{measure.value}}
+        </ion-card-content>
+    </ion-card>
+
+    <!--{{formatDate(measure.date, 'HH:mm')}}-->
+
+    <!--test reference-->
+    <ion-card>
+        <ion-card-header>test</ion-card-header>
+        <ion-card-content>testeintrag</ion-card-content>
+    </ion-card>
+
     <p>Tätigkeit:</p>
     <ion-item id="select-popover">
         <ion-label>Wählen Sie Ihr Tätigkeit:</ion-label>
