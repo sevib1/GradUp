@@ -4,7 +4,7 @@ import { WelcomeContactPage } from '../welcome-contact/welcome-contact';
 import { Storage } from '@ionic/storage';
 import { BodyWeight, Observation } from 'Midata';
 import { MidataService } from '../../services/MidataService';
-import { NotificationService } from '../../services/notificationService';
+import { NotificationService } from '../../services/notification.service';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map'
 import * as Globals from '../../../typings/globals';
@@ -84,7 +84,7 @@ export class WelcomeCapturePage {
 
     const inSevenDays = new Date(new Date().getTime() + (7 * 24 * 3600 * 1000));
     this.notificationService.schedule({ 
-        text: 'Sieben Tage vergangen. Bitte die neuen Daten eingeben <link Eingabemaske>', 
+        text: 'Hallo ' + this.inputtext + ', es sind schon wieder 7 Tage vergangen. Klicke auf diese Nachricht um die neuen Werte aktuelles Gewicht und Wochenfortschritt einzugeben.', 
         trigger: {
           at: inSevenDays
         },

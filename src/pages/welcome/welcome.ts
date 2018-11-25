@@ -3,7 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WelcomeAppexplanationPage } from '../welcome-appexplanation/welcome-appexplanation';
 import { WelcomeCapturePage } from '../welcome-capture/welcome-capture';
 import { TabsPage } from '../tabs/tabs';
-import { NotificationService } from '../../services/notificationService';
+import { NotificationService } from '../../services/notification.service';
+import { WeightReminderNotificationPage } from '../weight-reminder-notification/weight-reminder-notification';
 
 @IonicPage()
 @Component({
@@ -32,6 +33,10 @@ export class WelcomePage {
 
    public gotoTabsPage() {
       this.navCtrl.push(TabsPage, {});
+   }
+
+   public gotoWeightPage() {
+      this.navCtrl.push(WeightReminderNotificationPage, {});
    }
 
    public scheduleNotification() {

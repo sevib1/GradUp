@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { App } from 'ionic-angular';
 import { LocalNotifications, ILocalNotification } from '@ionic-native/local-notifications';
-import { WelcomeCapturePage } from '../pages/welcome-capture/welcome-capture';
+import { WeightReminderNotificationPage } from '../pages/weight-reminder-notification/weight-reminder-notification';
 
 @Injectable()
 export class NotificationService {
@@ -17,11 +17,11 @@ export class NotificationService {
       notification => {
         if (notification.data == 'TEST') {
           //alert('Is test notification.');
-          this.app.getActiveNav().setRoot(WelcomeCapturePage);
+          this.app.getActiveNav().setRoot(WeightReminderNotificationPage);
         }
         if (notification.data == 'ENTER_WEIGHT') {
           //alert('Todo redirect to enter weight page.');
-          this.app.getActiveNav().setRoot(WelcomeCapturePage)
+          this.app.getActiveNav().setRoot(WeightReminderNotificationPage)
         }
       },
       (error) => {

@@ -1,0 +1,50 @@
+<ion-header>
+
+  <ion-navbar hideBackButton="true">
+      <ion-title>
+          <title-logo text="Gewichtsangaben neu erfassen"></title-logo>
+      </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <p *ngIf="message">{{message}}</p>
+
+  <p>Aktuelles Gewicht:</p>
+  <ion-item id="textfield"> 
+      <ion-input [(ngModel)]="currentWeight" type="decimal" value=""></ion-input>
+      <ion-label color="primary" class="fixedLabel" fixed>kg</ion-label>
+  </ion-item>
+
+  <p>In der nächsten Woche möchte ich</p>
+  <ion-item id="textfield">  
+      <ion-input type="number" maxlenght="4" pattern="[0-9]*" min="500" max="1500" value=""></ion-input>
+      <ion-label color="primary" class="fixedLabel" fixed>(500-1500gr)</ion-label>
+  </ion-item>
+  <p>zunehmen.</p>    
+
+</ion-content>
+
+<ion-footer no-shadow>
+  <ion-toolbar position="bottom">
+      <button 
+        *ngIf="state === 'FORM'"
+        ion-button [color]="primary"
+        [outline]="false"
+        [round]="true"
+        (click)="saveData()">
+          Speichern
+      </button>
+
+      <button 
+        *ngIf="state === 'DONE'"
+        ion-button [color]="primary"
+        [outline]="false"
+        [round]="true"
+        (click)="gotoTabsPage()">
+        Weiter
+    </button>
+  </ion-toolbar>
+</ion-footer>

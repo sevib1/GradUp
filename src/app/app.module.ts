@@ -20,6 +20,8 @@ import { WelcomeConnectPage } from '../pages/welcome-connect/welcome-connect';
 import { WelcomeConnect2Page } from '../pages/welcome-connect2/welcome-connect2';
 import { WelcomeConnect3Page } from '../pages/welcome-connect3/welcome-connect3';
 
+import { WeightReminderNotificationPage } from '../pages/weight-reminder-notification/weight-reminder-notification';
+
 //journal pages
 import { JournalPage } from '../pages/journal/journal';
 import { JournalEntryPage } from '../pages/journal-entry/journal-entry';
@@ -50,12 +52,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TitleLogoComponent } from '../components/title-logo/title-logo';
 import { MidataService } from '../services/MidataService';
 
-
 import { DatabaseProvider } from '../providers/database/database';
 import { HttpModule } from '@angular/http';
 
 import { LocalNotifications } from '@ionic-native/local-notifications';
-import { NotificationService } from '../services/notificationService';
+import { NotificationService } from '../services/notification.service';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,7 @@ import { NotificationService } from '../services/notificationService';
     WelcomeConnectPage,
     WelcomeConnect2Page,
     WelcomeConnect3Page,
-    
+    WeightReminderNotificationPage,
     TabsPage,
     JournalPage,
     JournalEntryPage,
@@ -117,6 +118,7 @@ import { NotificationService } from '../services/notificationService';
     WelcomeConnectPage,
     WelcomeConnect2Page,
     WelcomeConnect3Page,
+    WeightReminderNotificationPage,
     TabsPage,
     JournalPage,
     JournalEntryPage,
@@ -150,7 +152,6 @@ import { NotificationService } from '../services/notificationService';
     LocalNotifications,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DatabaseProvider
-
   ]
 })
 export class AppModule {}
