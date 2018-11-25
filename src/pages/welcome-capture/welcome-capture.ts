@@ -4,9 +4,11 @@ import { WelcomeContactPage } from '../welcome-contact/welcome-contact';
 import { Storage } from '@ionic/storage';
 import { BodyWeight, Observation } from 'Midata';
 import { MidataService } from '../../services/MidataService';
+import { NotificationService } from '../../services/notificationService';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map'
 import * as Globals from '../../../typings/globals';
+
 /**
  * Generated class for the WelcomeCapturePage page.
  *
@@ -26,12 +28,20 @@ export class WelcomeCapturePage {
 
   information: any[];
 
+  //#MIDATA -> array for the wete, value: number }>; 
+  //store the raw data in this array.
+  weightData: Array<{date: Date, value: number }>;
+
   currentWeight;
 
-  //#MIDATA -> array for the weight, which is persisted on MIDATA
-  weightData: Array<{date: Date, value: number }>; //store the raw data in this array.
-
-  constructor(public navCtrl: NavController, private http: Http, public navParams: NavParams, private storage: Storage, private midataService: MidataService) {
+  constructor(
+    public navCtrl: NavController, 
+    private http: Http,
+    public navParams: NavParams,
+    private storage: Storage,
+    private midataService: MidataService,
+    private notificationService: NotificationService
+  ) {
     let localData = http.get('assets/information.json').map(res => res.json().items);
     localData.subscribe(data => {
       this.information = data;
@@ -40,7 +50,6 @@ export class WelcomeCapturePage {
     //#MIDATA
     //this.dailyData = this.navParams.get('data');
     this.weightData = new Array<{ date: Date, value: number }>();
-
   }
 
   toggleSection(i) {
@@ -64,14 +73,23 @@ export class WelcomeCapturePage {
   
   //saves the data locally and also on MIDATA
   saveData() {
+    let MessageDate = new Date();
     this.storage.set(this.key, this.inputtext);
     this.storage.get(this.key).then((val) => {
       console.log('Your username is', val);
     });
 
     //#MIDATA persistance
-    this.midataService.save(new BodyWeight(+this.currentWeight, new Date().toISOString()));
+    this.midataService.save(new BodyWeight(+this.currentWeight, MessageDate.toISOString()));
 
+    const inSevenDays = new Date(new Date().getTime() + (7 * 24 * 3600 * 1000));
+    this.notificationService.schedule({ 
+        text: 'Sieben Tage vergangen. Bitte die neuen Daten eingeben <link Eingabemaske>', 
+        trigger: {
+          at: inSevenDays
+        },
+        data: 'ENTER_WEIGHT'
+    });
   }
 
   //#MIDATA

@@ -54,7 +54,8 @@ import { MidataService } from '../services/MidataService';
 import { DatabaseProvider } from '../providers/database/database';
 import { HttpModule } from '@angular/http';
 
-
+import { LocalNotifications } from '@ionic-native/local-notifications';
+import { NotificationService } from '../services/notificationService';
 
 @NgModule({
   declarations: [
@@ -142,11 +143,14 @@ import { HttpModule } from '@angular/http';
     StatusBar,
     SplashScreen,
     MidataService,
+    NotificationService,
     NativeStorage,
     SecureStorage,
     Network,
+    LocalNotifications,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DatabaseProvider
+
   ]
 })
 export class AppModule {}

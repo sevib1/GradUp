@@ -1,18 +1,37 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title></ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title></ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 <ion-content padding fullscreen>
     <div class="centered">
-        <img alt="logo" src="assets/imgs/logo.png" class="welcome-image" /> 
+        <img alt="logo" src="assets/imgs/logo.png" class="welcome-image" />
     </div>
     <div class="centered welcome">
-      <h1 ion-text color="primary">Willkommen zu GradUp</h1>
+        <h1 ion-text color="primary">Willkommen zu GradUp</h1>
     </div>
+
+    <p style="color:red">
+        Für Entwicklung:
+    </p>
+
+    <ion-list class="with-borders">
+        <button ion-item (click)="gotoProfilePage()">
+            <span class="highlight">Zur Profil Seite (Login überspringen)</span>                
+        </button>
+
+        <button ion-item (click)="gotoTabsPage()">
+            <span class="highlight">Zur Home Seite (Login überspringen)</span>                
+        </button>
+
+        <button ion-item (click)="scheduleNotification()">
+            <span class="highlight">Notification Test</span>                
+        </button>
+    </ion-list>
+
     <h3 ion-text color="primary">Was:</h3>
     <p>GradUp ist eine App für an Anorexie erkrankte Personen.</p>
     <h3 ion-text color="primary">Warum:</h3>
@@ -20,20 +39,13 @@
     <h3 ion-text color="primary">Wie:</h3>
     <p>GradUp bietet Ihnen ein Tagebuch, Informationen und Hilfestellungen an.</p>
 
-    <p style="color:red">
-    Für Entwicklung:<br/>
-    <a (click)="gotoProfilePage()">Zur Profil Seite (Login überspringen)</a>
-    <a (click)="gotoTabsPage()">Zur Home Seite (Login überspringen)</a>
-    </p>
-
 
     <ion-footer no-shadow>
         <ion-toolbar position="bottom">
-            <button ion-button [color]="primary" [outline]="false" [round]="true"
-            (click)="gotoWelcomeAppexplanationPage()">
+            <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="gotoWelcomeAppexplanationPage()">
                 Auf geht's
             </button>
         </ion-toolbar>
-      </ion-footer>    
+    </ion-footer>
 
 </ion-content>
