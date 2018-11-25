@@ -283,7 +283,7 @@ export class MidataService {
         .then(() => {
           return this.midata.authenticate();
         })
-        .then((rsp: TokenResponse) => {
+        .then((rsp: any) => {
           return this.setSecureStorageToken(rsp.refresh_token);
         })
         .then(() => {
