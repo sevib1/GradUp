@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 // import storage
 import { Storage } from '@ionic/storage';
 
-import { JournalEntry } from '../../UtilityClasses/journalEntry';
+import { JournalEntry } from '../../classes/journalEntry';
 
 /*
   Generated class for the DatabaseProvider provider.
@@ -28,7 +28,18 @@ export class DatabaseProvider {
     console.log("save entry: " + entries);
   }
 
-  deleteJournalEntry(entries: JournalEntry[]):void {
+  deleteJournalEntry(journalEntry: JournalEntry):void {
+    
+    //this.dbp.remove
+    console.log("journalEntryCollection: " + this.getJournalEntryCollection())
+    console.log("delete journalEntry: " + journalEntry)
+  }
+
+  getJournalEntryById(id: number): Promise<any> {
+    return this.dbp.get(this.journalEntryCollection_key).then((valArr) => {
+      return valArr.find(JournalEntry => JournalEntry.id == id);
+      
+    });
     
   }
 

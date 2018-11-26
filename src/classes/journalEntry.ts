@@ -2,17 +2,17 @@ import { convertUrlToDehydratedSegments } from "ionic-angular/umd/navigation/url
 
 export class JournalEntry {
 
-  entryDate: string; //string because of IONIC and ISO 8601
+  entryDate: Date; // deprecated -> string because of IONIC and ISO 8601
   entryText: string;
-  private entryID: string;
+  entryId: number;
 
   constructor() {
-    this.entryDate = "";
+    this.entryDate = new Date();
     this.entryText = "";
-    this.entryID = ""; //Date with precision in seconds as ID.
+    this.entryId = this.entryDate.getTime(); //sets the amount of milliseconds since 1970 as id
   }
 
-  setJournalEntryID(entryID: string){
+  /*setJournalEntryID(entryID: string){
 
     this.entryID = entryID;
 
@@ -21,7 +21,7 @@ export class JournalEntry {
   getJournalEntryID(): string{
 
     return this.entryID;
-  }
+  }*/
 
 
 }

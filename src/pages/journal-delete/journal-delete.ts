@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { JournalPage } from '../journal/journal';
 
-import { JournalEntry } from '../../UtilityClasses/journalEntry';
+import { JournalEntry } from '../../classes/journalEntry';
 
 //import Providers
 import { DatabaseProvider } from '../../providers/database/database';
@@ -14,8 +14,8 @@ import { DatabaseProvider } from '../../providers/database/database';
 })
 export class JournalDeletePage {
 
- 
    journalEntry: JournalEntry;
+   journalEntryId: number;
   
    journalEntryCollection: JournalEntry[] = [];
 
@@ -31,14 +31,19 @@ export class JournalDeletePage {
 
   ionViewWillEnter(){
     console.log("ionHomeViewWillEnter");
-    this.journalEntry = this.navParams.data; //was macht diese funktion?
+    //this.journalEntryId = this.navParams.data; nötig?! Auflistung passiert auch auf dieser Seite
+
     
     this.dbp.getJournalEntryCollection().then((val) => {
       if(val == null) {
-        // no isbarNote exist
+        // There's no journalEntry
 
       } else {
         this.journalEntryCollection = val;
+
+        this.dbp.getJournalEntryById(this.journalEntryId).then((val) => {
+          this.journalEntry = val;
+        });
       }
     });
   }
@@ -51,7 +56,11 @@ export class JournalDeletePage {
 
   }
 
-  presentAlert(){
+  presentAlert(jEntryId: number): void{
+    this.journalEntryId = jEntryId;
+
+    console.log("journalDelete -> journalEntryId: " + this.journalEntryId);
+
     let alert = this.alertCtrl.create({
       title: "Achtung!",
       subTitle: "Wollen Sie diesen Eintrag wirklich löschen?",
@@ -59,7 +68,7 @@ export class JournalDeletePage {
         {
           text: 'Ja',
           role: 'ja',
-          handler: () => {this.deleteJournalEntry();
+          handler: () => {this.deleteJournalEntry(this.journalEntryId);
           }
         },
 
@@ -74,11 +83,18 @@ export class JournalDeletePage {
     alert.present();
   }
 
-  deleteJournalEntry(){ //in bearbeitung
+  deleteJournalEntry(jEntryId: number){ //in bearbeitung
   
+    console.log("journalDelete -> journalEntryId: " + this.journalEntryId);
+
   
+
+    console.log("journalEntry to delete: " + this.journalEntry);
+
+    this.dbp.deleteJournalEntry(this.journalEntry);
+
    //this.journalEntryCollection.delete(this.journalEntry.getJournalEntryID());
-   this.dbp.getJournalEntryCollection;
+   //this.journalEntryCollection = this.dbp.getJournalEntryCollection;
   }
 
 }

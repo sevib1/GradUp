@@ -7,7 +7,7 @@ import { Storage } from '@ionic/storage';
 import { DatabaseProvider } from '../../providers/database/database';
 
 //import utility class
-import { JournalEntry } from '../../UtilityClasses/journalEntry';
+import { JournalEntry } from '../../classes/journalEntry';
 
 
 @IonicPage()
@@ -76,7 +76,7 @@ export class JournalEntryPage {
       console.log(this.journalEntry);
     
 
-      this.journalEntry.setJournalEntryID(this.myDate);
+      // deprecated -> this.journalEntry.entryId = this.myDate;
       console.log("saveJournalEntry button was clicked")
       this.dbp.getJournalEntryCollection()
       .then((val) => {
@@ -84,13 +84,22 @@ export class JournalEntryPage {
           console.log("getJournalEntryCollection -> null")
           this.journalEntryCollection.push(this.journalEntry);
           this.dbp.saveJournalEntry(this.journalEntryCollection);
+
+          console.log(this.journalEntry.entryId)
+          console.log(this.journalEntryCollection)
+
+          this.journalEntry = this.navParams.data;
+
         } else {
           console.log("get-->" + val);
           this.journalEntryCollection = val;
           this.journalEntryCollection.push(this.journalEntry);
           this.dbp.saveJournalEntry(this.journalEntryCollection);
           
-          console.log(this.journalEntry.getJournalEntryID)
+          console.log(this.journalEntry.entryId)
+          console.log(this.journalEntryCollection)
+
+          this.journalEntry = this.navParams.data;
         }
       })
       
