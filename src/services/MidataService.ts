@@ -6,6 +6,7 @@ import { Network } from "@ionic-native/network";
 import { Storage } from '@ionic/storage';
 import { TokenRefreshResponse, TokenResponse } from "midata/dist/src/api";
 import { Promise } from 'es6-promise';
+import { AuthAndPatResponse } from 'Midata/dist/src/Midata';
 
 @Injectable()
 export class MidataService {
@@ -270,7 +271,6 @@ export class MidataService {
           return Promise.reject(error);
         })
     }
-
   }
 
   /**
@@ -283,8 +283,8 @@ export class MidataService {
         .then(() => {
           return this.midata.authenticate();
         })
-        .then((rsp: any) => {
-          return this.setSecureStorageToken(rsp.refresh_token);
+        .then((rsp: AuthAndPatResponse) => {
+          return this.setSecureStorageToken(rsp.authResponse.refresh_token);
         })
         .then(() => {
           this.syncResourceMap().catch(() => {
