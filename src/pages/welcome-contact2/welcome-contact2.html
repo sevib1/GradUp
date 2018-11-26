@@ -11,29 +11,33 @@
 
 <ion-content padding>
 
+    <form [formGroup]="formgroup" (ngSubmit)="onSubmit()">
+
     <p></p>
     <p>Daten und Texte für die <span class="highlight">Bezugsperson</span> erfassen.</p>
     <p>Name der Bezugsperson:</p>
     <ion-item id="textfield">
-        <ion-input [(ngModel)]="inputtext" type="text" value=""></ion-input>
+        <ion-input [(ngModel)]="bezugsperson_inputtext" formControlName="inputtext" type="text" value=""></ion-input>
     </ion-item>
     <p>Telefonnummer:</p>
     <ion-item id="telefonnummer">
-        <ion-input [(ngModel)]="inputtext" type="tel" value=""></ion-input>
+        <ion-input [(ngModel)]="bezugsperson_telefonnummer" formControlName="telefonnummer" type="tel" value="" pattern="[0-9]+"></ion-input>
     </ion-item>
     <p>SMS-Text:</p>
     <ion-item id="text">
-        <ion-textarea [(ngModel)]="smstext" rows ="1"></ion-textarea>
+        <ion-textarea [(ngModel)]="bezugsperson_smstext" formControlName="smstext" rows ="1"></ion-textarea>
     </ion-item>
     <p>E-Mail-Adresse:</p>
     <ion-item id="e-mail">
-        <ion-input [(ngModel)]="inputtext" type="email" value=""></ion-input>
+        <ion-input [(ngModel)]="bezugsperson_email" formControlName="email" type="email" pattern="[A-Za-z0-9._%+-]{2,}@[a-zA-Z-_.]{2,}[.]{1}[a-zA-Z]{2,}" value=""></ion-input>
     </ion-item>
     <p>E-Mail-Text:</p>
     <ion-item id="text">
-        <ion-textarea [(ngModel)]="emailtext" rows ="1"></ion-textarea>
+        <ion-textarea [(ngModel)]="bezugsperson_emailtext" formControlName="emailtext" rows ="1"></ion-textarea>
     </ion-item>
     <p id="save-text">* Die Telefonnummer, die E-Mailadresse und die Texte werden lokal auf Ihrem Smartphone gespeichert.</p>
+    
+    </form>
 
 </ion-content>
 
@@ -44,7 +48,7 @@
                 <ion-icon name="arrow-back"></ion-icon>
             </button>
         </ion-buttons>
-        <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="gotoWelcomeContact3Page()">
+        <button ion-button [color]="primary" [outline]="false" type="submit" [disabled]="!formgroup.valid" [round]="true" (click)="saveData(); gotoWelcomeContact3Page();">
             Speichern
         </button>
     </ion-toolbar>
