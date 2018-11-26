@@ -52,6 +52,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TitleLogoComponent } from '../components/title-logo/title-logo';
 import { MidataService } from '../services/MidataService';
 
+import { Contacts } from '@ionic-native/contacts';
+
 import { DatabaseProvider } from '../providers/database/database';
 import { HttpModule } from '@angular/http';
 
@@ -151,6 +153,7 @@ import { NotificationService } from '../services/notification.service';
     Network,
     LocalNotifications,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Contacts,
     DatabaseProvider
   ]
 })

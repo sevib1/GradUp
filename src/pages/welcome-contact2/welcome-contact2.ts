@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WelcomeContact3Page } from '../welcome-contact3/welcome-contact3';
 import { WelcomeContactPage } from '../welcome-contact/welcome-contact';
 
+import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/contacts';
+
 /**
  * Generated class for the WelcomeContact2Page page.
  *
@@ -17,7 +19,7 @@ import { WelcomeContactPage } from '../welcome-contact/welcome-contact';
 })
 export class WelcomeContact2Page {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private contacts: Contacts) {
   }
 
   ionViewDidLoad() {
