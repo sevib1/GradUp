@@ -57,7 +57,8 @@ export class JournalDeletePage {
   
   }
 
-  presentAlert(jEntryId: number): void{
+  deleteJournalEntry(jEntryId: number): void{
+
     this.journalEntryId = jEntryId;
 
     console.log("journalDelete -> journalEntryId: " + this.journalEntryId);
@@ -69,7 +70,13 @@ export class JournalDeletePage {
         {
           text: 'Ja',
           role: 'ja',
-          handler: () => {this.deleteJournalEntry(this.journalEntryId);
+          handler: () => {this.dbp.deleteJournalEntryById(jEntryId).then(val => {
+            if(val){
+              this.dbp.getJournalEntryCollection().then(valArray => {
+                this.journalEntryCollection = valArray;
+              })
+            }
+          })
           }
         },
 
@@ -82,24 +89,8 @@ export class JournalDeletePage {
       ]
     });
     alert.present();
-  }
-
-  deleteJournalEntry(jEntryId: number){
   
     console.log("journalDelete -> journalEntryId: " + this.journalEntryId);
-
-    console.log("journalEntry to delete: " + this.journalEntry);
-    //this.dbp.getJournalEntryById
-    this.dbp.deleteJournalEntryById(jEntryId).then(val => {
-      if(val){
-        this.dbp.getJournalEntryCollection().then(valArray => {
-          this.journalEntryCollection = valArray;
-        })
-      }
-    })
-
-   //this.journalEntryCollection.delete(this.journalEntry.getJournalEntryID());
-   //this.journalEntryCollection = this.dbp.getJournalEntryCollection;
   }
 
 }
