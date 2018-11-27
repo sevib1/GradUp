@@ -18,25 +18,26 @@ export class DatabaseProvider {
   journalEntryCollection_key: string = 'journalEntryCollection';
 
   //dbp = databaseprovider of type (ionic) storage
-  constructor(public dbp: Storage) {
+  constructor(public storage: Storage) {
     console.log('Hello DatabaseProvider Provider');
   }
 
   //save journal entry
   saveJournalEntry(entries: JournalEntry[]):void {
-    this.dbp.set(this.journalEntryCollection_key, entries);
+    this.storage.set(this.journalEntryCollection_key, entries);
     console.log("save entry: " + entries);
   }
 
-  deleteJournalEntry(journalEntry: JournalEntry):void {
-    
-    //this.dbp.remove
-    console.log("journalEntryCollection: " + this.getJournalEntryCollection())
-    console.log("delete journalEntry: " + journalEntry)
+  deleteJournalEntryById(id: number): Promise<boolean> {
+    return this.storage.get(this.journalEntryCollection_key).then((valArr) => {
+      let newArr = valArr.filter(jEntry => jEntry.entryId != id); //true -> wird in newArr geschrieben
+      this.storage.set(this.journalEntryCollection_key, newArr);
+      return true;
+    });
   }
 
-  getJournalEntryById(id: number): Promise<any> {
-    return this.dbp.get(this.journalEntryCollection_key).then((valArr) => {
+  getJournalEntryById(id: number): Promise<JournalEntry> {
+    return this.storage.get(this.journalEntryCollection_key).then((valArr) => {
       return valArr.find(JournalEntry => JournalEntry.id == id);
       
     });
@@ -45,7 +46,7 @@ export class DatabaseProvider {
 
   //get all journal entries
   getJournalEntryCollection(): Promise<JournalEntry[]> {
-    return this.dbp.get(this.journalEntryCollection_key);
+    return this.storage.get(this.journalEntryCollection_key);
   }
 
 }

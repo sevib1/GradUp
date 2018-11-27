@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { JournalPage } from '../journal/journal';
 
 import { JournalEntry } from '../../classes/journalEntry';
-
+import { JournalEntryPage } from '../journal-entry/journal-entry';
 //import Providers
 import { DatabaseProvider } from '../../providers/database/database';
 
@@ -52,8 +52,9 @@ export class JournalDeletePage {
     this.navCtrl.push(JournalPage, {});
   }
 
-  showJournalEntry(){
-
+  showJournalEntry(jEntryId: number){
+   this.navCtrl.push(JournalEntryPage, this.journalEntryId);
+  
   }
 
   presentAlert(jEntryId: number): void{
@@ -83,15 +84,19 @@ export class JournalDeletePage {
     alert.present();
   }
 
-  deleteJournalEntry(jEntryId: number){ //in bearbeitung
+  deleteJournalEntry(jEntryId: number){
   
     console.log("journalDelete -> journalEntryId: " + this.journalEntryId);
 
-  
-
     console.log("journalEntry to delete: " + this.journalEntry);
-
-    this.dbp.deleteJournalEntry(this.journalEntry);
+    //this.dbp.getJournalEntryById
+    this.dbp.deleteJournalEntryById(jEntryId).then(val => {
+      if(val){
+        this.dbp.getJournalEntryCollection().then(valArray => {
+          this.journalEntryCollection = valArray;
+        })
+      }
+    })
 
    //this.journalEntryCollection.delete(this.journalEntry.getJournalEntryID());
    //this.journalEntryCollection = this.dbp.getJournalEntryCollection;

@@ -19,6 +19,7 @@ export class JournalEntryPage {
 
   //journal Entry
   journalEntry: JournalEntry;
+  journalEntryId: number;
 
   journalEntryCollection: JournalEntry[] = [];
 
@@ -49,7 +50,7 @@ export class JournalEntryPage {
     
     console.log('ionViewDidLoad JournalEntryPage');
 
-    //this.journalEntry = this.navParams.data; //-> could fetch data from another page
+    this.journalEntryId = this.navParams.data; //-> fetches data from "journal-deletePage"
 
     this.dbp.getJournalEntryCollection().then((val) => {
       if(val == null){
