@@ -9,6 +9,9 @@ import { DatabaseProvider } from '../../providers/database/database';
 //import utility class
 import { JournalEntry } from '../../classes/journalEntry';
 
+//import journalDeletePage
+import { JournalDeletePage } from '../journal-delete/journal-delete'; //not shure if needed...
+
 
 @IonicPage()
 @Component({
@@ -20,6 +23,8 @@ export class JournalEntryPage {
   //journal Entry
   journalEntry: JournalEntry;
   journalEntryId: number;
+
+  journalEntryExistend : JournalDeletePage;
 
   journalEntryCollection: JournalEntry[] = [];
 
@@ -33,32 +38,27 @@ export class JournalEntryPage {
 
   //Runs when the page is about to enter and become the active page.
   ionViewWillEnter(){
-  
+    console.log("ionHomeViewWillEnter");
+    
+    
   }
 
   //Runs when the page has loaded.
   ionViewDidLoad() {
-    console.log("ionHomeViewWillEnter");
+
+    
+    console.log('ionViewDidLoad JournalEntryPage');
     this.dbp.getJournalEntryCollection().then((val) => {
      if(val == null ) {
- 
+        //no entry there
      } else {
        this.journalEntryCollection = val;
      }
     });
-    
-    
-    console.log('ionViewDidLoad JournalEntryPage');
 
-    this.journalEntryId = this.navParams.data; //-> fetches data from "journal-deletePage"
-
-    this.dbp.getJournalEntryCollection().then((val) => {
-      if(val == null){
-        //no entry there
-      } else{
-        this.journalEntryCollection = val;
-      }
-    });
+    //this.journalEntry = this.navParams.data; //-> fetches data from "journal-deletePage"
+    this.journalEntryId = this.navParams.data; //-> fetches data from "journal-deletePage" --> do not delete!, otherwise delete won't work properly
+    
   }
 
     //kochd1: This codeline below is necessary to display the today's date.
@@ -67,16 +67,9 @@ export class JournalEntryPage {
 
     // save journal Entry to database
     saveEntry(){
-     
-      //this.storage.set(this.key, this.journalEntry);
-  
-      //this.storage.get(this.key).then((val) => {
-        //console.log('Your entry: ', val);
-      //});
 
       console.log(this.journalEntry);
     
-
       // deprecated -> this.journalEntry.entryId = this.myDate;
       console.log("saveJournalEntry button was clicked")
       this.dbp.getJournalEntryCollection()

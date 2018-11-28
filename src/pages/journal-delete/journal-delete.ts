@@ -14,6 +14,7 @@ import { DatabaseProvider } from '../../providers/database/database';
 })
 export class JournalDeletePage {
 
+   journalEntryPage: any = JournalEntryPage;
    journalEntry: JournalEntry;
    journalEntryId: number;
   
@@ -52,9 +53,11 @@ export class JournalDeletePage {
     this.navCtrl.push(JournalPage, {});
   }
 
-  showJournalEntry(jEntryId: number){
-   this.navCtrl.push(JournalEntryPage, this.journalEntryId);
-  
+  editJournalEntry(jEntryId: number):void{
+  this.dbp.getJournalEntryById(jEntryId).then((jEntry) => {
+    this.navCtrl.push(this.journalEntryPage, jEntry);
+  })
+   
   }
 
   deleteJournalEntry(jEntryId: number): void{
