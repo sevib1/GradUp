@@ -15,9 +15,7 @@
 
     <ion-list class="no-borders">
 
-        <button ion-item (click)="gotoTabsPage()">
-            <ion-toggle [(ngModel)]="Pips"></ion-toggle>
-        </button>
+        <ion-toggle [(ngModel)]="notify" (ngModelChange)="handleSensorConnection()" ></ion-toggle>
     </ion-list>
 
     <p>Der Slider ist hier nur provisorisch mit der nächsten Seite verbunden..... Hier müssen nun die Popups kommen,

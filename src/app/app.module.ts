@@ -60,6 +60,8 @@ import { HttpModule } from '@angular/http';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { NotificationService } from '../services/notification.service';
 
+import { BiovotionConnector } from '@ionic-native/biovotion-connector';
+
 @NgModule({
   declarations: [
     MyApp,   
@@ -154,7 +156,8 @@ import { NotificationService } from '../services/notification.service';
     LocalNotifications,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Contacts,
-    DatabaseProvider
+    DatabaseProvider,
+    BiovotionConnector
   ]
 })
 export class AppModule {}

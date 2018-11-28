@@ -8,13 +8,14 @@ import { MidataService } from '../services/MidataService';
 
 
 import { WelcomePage } from '../pages/welcome/welcome';
+import { WelcomeConnectPage } from '../pages/welcome-connect/welcome-connect';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
 
-  rootPage: any = WelcomePage;
+  rootPage: any = WelcomeConnectPage;
   loadingDisplay: Loading;
 
   constructor(
