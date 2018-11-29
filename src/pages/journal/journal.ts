@@ -3,7 +3,7 @@ import { NavController, MenuController, Nav } from 'ionic-angular';
 import { JournalEntryPage } from '../journal-entry/journal-entry';
 import { JournalDeletePage } from '../journal-delete/journal-delete';
 import { MidataService } from '../../services/MidataService';
-import { WelcomeAppexplanationPage } from '../welcome-appexplanation/welcome-appexplanation';
+import { WelcomePage } from '../welcome/welcome';
 
 
 @Component({
@@ -30,10 +30,10 @@ export class JournalPage {
     this.midataService.logout()
       .then(() => {
         this.menuCtrl.close();
-        this.navCtrl.setRoot(WelcomeAppexplanationPage);
+        this.navCtrl.setRoot(WelcomePage);
       })
       .catch(() => {
-        this.navCtrl.setRoot(WelcomeAppexplanationPage);
+        this.navCtrl.setRoot(WelcomePage);
       })
   }
   
