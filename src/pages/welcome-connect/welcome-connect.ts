@@ -25,41 +25,63 @@ export class WelcomeConnectPage {
     this.isConnectedToSensor = false;
   }
 
+  /**
+   * Handles the sensor connection
+   * calls connectToSensor(), if isConnectedToSensor == false
+   * otherwise calls disconnect
+   */
   handleSensorConnection() {
-    if (this.isConnectedToSensor) {
-      // TODO disconnect()
+    if(this.isConnectedToSensor) {
+      this.disconnectSensor();
+
     } else {
-      this.connectToSensor();
+      this.connectSensor(); //false -> connect
     }
   }
 
   /**
-   * Connects to sensor and then navigates to taps page
+   * Connects to sensor after toggle change and then navigates to tabsPage.
    */
-  connectToSensor() {
+  connectSensor() {
 
-    this.biovotion.scan()
-    .subscribe((sensor: BiovotionSensor) => {
+    this.biovotion.scan().subscribe((sensor: BiovotionSensor) => {
       this.sensor1 = sensor;
+    },(error) => { console.log(error) });
       
       // for now we only want to connect with this specific sensor
       if (this.sensor1.address == "E2:CD:59:08:72:C1") {
         this.biovotion.connect(this.sensor1).then(() => {
-          //TODO erst jetzt sollte toggle wirklich den status ändern weil verbindung erfolgreich war
-          console.log("juhuu wird sind verbunden");
+          this.isConnectedToSensor = true;
+          console.log("sensor connected");
 
           let dataToRequest: SENSORDATATYPE[] = [];
           dataToRequest.push(SENSORDATATYPE.heartRate);
+
           this.biovotion.readLiveData(dataToRequest)
           .subscribe((liveData: SensorDataEntry) => {
             console.log(liveData.heartRate.value);
           });
+
           this.navCtrl.push(TabsPage, {});
         }).catch(error => {
           console.log("Error: " + error);
         });
       }
-    },(error) => { console.log(error) });
+    
+  }
+
+  /**
+   * Disconnects the Sensor after toggle change.
+   */
+  disconnectSensor(){
+
+    this.biovotion.disconnect().then(() => {
+      console.log('sensor disconnected');
+       }).catch(error => {
+      console.log("Error: " + error);
+       });
+
+       this.isConnectedToSensor = false;
   }
 
   ionViewDidLoad() {

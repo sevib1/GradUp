@@ -14,8 +14,10 @@
     <p>Verbinden Sie nun Ihren Biovotion Everion Sensor mit GradUp.</p>
 
     <ion-list class="no-borders">
-
-        <ion-toggle [(ngModel)]="notify" (ngModelChange)="handleSensorConnection()" ></ion-toggle>
+        <ion-item>
+            <ion-toggle [(ngModel)]="notify" (ngModelChange)="handleSensorConnection()" ></ion-toggle>
+        </ion-item>
+        
     </ion-list>
 
     <p>Der Slider ist hier nur provisorisch mit der nächsten Seite verbunden..... Hier müssen nun die Popups kommen,
