@@ -13,16 +13,12 @@
     <p></p>
     <p>Verbinden Sie nun Ihren Biovotion Everion Sensor mit GradUp.</p>
 
-    <ion-list class="no-borders">
-        <ion-item>
-            <ion-toggle [(ngModel)]="notify" (ngModelChange)="handleSensorConnection()" ></ion-toggle>
-        </ion-item>
+    
+    <ion-item>
+        <ion-label> Biovotion Everion Sensor </ion-label>
+            <ion-toggle checked = "isToggled" [(ngModel)]="isToggled" (ngModelChange)="handleSensorConnection()" ></ion-toggle>
+    </ion-item>
         
-    </ion-list>
-
-    <p>Der Slider ist hier nur provisorisch mit der nächsten Seite verbunden..... Hier müssen nun die Popups kommen,
-        mit Bluetooth wirklich verbunden werden und erst wenn dies alles erfolgt ist, geht es wirklich zur nächsten
-        Seite......</p>
 
         <ion-footer class="footer-no-borders">
                 <ion-buttons left>                   

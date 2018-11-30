@@ -8,6 +8,7 @@ import { ProfileCustomizecontactsPage } from '../profile-customizecontacts/profi
 import { ProfileBiovotionPage } from '../profile-biovotion/profile-biovotion';
 import { ProfileAccessrightsPage } from '../profile-accessrights/profile-accessrights';
 import { WelcomeCapturePage } from '../welcome-capture/welcome-capture';
+import { WelcomeConnectPage } from '../welcome-connect/welcome-connect';
 
 @IonicPage()
 @Component({
@@ -32,7 +33,7 @@ export class ProfilePage {
   }
 
   public gotoProfileBiovotionPage() {
-    this.navCtrl.push(ProfileBiovotionPage, {});
+    this.navCtrl.push(WelcomeConnectPage, {}); //temporary solution
   }
 
   public gotoProfileAccessrightsPage() {
