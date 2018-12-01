@@ -2,8 +2,14 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { BiovotionConnector, BiovotionSensor, BatteryInformation, SensorDataType, SensorDataEntry, SENSORDATATYPE } from '@ionic-native/biovotion-connector';
+
+//#MIDATA imports
 import { MidataService } from '../../services/MidataService';
-import { HeartRate, StepsCount } from 'Midata';
+import { HeartRate, StepsCount, Observation } from 'Midata';
+import * as Globals from '../../../typings/globals';
+
+//TODO kochd1: daten mittels der .buffer() filtern und allenfalls zusätzlich filter bei der midata load() anpassen.
+
 
 /**
  * Generated class for the WelcomeConnectPage page.
@@ -36,6 +42,18 @@ export class WelcomeConnectPage {
    */
   amountOfSteps: number ;
 
+  /**
+   * #MIDATA -> array for the heart rate, value: number }>; 
+     store the raw data in this array.
+   */
+  heartRateData: Array<{date: Date, value: number }>;
+
+   /**
+   * #MIDATA -> array for the steps, value: number }>; 
+     store the raw data in this array.
+   */
+  stepData: Array<{date: Date, value: number }>;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     private biovotion: BiovotionConnector,
@@ -48,10 +66,18 @@ export class WelcomeConnectPage {
     
     this.currentHeartRate = -1;
     this.amountOfSteps = -1;
+
+    //#MIDATA
+    //this.dailyData = this.navParams.get('data');
+    this.heartRateData = new Array<{ date: Date, value: number }>();
+    this.stepData = new Array<{ date: Date, value: number }>();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WelcomeConnectPage');
+    
+    //#MIDATA -> load the elements
+    this.loadData();
   }
 
   /**
@@ -165,6 +191,82 @@ export class WelcomeConnectPage {
     
     //#MIDATA persistance
     this.midataService.save(new StepsCount(amountOfSteps, MessageDate.toISOString()));
+  }
+
+   
+
+   /**
+    * #MIDATA: adds all heart rate measures to the array "heartRateData".
+    * 
+    * @param measure 
+    * @param date 
+    */
+   addHeartRateMeasure(measure: number, date: Date): void {
+    /*if (moment().diff(date) >= 0){
+
+    }*/
+
+    //push the data to the array
+    this.heartRateData.push({ date: date, value: measure });
+
+  }
+
+   
+
+   /**
+    * #MIDATA: adds all step measures to the array "stepData".
+    * 
+    * @param measure 
+    * @param date 
+    */
+   addStepMeasure(measure: number, date: Date): void {
+    /*if (moment().diff(date) >= 0){
+
+    }*/
+
+    //push the data to the array
+    this.stepData.push({ date: date, value: measure });
+    
+  }
+
+   
+   /**
+    * #MIDATA: loads the data (FHIR Observations with code "heart rate" & "steps") from the MIDATA server
+    */
+   private loadData(): void {
+    this.midataService.search('Observation/$lastn', { max: 1000, _sort: '-date', code: Globals.HEARTRATE.toString, patient: this.midataService.getUser().id })
+      .then(response => {
+        if( response.length > 0) {
+
+
+          response.forEach((measure: Observation) => {
+            //console.log(measure.getProperty('valueQuantity')['value'], measure.getProperty('effectiveDateTime'));
+            this.addHeartRateMeasure(measure.getProperty('valueQuantity')['value'], measure.getProperty('effectiveDateTime'));
+          });
+
+          console.log(this.heartRateData);
+          /* TODO:  to test */
+          /* TODO: catch error */
+        }
+      }
+      );
+
+      this.midataService.search('Observation/$lastn', { max: 1000, _sort: '-date', code: Globals.STEPS.toString, patient: this.midataService.getUser().id })
+      .then(response => {
+        if( response.length > 0) {
+
+
+          response.forEach((measure: Observation) => {
+            //console.log(measure.getProperty('valueQuantity')['value'], measure.getProperty('effectiveDateTime'));
+            this.addStepMeasure(measure.getProperty('valueQuantity')['value'], measure.getProperty('effectiveDateTime'));
+          });
+
+          console.log(this.stepData);
+          /* TODO:  to test */
+          /* TODO: catch error */
+        }
+      }
+      );
   }
 
 

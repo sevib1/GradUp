@@ -2,11 +2,14 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WelcomeContactPage } from '../welcome-contact/welcome-contact';
 import { Storage } from '@ionic/storage';
-import { BodyWeight, Observation } from 'Midata';
-import { MidataService } from '../../services/MidataService';
+
 import { NotificationService } from '../../services/notification.service';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map'
+
+//#MIDATA imports
+import { BodyWeight, Observation } from 'Midata';
+import { MidataService } from '../../services/MidataService';
 import * as Globals from '../../../typings/globals';
 
 /**
@@ -28,8 +31,10 @@ export class WelcomeCapturePage {
 
   information: any[];
 
-  //#MIDATA -> array for the wete, value: number }>; 
-  //store the raw data in this array.
+  /**
+   * #MIDATA -> array for the weight data 
+     store the raw data in this array.
+   */
   weightData: Array<{date: Date, value: number }>;
 
   currentWeight;
@@ -92,7 +97,14 @@ export class WelcomeCapturePage {
     });
   }
 
-  //#MIDATA
+  
+
+  /**
+   * #MIDATA: add the weight values to the weightData array.
+   * 
+   * @param measure 
+   * @param date 
+   */
   addWeightMeasure(measure: number, date: Date): void {
     /*if (moment().diff(date) >= 0){
 
@@ -102,7 +114,11 @@ export class WelcomeCapturePage {
     this.weightData.push({ date: date, value: measure });
   }
 
-  //#MIDATA: loads the data (FHIR Observations with code "body weight") from the MIDATA server
+  
+
+  /**
+   * #MIDATA: loads the data (FHIR Observations with code "body weight") from the MIDATA server
+   */
   private loadData(): void {
     this.midataService.search('Observation/$lastn', { max: 1000, _sort: '-date', code: Globals.BODYWEIGHT.toString, patient: this.midataService.getUser().id })
       .then(response => {
