@@ -33,7 +33,7 @@ export class ProfilePage {
   }
 
   public gotoProfileBiovotionPage() {
-    this.navCtrl.push(WelcomeConnectPage, {}); //temporary solution
+    this.navCtrl.push(ProfileBiovotionPage, {});
   }
 
   public gotoProfileAccessrightsPage() {

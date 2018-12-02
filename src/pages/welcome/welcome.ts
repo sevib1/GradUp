@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WelcomeAppexplanationPage } from '../welcome-appexplanation/welcome-appexplanation';
 import { WelcomeCapturePage } from '../welcome-capture/welcome-capture';
+import { WelcomeConnectPage} from '../welcome-connect/welcome-connect';
 import { TabsPage } from '../tabs/tabs';
 import { NotificationService } from '../../services/notification.service';
 import { WeightReminderNotificationPage } from '../weight-reminder-notification/weight-reminder-notification';
@@ -30,6 +31,10 @@ export class WelcomePage {
    public gotoProfilePage() {
       this.navCtrl.push(WelcomeCapturePage, {});
    }
+
+   public gotoWelcomeConnectPage() {
+    this.navCtrl.push(WelcomeConnectPage, {});
+ }
 
    public gotoTabsPage() {
       this.navCtrl.push(TabsPage, {});

@@ -9,15 +9,21 @@
     </ion-header>
 
 <ion-content padding>
-    <p></p>
-    <p>Hier können Sie Ihren Biovotion Everion Sensor mit GradUp verbinden.   ..... Das ganze Prozedere durchlaufen = mit Bluetooth verbinden und mit MIDATA das ganze durchspielen... Kann man hier eventuell auf die bereits bestehenden Seiten ugreiffen???.....</p>
 
+        <p></p>
+        <p>Verbinden Sie nun Ihren Biovotion Everion Sensor mit GradUp.</p>
+    
+        <ion-item>
+            <ion-label> Biovotion Everion Sensor </ion-label>
+                <ion-toggle checked = "isToggled" [(ngModel)]="isToggled" (ngModelChange)="handleSensorConnection()" ></ion-toggle>
+        </ion-item>
+        
 </ion-content>
 
 <ion-footer class="footer-no-borders">
-        <ion-buttons left>
-            <button ion-button icon-only (click)="gotoProfilePage()">
-                <ion-icon name="arrow-back"></ion-icon>
-            </button>
-        </ion-buttons>
-    </ion-footer>
+    <ion-buttons left>
+        <button ion-button icon-only (click)="gotoProfilePage()">
+            <ion-icon name="arrow-back"></ion-icon>
+        </button>
+    </ion-buttons>
+</ion-footer>
