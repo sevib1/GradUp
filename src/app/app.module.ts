@@ -61,6 +61,10 @@ import { NotificationService } from '../services/notification.service';
 
 import { BiovotionConnector } from '@ionic-native/biovotion-connector';
 
+//Accordion
+import { AccordionListComponent } from '../components/accordion-list/accordion-list';
+import { HttpModule } from '@angular/http';
+
 @NgModule({
   declarations: [
     MyApp,   
@@ -100,10 +104,12 @@ import { BiovotionConnector } from '@ionic-native/biovotion-connector';
     ProfileTermsPage,
 
     // components
-    TitleLogoComponent
+    TitleLogoComponent,
+    AccordionListComponent
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
   ],

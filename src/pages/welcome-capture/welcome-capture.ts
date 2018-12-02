@@ -10,6 +10,9 @@ import { BodyWeight, Observation } from 'Midata';
 import { MidataService } from '../../services/MidataService';
 import * as Globals from '../../../typings/globals';
 
+//Accordion
+import { Http } from '@angular/http';
+
 /**
  * Generated class for the WelcomeCapturePage page.
  *
@@ -35,13 +38,20 @@ export class WelcomeCapturePage {
 
   currentWeight;
 
+  users: any[] = []
+
   constructor(
     public navCtrl: NavController, 
+    private http: Http,
     public navParams: NavParams,
     private storage: Storage,
     private midataService: MidataService,
     private notificationService: NotificationService
   ) {
+
+    this.http.get('assets/information.json').subscribe((data) => {
+      this.users = data.json();
+    })
 
     //#MIDATA
     //this.dailyData = this.navParams.get('data');

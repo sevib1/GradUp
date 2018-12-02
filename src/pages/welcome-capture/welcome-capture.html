@@ -15,35 +15,16 @@
     <ion-item id="textfield">
         <ion-input [(ngModel)]="inputtext" type="text" value=""></ion-input>
     </ion-item>
-    <p id="text-benutzername">Wählen Sie einen Namen, mit welchem Sie in Zukunft durch GradUp angesprochen werden möchten.</p>
-    
-    <!--the ion-card and its content in this view is only for testing purposes-->
-    <ion-card *ngFor="let measure of weightData">
-        <ion-card-header>
-            {{measure.date}}
-        </ion-card-header>
-
-        <ion-card-content>
-            {{measure.value}}
-        </ion-card-content>
-    </ion-card>
-
-    <!--{{formatDate(measure.date, 'HH:mm')}}-->
-
-    <!--test reference-->
-    <ion-card>
-        <ion-card-header>test</ion-card-header>
-        <ion-card-content>testeintrag</ion-card-content>
-    </ion-card>
+    <p id="text-benutzername">Wählen Sie einen Namen, mit dem Sie in Zukunft durch GradUp angesprochen werden möchten.</p>
 
     <p>Tätigkeit:</p>
     <ion-item id="select-popover">
-        <ion-label>Wählen Sie Ihr Tätigkeit:</ion-label>
+        <ion-label>Wählen Sie einen Tätigkeitsbereich, der am besten zutrifft:</ion-label>
         <ion-select interface="popover" [(ngModel)]="userType">
           <ion-option value="1">Sitzende Tätigkeit</ion-option>
           <ion-option value="2">Handwerkliche Tätigkeit</ion-option>
-          <ion-option value="3">Student/in</ion-option>
-          <ion-option value="4">Hausfrau/mann</ion-option>
+          <ion-option value="3">Student/-in</ion-option>
+          <ion-option value="4">Hausfrau/-mann</ion-option>
           <ion-option value="5">Pflegende oder betreuende Tätigkeit</ion-option>
         </ion-select>
     </ion-item>
@@ -60,31 +41,34 @@
         <ion-label color="primary" class="fixedLabel" fixed>(500-1500gr)</ion-label>
     </ion-item>
 
-      <!--
     <h3 ion-text color="primary">Optional:</h3>
-    <p>Beziehungsstatus</p>
-    <ion-icon name="ios-arrow-down"></ion-icon>
-    <p>Wohnsituation</p>
-    <ion-icon name="ios-arrow-down"></ion-icon>
-    <p>Haustiere</p>
 
-    <ion-row radio-group [(ngModel)]="sexe">
-        <ion-col>
-          <ion-item id="radio-group2">
-            <ion-label>Weiblich</ion-label>
-            <ion-radio value="homme"></ion-radio>
-          </ion-item>
-        </ion-col>
-        <ion-col>
-          <ion-item id="radio-group2">
-           <ion-label>Männlich</ion-label>
-            <ion-radio value="femme"></ion-radio>
-          </ion-item>
-        </ion-col>
-    </ion-row>
--->
+    <accordion-list *ngFor="let user of users" [title]="user.name">
+        <ion-list radio-group [(ngModel)]="relationship_status">
+            <ion-item>
+                <ion-label>single</ion-label>
+                <ion-radio value="single"></ion-radio>
+            </ion-item>
+            <ion-item>
+                <ion-label>in einer Beziehung</ion-label>
+                <ion-radio value="relationship"></ion-radio>
+            </ion-item>
+        </ion-list>
+        <ion-list radio-group [(ngModel)]="residential_status">
+            <ion-item>
+                <ion-label>Ich wohne allein</ion-label>
+                <ion-radio value="alone"></ion-radio>
+            </ion-item>
+            <ion-item>
+                <ion-label>Ich wohne mit</ion-label>
+                <ion-radio value="live"></ion-radio>
+                <ion-input type="number"></ion-input>
+                <ion-label>Person/en zusammen</ion-label>
+            </ion-item>
+        </ion-list>
+    </accordion-list>
+    
 </ion-content>
-
 
     <ion-footer no-shadow>
         <ion-toolbar position="bottom">

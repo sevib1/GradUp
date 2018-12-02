@@ -73,8 +73,7 @@ export class WelcomeContact2Page {
   saveData() {
     this.storage.set(this.key, this.bezugsperson_inputtext);
     this.storage.set(this.key1, this.bezugsperson_telefonnummer);
-    this.storage
-    .set(this.key2, this.bezugsperson_smstext);
+    this.storage.set(this.key2, this.bezugsperson_smstext);
     this.storage.set(this.key3, this.bezugsperson_email);
     this.storage.set(this.key4, this.bezugsperson_emailtext);
     /**For testing 
