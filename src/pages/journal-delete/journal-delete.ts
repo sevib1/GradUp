@@ -3,7 +3,10 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { JournalPage } from '../journal/journal';
 
 import { JournalEntry } from '../../classes/journalEntry';
+
+//Page, where the entries are being saved
 import { JournalEntryPage } from '../journal-entry/journal-entry';
+
 //import Providers
 import { DatabaseProvider } from '../../providers/database/database';
 
@@ -14,16 +17,32 @@ import { DatabaseProvider } from '../../providers/database/database';
 })
 export class JournalDeletePage {
 
+  /**
+   * journal entry page.
+   */
    journalEntryPage: any = JournalEntryPage;
+
+   /**
+    * the journal entry.
+    */
    journalEntry: JournalEntry;
+
+   /**
+    * id of this journal entry.
+    */
    journalEntryId: number;
   
+    /**
+     * collection of journal entries.
+     */
    journalEntryCollection: JournalEntry[] = [];
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public dbp: DatabaseProvider,
     private alertCtrl: AlertController) {
+      console.log("visited constructor JournalDeletePage");
+    //this.journalEntry = new JournalEntry();
   }
 
   ionViewDidLoad() {
@@ -32,6 +51,8 @@ export class JournalDeletePage {
 
   ionViewWillEnter(){
     console.log("ionHomeViewWillEnter");
+    this.journalEntry = new JournalEntry();
+
     //this.journalEntryId = this.navParams.data; nötig?! Auflistung passiert auch auf dieser Seite
 
     
@@ -42,9 +63,9 @@ export class JournalDeletePage {
       } else {
         this.journalEntryCollection = val;
 
-        this.dbp.getJournalEntryById(this.journalEntryId).then((val) => {
+        /*this.dbp.getJournalEntryById(this.journalEntryId).then((val) => {
           this.journalEntry = val;
-        });
+        });*/
       }
     });
   }
@@ -53,7 +74,8 @@ export class JournalDeletePage {
     this.navCtrl.push(JournalPage, {});
   }
 
-  editJournalEntry(jEntryId: number):void{
+  editJournalEntry(jEntryId: number): void{
+
   this.dbp.getJournalEntryById(jEntryId).then((jEntry) => {
     this.navCtrl.push(this.journalEntryPage, jEntry);
   })
@@ -64,7 +86,8 @@ export class JournalDeletePage {
 
     this.journalEntryId = jEntryId;
 
-    console.log("journalDelete -> journalEntryId: " + this.journalEntryId);
+    console.log("journalDelete -> journalEntryId (local param): " + jEntryId);
+    console.log("journalDelete -> journalEntryId (instance variable): " + this.journalEntryId);
 
     let alert = this.alertCtrl.create({
       title: "Achtung!",
@@ -92,8 +115,6 @@ export class JournalDeletePage {
       ]
     });
     alert.present();
-  
-    console.log("journalDelete -> journalEntryId: " + this.journalEntryId);
   }
 
 }

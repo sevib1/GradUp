@@ -9,6 +9,8 @@ export class JournalEntry {
   constructor() {
     this.entryDate = new Date();
     this.entryText = "";
+
+    //does not work! -> work around in journal-entry.ts
     this.entryId = this.entryDate.getTime(); //sets the amount of milliseconds since 1970 as id
   }
 
