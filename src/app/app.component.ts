@@ -5,17 +5,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { MidataService } from '../services/MidataService';
-
-
 import { WelcomePage } from '../pages/welcome/welcome';
-import { WelcomeConnectPage } from '../pages/welcome-connect/welcome-connect';
+
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
 
-  rootPage: any = WelcomeConnectPage;
+  rootPage: any = WelcomePage;
   loadingDisplay: Loading;
 
   constructor(

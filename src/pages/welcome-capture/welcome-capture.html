@@ -60,39 +60,6 @@
         <ion-label color="primary" class="fixedLabel" fixed>(500-1500gr)</ion-label>
     </ion-item>
 
-    <ion-list class="accordion-list">
-        <!-- First Level -->
-        <ion-list-header *ngFor="let item of information; let i = index" no-lines no-padding>
-          <!-- Toggle Button -->
-          <button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': item.open, 'section': !item.open}">
-            <ion-icon item-right name="ios-arrow-down" *ngIf="!item.open"></ion-icon>
-            <ion-icon item-right name="ios-arrow-up" *ngIf="item.open"></ion-icon>
-              {{ item.name }}
-          </button>
-     
-          <ion-list *ngIf="item.children && item.open" no-lines>
-            <!-- Second Level -->
-            <ion-list-header *ngFor="let child of item.children; let j = index" no-padding>
-              <!-- Toggle Button -->
-              <button ion-item (click)="toggleItem(i, j)" *ngIf="child.children" class="child" detail-none>
-                <ion-icon item-right name="ios-arrow-down" *ngIf="!child.open"></ion-icon>
-                <ion-icon item-right name="ios-arrow-up" *ngIf="child.open"></ion-icon>
-                {{ child.id }}
-              </button>
-     
-              <!-- Direct Add Button as Fallback -->
-              <ion-item *ngIf="!child.children" ion-item detail-none class="child-item" text-wrap>
-                <h2>{{ child.id }}</h2>
-                <p text-lowercase>{{ child.title }}</p>
-                <button ion-button outline item-end (click)="buyItem(child)">{{ child.price }}</button>
-              </ion-item>
-
-            </ion-list-header>
-          </ion-list>
-          
-        </ion-list-header>
-      </ion-list>
-    
       <!--
     <h3 ion-text color="primary">Optional:</h3>
     <p>Beziehungsstatus</p>

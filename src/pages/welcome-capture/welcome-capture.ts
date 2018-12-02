@@ -4,8 +4,6 @@ import { WelcomeContactPage } from '../welcome-contact/welcome-contact';
 import { Storage } from '@ionic/storage';
 
 import { NotificationService } from '../../services/notification.service';
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/map'
 
 //#MIDATA imports
 import { BodyWeight, Observation } from 'Midata';
@@ -29,8 +27,6 @@ export class WelcomeCapturePage {
   inputtext:string;
   key:string="username";
 
-  information: any[];
-
   /**
    * #MIDATA -> array for the weight data 
      store the raw data in this array.
@@ -41,28 +37,15 @@ export class WelcomeCapturePage {
 
   constructor(
     public navCtrl: NavController, 
-    private http: Http,
     public navParams: NavParams,
     private storage: Storage,
     private midataService: MidataService,
     private notificationService: NotificationService
   ) {
-    let localData = http.get('assets/information.json').map(res => res.json().items);
-    localData.subscribe(data => {
-      this.information = data;
-    })
 
     //#MIDATA
     //this.dailyData = this.navParams.get('data');
     this.weightData = new Array<{ date: Date, value: number }>();
-  }
-
-  toggleSection(i) {
-    this.information[i].open = !this.information[i].open;
-  }
- 
-  toggleItem(i, j) {
-    this.information[i].children[j].open = !this.information[i].children[j].open;
   }
 
   ionViewDidLoad() {
