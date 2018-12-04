@@ -5,6 +5,9 @@ import { Storage } from '@ionic/storage';
 
 import { NotificationService } from '../../services/notification.service';
 
+//Form Validation
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+
 //#MIDATA imports
 import { BodyWeight, Observation } from 'Midata';
 import { MidataService } from '../../services/MidataService';
@@ -27,18 +30,30 @@ import { Http } from '@angular/http';
 })
 export class WelcomeCapturePage {
 
+  //Storage
   inputtext:string;
   key:string="username";
+
+  userType:string;
+  key1:string="userType";
 
   /**
    * #MIDATA -> array for the weight data 
      store the raw data in this array.
    */
   weightData: Array<{date: Date, value: number }>;
-
   currentWeight;
 
+  //Accordion List
   users: any[] = []
+
+  //Form Validation 
+  formgroup:FormGroup;
+  username:AbstractControl;
+  occupation:AbstractControl;
+  bodyweight:AbstractControl;
+  weightGain:AbstractControl;
+
 
   constructor(
     public navCtrl: NavController, 
@@ -46,9 +61,24 @@ export class WelcomeCapturePage {
     public navParams: NavParams,
     private storage: Storage,
     private midataService: MidataService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private formBuilder: FormBuilder
   ) {
 
+    //Form Validation
+    this.formgroup = formBuilder.group({
+      username:['', Validators.required],
+      occupation:['', Validators.required],
+      bodyweight:['', Validators.required],
+      weightGain:['', Validators.required]
+    });
+
+    this.username = this.formgroup.controls['username'];
+    this.occupation = this.formgroup.controls['occupation'];
+    this.bodyweight = this.formgroup.controls['bodyweight'];
+    this.weightGain = this.formgroup.controls['weightGain'];
+
+    //Accoridon List
     this.http.get('assets/information.json').subscribe((data) => {
       this.users = data.json();
     })
@@ -73,8 +103,9 @@ export class WelcomeCapturePage {
   saveData() {
     let MessageDate = new Date();
     this.storage.set(this.key, this.inputtext);
-    this.storage.get(this.key).then((val) => {
-      console.log('Your username is', val);
+    this.storage.set(this.key1, this.userType);
+    this.storage.get(this.key1).then((data) => {
+      console.log('Your username is', data);
     });
 
     //#MIDATA persistance

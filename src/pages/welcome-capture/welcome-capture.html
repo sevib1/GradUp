@@ -9,18 +9,19 @@
 </ion-header>
 
 <ion-content padding>
+   <form [formGroup]="formgroup" (ngSubmit)="onSubmit()"> 
     <p></p>
     <h3 ion-text color="primary">Obligatorisch:</h3>
     <p>Benutzername:</p>
     <ion-item id="textfield">
-        <ion-input [(ngModel)]="inputtext" type="text" value=""></ion-input>
+        <ion-input [(ngModel)]="inputtext" formControlName="username" type="text" value=""></ion-input>
     </ion-item>
     <p id="text-benutzername">Wählen Sie einen Namen, mit dem Sie in Zukunft durch GradUp angesprochen werden möchten.</p>
-
+    
     <p>Tätigkeit:</p>
     <ion-item id="select-popover">
         <ion-label>Wählen Sie einen Tätigkeitsbereich, der am besten zutrifft:</ion-label>
-        <ion-select interface="popover" [(ngModel)]="userType">
+        <ion-select interface="popover" [(ngModel)]="userType" formControlName="occupation">
           <ion-option value="1">Sitzende Tätigkeit</ion-option>
           <ion-option value="2">Handwerkliche Tätigkeit</ion-option>
           <ion-option value="3">Student/-in</ion-option>
@@ -31,15 +32,16 @@
 
     <p>Aktuelles Gewicht:</p>
     <ion-item id="textfield"> 
-        <ion-input [(ngModel)]="currentWeight" type="decimal" value=""></ion-input>
+        <ion-input [(ngModel)]="currentWeight" formControlName="bodyweight" type="decimal" value=""></ion-input>
         <ion-label color="primary" class="fixedLabel" fixed>kg</ion-label>
     </ion-item>
 
     <p>Mein Wochenfortschritt:</p>
     <ion-item id="textfield">  
-        <ion-input type="number" maxlenght="4" pattern="[0-9]*" min="500" max="1500" value=""></ion-input>
+        <ion-input type="number" formControlName="weightGain" maxlenght="4" pattern="[0-9]*" min="500" max="1500" value=""></ion-input>
         <ion-label color="primary" class="fixedLabel" fixed>(500-1500gr)</ion-label>
     </ion-item>
+    </form>
 
     <h3 ion-text color="primary">Optional:</h3>
 
@@ -72,7 +74,7 @@
 
     <ion-footer no-shadow>
         <ion-toolbar position="bottom">
-            <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="saveData(); gotoWelcomeContactPage();">
+            <button ion-button [color]="primary" [outline]="false" [round]="true" [disabled]="!formgroup.valid" (click)="saveData(); gotoWelcomeContactPage();">
                 Speichern
             </button>
         </ion-toolbar>
