@@ -12,9 +12,9 @@ import { Storage } from '@ionic/storage';
 export class ProfileCustomizecontactsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage,) {
-    storage.get(this.key).then((val) => {
+    /** storage.get(this.key).then((val) => {
       console.log('Your username is', val);
-    });
+    });*/
   }
 
   ionViewDidLoad() {
