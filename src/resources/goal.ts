@@ -1,5 +1,5 @@
 import { registerResource, Resource } from '.../../../node_modules/Midata';
-import { GoalStatus, GOALSTATUS } from 'Midata/dist/src/resources/basicTypes';
+//import { GoalStatus, GOALSTATUS } from 'Midata/dist/src/resources/basicTypes';
 
 @registerResource('resourceType', 'Goal')
 export class Goal extends Resource {
@@ -23,7 +23,7 @@ constructor() {
             let category = this.getCategory();
             console.log(category);
              // now we can also add the default/requered properties to the resource
-            this.addProperty('status', GOALSTATUS.planned);
+            this.addProperty('status', 'planned');  //GOALSTATUS.planned);
             this.addProperty('category', category);
             this.addProperty('description', description);
             this.addProperty('date', new Date().toISOString());
@@ -50,6 +50,7 @@ constructor() {
           }
           }
         this.addProperty('measure', measure);
+        return measure;
     }
 
     getCategory() {

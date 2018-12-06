@@ -10,12 +10,12 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 
 //#MIDATA imports
 import { BodyWeight, Observation } from 'Midata';
+import { Goal } from '../../resources/goal';
 import { MidataService } from '../../services/MidataService';
 import * as Globals from '../../../typings/globals';
 
 //Accordion
 import { Http } from '@angular/http';
-import { Goal } from '../../resources/goal';
 7
 /**
  * Generated class for the WelcomeCapturePage page.
@@ -114,6 +114,11 @@ export class WelcomeCapturePage {
     this.midataService.save(new BodyWeight(+this.currentWeight, MessageDate.toISOString()));
 
 
+    //Erstellt neue Goal und fügt neue Wert hinein. Durch save-Methode wird persistiert. 
+    let goal = new Goal();
+    goal.addGoal(750);
+    this.midataService.save(goal);
+
 
 
     const inSevenDays = new Date(new Date().getTime() + (7 * 24 * 3600 * 1000));
@@ -138,16 +143,10 @@ export class WelcomeCapturePage {
     /*if (moment().diff(date) >= 0){ 
     }*/
 
-    //Erstellt neue Goal und fügt neue Wert hinein. Durch save-Methode wird persistiert. 
-    let goal = new Goal();
-    goal.addGoal(750);
-    this.midataService.save(goal);
-
     //push the data to the array
     this.weightData.push({ date: date, value: measure });
   }
-
-  
+ 
 
   /**
    * #MIDATA: loads the data (FHIR Observations with code "body weight") from the MIDATA server
