@@ -9,7 +9,7 @@ import { DatabaseProvider } from '../../providers/database/database';
 import { JournalEntry } from '../../classes/journalEntry';
 
 //import journalDeletePage
-import { JournalDeletePage } from '../journal-delete/journal-delete'; //not shure if needed...
+import { JournalDeletePage } from '../journal-delete/journal-delete'; //not sure if needed...
 
 
 @IonicPage()
@@ -19,7 +19,10 @@ import { JournalDeletePage } from '../journal-delete/journal-delete'; //not shur
 })
 export class JournalEntryPage {
 
-  //journal Entry
+  /**
+   *  journal Entry
+   * 
+   */
   journalEntry: JournalEntry;
   //journalEntryId: number;
 
@@ -30,6 +33,7 @@ export class JournalEntryPage {
 
   journalDeletePage : JournalDeletePage;
 
+  journalEntrySaved: JournalEntry;
   
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -46,9 +50,12 @@ export class JournalEntryPage {
     console.log("willEnter journalEntryPage");
     
     //this.journalEntryId = this.navParams.data; //-> fetches data from "journal-deletePage" --> do not delete!, otherwise delete won't work properly
+   
     this.journalEntry = this.navParams.data;
 
-    console.log(this.journalEntry);
+    //this.journalEntrySaved = this.navParams.data;
+
+    console.log(this.journalEntrySaved);
     
   }
 
@@ -77,9 +84,25 @@ export class JournalEntryPage {
      * save journal entry to database.
      */
     saveEntry():void{
-      this.journalEntry.entryId = Number(new Date()); //.getTime);
+      console.log("saveJournalEntry button was clicked")
 
+      if(this.journalEntry.entryId==0 || this.journalEntry.entryId==null){
+        console.log("saveEntry() -> entryId:" + this.journalEntry.entryId);
+        this.journalEntry.entryId = Number(new Date()); //.getTime);
+      }
+      
       this.dbp.saveJournalEntry(this.journalEntry).then(val => {
+      
+          // alternative zu unten
+          this.dbp.getJournalEntryCollection();
+          
+        
+      });
+
+      this.navCtrl.pop();
+      
+
+      /*this.dbp.saveJournalEntry(this.journalEntry).then(val => {
         if(val) {
           // work around, damit später gepoppet wird
           this.dbp.getJournalEntryCollection().then(val => {
@@ -87,13 +110,10 @@ export class JournalEntryPage {
           })
           
         }
-      });
+      });*/
 
       /*
-      console.log(this.journalEntry);
-    
-      // deprecated -> this.journalEntry.entryId = this.myDate;
-      console.log("saveJournalEntry button was clicked")
+      
       this.dbp.getJournalEntryCollection()
       .then((val) => {
         if(val == null) {
@@ -104,8 +124,6 @@ export class JournalEntryPage {
           console.log("JEntryId: this.journalEntry.entryId");
           console.log(this.journalEntryCollection)
 
-          //this.journalEntry = this.navParams.data;
-
         } else {
           console.log("get-->" + val);
           this.journalEntryCollection = val;
@@ -115,7 +133,6 @@ export class JournalEntryPage {
           console.log(this.journalEntry.entryId)
           console.log(this.journalEntryCollection)
 
-          //this.journalEntry = this.navParams.data;
         }
       })
       

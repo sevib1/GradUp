@@ -47,15 +47,12 @@ export class JournalDeletePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad JournalDeletePage');
+
   }
 
   ionViewWillEnter(){
     console.log("ionHomeViewWillEnter");
-    this.journalEntry = new JournalEntry();
 
-    //this.journalEntryId = this.navParams.data; nötig?! Auflistung passiert auch auf dieser Seite
-
-    
     this.dbp.getJournalEntryCollection().then((val) => {
       if(val == null) {
         // There's no journalEntry
@@ -74,6 +71,11 @@ export class JournalDeletePage {
     this.navCtrl.push(JournalPage, {});
   }
 
+  /**
+   * Edit the journal entry with the respective journal entry id
+   * 
+   * @param jEntryId 
+   */
   editJournalEntry(jEntryId: number): void{
 
   this.dbp.getJournalEntryById(jEntryId).then((jEntry) => {
@@ -82,6 +84,12 @@ export class JournalDeletePage {
    
   }
 
+  /**
+   * Delete the journal entry with the respective journal entry id.
+   * Show a pop up before the journal entry can be deleted.
+   * 
+   * @param jEntryId 
+   */
   deleteJournalEntry(jEntryId: number): void{
 
     this.journalEntryId = jEntryId;

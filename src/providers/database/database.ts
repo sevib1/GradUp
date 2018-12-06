@@ -22,36 +22,39 @@ export class DatabaseProvider {
     console.log('Hello DatabaseProvider Provider');
   }
 
-  //save journal entry
+  /**
+   * save journal entry into the ionic local storage
+   * @param jEntry 
+   */
   saveJournalEntry(jEntry: JournalEntry): Promise<boolean>{
     console.log("entryId of JournalEntry which is going to be saved: " + jEntry.entryId);
     return this.storage.get(this.journalEntryCollection_key).then(valArr => {
       if (valArr == null) {
         console.log(jEntry + typeof (jEntry));
-        let isbarNoteCollection: JournalEntry[] = [];
-        isbarNoteCollection.push(jEntry);
-        this.storage.set(this.journalEntryCollection_key, isbarNoteCollection);
-        console.log("storage--> null");
+        let journalEntryCollection: JournalEntry[] = [];
+        journalEntryCollection.push(jEntry);
+        this.storage.set(this.journalEntryCollection_key, journalEntryCollection);
+        console.log("storage was empty");
         return true;
       } else {
-        let dublicatedNote = valArr.find(val => val.id == jEntry.entryId)
-        if (dublicatedNote != null) {
-          console.log("storage-->find dublicate" + dublicatedNote.id);
-          this.deleteJournalEntryById(dublicatedNote.id).then(val => {
+        let dublicatedEntry = valArr.find(val => val.entryId == jEntry.entryId)
+        if (dublicatedEntry != null) {
+          console.log("storage-->find dublicate" + dublicatedEntry.entryId);
+          this.deleteJournalEntryById(dublicatedEntry.entryId).then(val => {
             if (val) {
               this.storage.get(this.journalEntryCollection_key).then(valArrWithoutDublicate => {
-                let isbarNoteCollection: JournalEntry[] = valArrWithoutDublicate;
-                isbarNoteCollection.push(jEntry);
-                this.storage.set(this.journalEntryCollection_key, isbarNoteCollection);
+                let journalEntryCollection: JournalEntry[] = valArrWithoutDublicate;
+                journalEntryCollection.push(jEntry);
+                this.storage.set(this.journalEntryCollection_key, journalEntryCollection);
                 return true;
               });
             }
           });
         } else {
           console.log("storage--> got valArr");
-          let isbarNoteCollection: JournalEntry[] = valArr;
-          isbarNoteCollection.push(jEntry);
-          this.storage.set(this.journalEntryCollection_key, isbarNoteCollection);
+          let journalEntryCollection: JournalEntry[] = valArr;
+          journalEntryCollection.push(jEntry);
+          this.storage.set(this.journalEntryCollection_key, journalEntryCollection);
           return true;
         }
       }
@@ -72,6 +75,10 @@ export class DatabaseProvider {
     });
   }
 
+  /**
+   * Gets the journal entry by its id.
+   * @param id 
+   */
   getJournalEntryById(id: number): Promise<JournalEntry> {
     return this.storage.get(this.journalEntryCollection_key).then((valArr) => {
       return valArr.find(JournalEntry => JournalEntry.entryId == id);
