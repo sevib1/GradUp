@@ -15,7 +15,8 @@ import * as Globals from '../../../typings/globals';
 
 //Accordion
 import { Http } from '@angular/http';
-
+import { Goal } from '../../resources/goal';
+7
 /**
  * Generated class for the WelcomeCapturePage page.
  *
@@ -45,7 +46,7 @@ export class WelcomeCapturePage {
   currentWeight;
 
   //Accordion List
-  users: any[] = []
+  users: any[] = [];
 
   //Form Validation 
   formgroup:FormGroup;
@@ -81,6 +82,7 @@ export class WelcomeCapturePage {
     //Accoridon List
     this.http.get('assets/information.json').subscribe((data) => {
       this.users = data.json();
+      console.log(this.users);
     })
 
     //#MIDATA
@@ -111,6 +113,9 @@ export class WelcomeCapturePage {
     //#MIDATA persistance
     this.midataService.save(new BodyWeight(+this.currentWeight, MessageDate.toISOString()));
 
+
+
+
     const inSevenDays = new Date(new Date().getTime() + (7 * 24 * 3600 * 1000));
     this.notificationService.schedule({ 
         text: 'Hallo ' + this.inputtext + ', es sind schon wieder 7 Tage vergangen. Klicke auf diese Nachricht um die neuen Werte aktuelles Gewicht und Wochenfortschritt einzugeben.', 
@@ -130,9 +135,13 @@ export class WelcomeCapturePage {
    * @param date 
    */
   addWeightMeasure(measure: number, date: Date): void {
-    /*if (moment().diff(date) >= 0){
-
+    /*if (moment().diff(date) >= 0){ 
     }*/
+
+    //Erstellt neue Goal und fügt neue Wert hinein. Durch save-Methode wird persistiert. 
+    let goal = new Goal();
+    goal.addGoal(750);
+    this.midataService.save(goal);
 
     //push the data to the array
     this.weightData.push({ date: date, value: measure });
