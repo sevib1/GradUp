@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { NavController, MenuController, Nav } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, Nav } from 'ionic-angular';
 import { JournalEntryPage } from '../journal-entry/journal-entry';
 import { JournalDeletePage } from '../journal-delete/journal-delete';
-import { MidataService } from '../../services/MidataService';
-import { WelcomePage } from '../welcome/welcome';
+
+
+import { TabsPage } from '../tabs/tabs';
 
 
 @Component({
@@ -11,9 +12,9 @@ import { WelcomePage } from '../welcome/welcome';
   templateUrl: 'journal.html'
 })
 export class JournalPage {
-  //@ViewChild(Nav) nav: Nav;
+  @ViewChild(Nav) nav: Nav;
 
-  constructor(public navCtrl: NavController, private midataService: MidataService, private menuCtrl: MenuController) {
+  constructor(public navCtrl: NavController) {
 
   }
   
@@ -25,16 +26,8 @@ export class JournalPage {
     this.navCtrl.push(JournalDeletePage, {});
   }
 
-   // Logout
-   logout() {
-    this.midataService.logout()
-      .then(() => {
-        this.menuCtrl.close();
-        this.navCtrl.setRoot(WelcomePage);
-      })
-      .catch(() => {
-        this.navCtrl.setRoot(WelcomePage);
-      })
+  ionViewDidLeave(){
+    
   }
   
 

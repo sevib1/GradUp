@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, MenuController, NavParams, App } from 'ionic-angular';
 import { ProfileImpressumPage } from '../profile-impressum/profile-impressum';
 import { ProfilePrivacyPage } from '../profile-privacy/profile-privacy';
 import { ProfileTermsPage } from '../profile-terms/profile-terms';
@@ -8,7 +8,9 @@ import { ProfileCustomizecontactsPage } from '../profile-customizecontacts/profi
 import { ProfileBiovotionPage } from '../profile-biovotion/profile-biovotion';
 import { ProfileAccessrightsPage } from '../profile-accessrights/profile-accessrights';
 import { WelcomeCapturePage } from '../welcome-capture/welcome-capture';
-import { WelcomeConnectPage } from '../welcome-connect/welcome-connect';
+import { WelcomePage } from '../welcome/welcome';
+
+import { MidataService } from '../../services/MidataService';
 
 @IonicPage()
 @Component({
@@ -17,7 +19,7 @@ import { WelcomeConnectPage } from '../welcome-connect/welcome-connect';
 })
 export class ProfilePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public app: App, private midataService: MidataService, public navCtrl: NavController, private menuCtrl: MenuController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -50,6 +52,19 @@ export class ProfilePage {
 
   public gotoProfileTermsPage() {
     this.navCtrl.push(ProfileTermsPage, {});
+  }
+
+  // Logout
+  logout() {
+    this.midataService.logout()
+      .then(() => {
+        this.menuCtrl.close();
+        this.app.getRootNav().setRoot(WelcomePage);
+
+      })
+      .catch(() => {
+        this.app.getRootNav().setRoot(WelcomePage);
+      })
   }
 
 }
