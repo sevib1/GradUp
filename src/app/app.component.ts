@@ -15,7 +15,7 @@ import { WelcomeConnectPage } from '../pages/welcome-connect/welcome-connect';
 })
 export class MyApp {
 
-  rootPage: any = WelcomeConnectPage;
+  rootPage: any = WelcomePage;
   loadingDisplay: Loading;
 
   constructor(
