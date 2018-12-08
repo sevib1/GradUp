@@ -27,14 +27,11 @@ export class ProfileCustomizePage {
    */
   weightData: Array<{date: Date, value: number }>;
 
-  currentWeight;
-
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     private storage: Storage,
-    private midataService: MidataService,
-    private notificationService: NotificationService
+    private midataService: MidataService
   ) {
 
     //#MIDATA
@@ -55,26 +52,11 @@ export class ProfileCustomizePage {
   
   //saves the data locally and also on MIDATA
   saveData() {
-    let MessageDate = new Date();
     this.storage.set(this.key, this.inputtext);
     this.storage.get(this.key).then((val) => {
       console.log('Your username is', val);
     });
-
-    //#MIDATA persistance
-    this.midataService.save(new BodyWeight(+this.currentWeight, MessageDate.toISOString()));
-
-    const inSevenDays = new Date(new Date().getTime() + (7 * 24 * 3600 * 1000));
-    this.notificationService.schedule({ 
-        text: 'Hallo ' + this.inputtext + ', es sind schon wieder 7 Tage vergangen. Klicke auf diese Nachricht um die neuen Werte aktuelles Gewicht und Wochenfortschritt einzugeben.', 
-        trigger: {
-          at: inSevenDays
-        },
-        data: 'ENTER_WEIGHT'
-    });
   }
-
-  
 
   /**
    * #MIDATA: add the weight values to the weightData array.

@@ -4,7 +4,6 @@ import { WelcomeAppexplanationPage } from '../welcome-appexplanation/welcome-app
 import { WelcomeCapturePage } from '../welcome-capture/welcome-capture';
 import { WelcomeConnectPage } from '../welcome-connect/welcome-connect';
 import { TabsPage } from '../tabs/tabs';
-import { NotificationService } from '../../services/notification.service';
 import { WelcomeContactPage } from '../welcome-contact/welcome-contact';
 
 @IonicPage()
@@ -16,8 +15,7 @@ export class WelcomePage {
 
    constructor(
       public navCtrl: NavController,
-      public navParams: NavParams,
-      private notificationService: NotificationService
+      public navParams: NavParams
    ) { }
 
    ionViewDidLoad() {

@@ -2,7 +2,7 @@
     
     <ion-navbar hideBackButton="true">
         <ion-title>
-            <title-logo text="Profil erfassen"></title-logo>
+            <title-logo text="Profil anpassen"></title-logo>
         </ion-title>
     </ion-navbar>
 
@@ -46,18 +46,6 @@
           <ion-option value="4">Hausfrau/mann</ion-option>
           <ion-option value="5">Pflegende oder betreuende Tätigkeit</ion-option>
         </ion-select>
-    </ion-item>
-
-    <p>Aktuelles Gewicht:</p>
-    <ion-item id="textfield"> 
-        <ion-input [(ngModel)]="currentWeight" type="decimal" value=""></ion-input>
-        <ion-label color="primary" class="fixedLabel" fixed>kg</ion-label>
-    </ion-item>
-
-    <p>Mein Wochenfortschritt:</p>
-    <ion-item id="textfield">  
-        <ion-input type="number" maxlenght="4" pattern="[0-9]*" min="500" max="1500" value=""></ion-input>
-        <ion-label color="primary" class="fixedLabel" fixed>(500-1500gr)</ion-label>
     </ion-item>
 
       <!--

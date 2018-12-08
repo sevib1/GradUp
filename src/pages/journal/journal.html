@@ -14,10 +14,6 @@
         nach Lust und Laune erfassen.</p>
     <p>Sie können die Einträge mit einem passenden Bild ergänzen.</p>
 
-
-    <!--
-     https://ionicframework.com/docs/components/#lists
-   -->
     <ion-list class="with-borders">
         <button ion-item (click)="gotoJournalEntryPage()">
             <span class="highlight">Eintrag erstellen</span>
@@ -28,19 +24,19 @@
         </button>
     </ion-list>    
     
+    <!-- für demo auskommentieren! -->
     <p style="color:red">
-            Für Entwicklung:
-        </p>
-    
-        <ion-list class="with-borders">
-            <button ion-item (click)="scheduleNotification()">
-                <span class="highlight">Notification Test</span>                
-            </button>
-    
-            <button ion-item (click)="gotoWeightReminderPage()">
-                <span class="highlight">Zur Weight Reminder Page</span>                
-            </button>
-            
-        </ion-list>
+        Für Entwicklung:
+    </p>
+
+    <ion-list class="with-borders">
+        <button ion-item (click)="scheduleNotification()">
+            <span class="highlight">Notification Test</span>                
+        </button>
+
+        <button ion-item (click)="gotoWeightReminderPage()">
+            <span class="highlight">Zur Weight Reminder Page</span>                
+        </button>       
+    </ion-list>
 
 </ion-content>

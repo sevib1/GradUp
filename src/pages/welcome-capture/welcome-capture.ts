@@ -16,7 +16,6 @@ import * as Globals from '../../../typings/globals';
 
 //Accordion
 import { Http } from '@angular/http';
-import { ELocalNotificationTriggerUnit } from '@ionic-native/local-notifications';
 
 /**
  * Generated class for the WelcomeCapturePage page.
@@ -114,26 +113,12 @@ export class WelcomeCapturePage {
     //#MIDATA persistance
     this.midataService.save(new BodyWeight(+this.currentWeight, MessageDate.toISOString()));
 
-
     //Erstellt neue Goal und fügt neue Wert hinein. Durch save-Methode wird persistiert. 
     let goal = new Goal();
     goal.addGoal(750);
     this.midataService.save(goal);
 
-    // First notification in 7 days, repeating each week
-    let every = ELocalNotificationTriggerUnit.WEEK;
-
-    // for testing reduced Interval to 1 minute
-    every = ELocalNotificationTriggerUnit.MINUTE;
-
-    this.notificationService.schedule({ 
-        text: 'Hallo ' + this.inputtext + ', es sind schon wieder 7 Tage vergangen. Klicke auf diese Nachricht um die neuen Werte aktuelles Gewicht und Wochenfortschritt einzugeben.', 
-        trigger: {
-        every: every,
-        count: 1,
-        },
-        data: 'ENTER_WEIGHT'
-    });
+    this.notificationService.createWeeklyWeightNotification();
   }  
 
   /**

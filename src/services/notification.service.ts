@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
-import { App } from 'ionic-angular';
-import { LocalNotifications, ILocalNotification } from '@ionic-native/local-notifications';
+import { App, DateTime } from 'ionic-angular';
+import { LocalNotifications, ILocalNotification, ELocalNotificationTriggerUnit } from '@ionic-native/local-notifications';
 import { WeightReminderNotificationPage } from '../pages/weight-reminder-notification/weight-reminder-notification';
+import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class NotificationService {
 
   constructor(
     private app: App,
-    private localNotifications: LocalNotifications
+    private localNotifications: LocalNotifications,
+    private storage: Storage,
   ) {
 
     // Register click event listener for each local notification
@@ -37,9 +39,33 @@ export class NotificationService {
     this.localNotifications.requestPermission().then((permission) => {
       //alert('permission' + permission);
       this.localNotifications.schedule(options);
-   }).catch(error => {
+    }).catch(error => {
       alert('no permission' + error);
-   });
+    });
+  }
+
+  public createWeeklyWeightNotification() {
+    this.storage.get("username").then(userName => {
+      console.log('createWeeklyWeightNotification() : userName:=', userName);
+
+      // First notification in 7 days, repeating each week
+      let trigger = {
+        every: ELocalNotificationTriggerUnit.WEEK,
+        count: 1
+      };
+
+      // for testing reduced Interval to 1 minute
+      trigger = {
+        every: ELocalNotificationTriggerUnit.MINUTE,
+        count: 1
+      };
+
+      this.schedule({
+        text: `Hallo ${userName}, es sind schon wieder 7 Tage vergangen. Klicke auf diese Nachricht um die neuen Werte aktuelles Gewicht und Wochenfortschritt einzugeben.`,
+        trigger: trigger,
+        data: 'ENTER_WEIGHT'
+      });
+    });
   }
 
 }
