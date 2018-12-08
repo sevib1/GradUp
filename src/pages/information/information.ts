@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { InformationAnorexiaPage } from '../information-anorexia/information-anorexia';
 import { InformationConsequencesPage } from '../information-consequences/information-consequences';
 import { InformationPsychePage } from '../information-psyche/information-psyche';
 import { InformationAnatomyPage } from '../information-anatomy/information-anatomy';
-
 
 @IonicPage()
 @Component({
@@ -14,9 +13,8 @@ import { InformationAnatomyPage } from '../information-anatomy/information-anato
 export class InformationPage {
 
   constructor(
-    public navCtrl: NavController,    
-    public navParams: NavParams) {
-  }
+    public navCtrl: NavController
+  ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InformationPage');

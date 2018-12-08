@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, DateTime } from 'ionic-angular';
 import { WelcomeAppexplanationPage } from '../welcome-appexplanation/welcome-appexplanation';
 import { WelcomeCapturePage } from '../welcome-capture/welcome-capture';
-import { WelcomeConnectPage} from '../welcome-connect/welcome-connect';
+import { WelcomeConnectPage } from '../welcome-connect/welcome-connect';
 import { TabsPage } from '../tabs/tabs';
 import { NotificationService } from '../../services/notification.service';
-import { WeightReminderNotificationPage } from '../weight-reminder-notification/weight-reminder-notification';
+import { WelcomeContactPage } from '../welcome-contact/welcome-contact';
 
 @IonicPage()
 @Component({
@@ -32,27 +32,15 @@ export class WelcomePage {
       this.navCtrl.push(WelcomeCapturePage, {});
    }
 
+   public gotoWelcomeContactPage() {
+      this.navCtrl.push(WelcomeContactPage, {});
+   }
+
    public gotoWelcomeConnectPage() {
-    this.navCtrl.push(WelcomeConnectPage, {});
- }
+      this.navCtrl.push(WelcomeConnectPage, {});
+   }
 
    public gotoTabsPage() {
       this.navCtrl.push(TabsPage, {});
    }
-
-   public gotoWeightPage() {
-      this.navCtrl.push(WeightReminderNotificationPage, {});
-   }
-
-   public scheduleNotification() {
-      this.notificationService.schedule({
-         title: 'Titel',
-         text: 'Text',
-         trigger: {
-            at: new Date(new Date().getTime() + 1000)
-         },
-         data: 'TEST'
-      });      
-   }
-
 }

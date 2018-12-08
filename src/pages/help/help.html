@@ -10,7 +10,43 @@
 
 <ion-content padding>
     <p></p>
-    <p>Hier erhalten Sie bei Bedarf verschiedene Hilfestellungen.</p>
+    
+    <div text-left>
+        <p>Direkt mit der <span class="highlight">Bezugsperson</span> in Kontakt treten:</p>
+            <button ion-button icon-only clear class (click)="callSupport()">
+                <ion-icon name="call"></ion-icon>               
+                <p>Telefon</p>
+            </button>
+           
+            <button ion-button icon-only clear class ="smileyBtn">
+                    <ion-icon name="mail"></ion-icon>
+                    <p>SMS</p>                  
+            </button>
+            
+    
+            <button ion-button icon-only clear class ="smileyBtn">
+                    <ion-icon name="mail"></ion-icon>
+                    <p>E-Mail</p>                   
+            </button>            
+    </div>
+
+    
+    <div text-left>
+        <p>Direkt mit der <span class="highlight">Fachsperson</span> in Kontakt treten:</p>
+            <button ion-button icon-only clear class (click)="callSupport()">
+                <ion-icon name="call"></ion-icon>               
+                <p>Telefon</p>
+            </button>
+                
+                <button ion-button icon-only clear class ="smileyBtn">
+                        <ion-icon name="mail"></ion-icon>
+                        <p>E-Mail</p>
+                </button>
+        </div>
+
+
+
+    <p>Hier erhalten Sie bei Bedarf weitere Hilfestellungen.</p>
 
     <ion-list class="with-borders">
             <button ion-item (click)="gotoHelpPointsofcontactPage()">
