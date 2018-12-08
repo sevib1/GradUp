@@ -16,7 +16,8 @@ import * as Globals from '../../../typings/globals';
 
 //Accordion
 import { Http } from '@angular/http';
-7
+import { ELocalNotificationTriggerUnit } from '@ionic-native/local-notifications';
+
 /**
  * Generated class for the WelcomeCapturePage page.
  *
@@ -93,7 +94,7 @@ export class WelcomeCapturePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad WelcomeCapturePage');
 
-    //#MIDATA -> load the elements
+  +  //#MIDATA -> load the elements
     this.loadData();
   }
 
@@ -119,19 +120,21 @@ export class WelcomeCapturePage {
     goal.addGoal(750);
     this.midataService.save(goal);
 
+    // First notification in 7 days, repeating each week
+    let every = ELocalNotificationTriggerUnit.WEEK;
 
+    // for testing reduced Interval to 1 minute
+    every = ELocalNotificationTriggerUnit.MINUTE;
 
-    const inSevenDays = new Date(new Date().getTime() + (7 * 24 * 3600 * 1000));
     this.notificationService.schedule({ 
         text: 'Hallo ' + this.inputtext + ', es sind schon wieder 7 Tage vergangen. Klicke auf diese Nachricht um die neuen Werte aktuelles Gewicht und Wochenfortschritt einzugeben.', 
         trigger: {
-          at: inSevenDays
+        every: every,
+        count: 1,
         },
         data: 'ENTER_WEIGHT'
     });
-  }
-
-  
+  }  
 
   /**
    * #MIDATA: add the weight values to the weightData array.
