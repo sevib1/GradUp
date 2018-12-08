@@ -1,23 +1,95 @@
 <ion-header>
-
-        <ion-navbar hideBackButton="true">
-            <ion-title>
-                <title-logo text="Profil"></title-logo>
-            </ion-title>
-        </ion-navbar>
     
-    </ion-header>
+    <ion-navbar hideBackButton="true">
+        <ion-title>
+            <title-logo text="Profil erfassen"></title-logo>
+        </ion-title>
+    </ion-navbar>
+
+</ion-header>
 
 <ion-content padding>
     <p></p>
-    <p>Hier können Sie das gesamte Profil anpassen.   ..... Das ganze Formular aus dem Profil hier übernehmen.....</p>
+    <h3 ion-text color="primary">Obligatorisch:</h3>
+    <p>Benutzername:</p>
+    <ion-item id="textfield">
+        <ion-input [(ngModel)]="inputtext" type="text" value=""></ion-input>
+    </ion-item>
+    <p id="text-benutzername">Wählen Sie einen Namen, mit welchem Sie in Zukunft durch GradUp angesprochen werden möchten.</p>
+    
+    <!--the ion-card and its content in this view is only for testing purposes-->
+    <ion-card *ngFor="let measure of weightData">
+        <ion-card-header>
+            {{measure.date}}
+        </ion-card-header>
 
+        <ion-card-content>
+            {{measure.value}}
+        </ion-card-content>
+    </ion-card>
+
+    <!--{{formatDate(measure.date, 'HH:mm')}}-->
+
+    <!--test reference-->
+    <ion-card>
+        <ion-card-header>test</ion-card-header>
+        <ion-card-content>testeintrag</ion-card-content>
+    </ion-card>
+
+    <p>Tätigkeit:</p>
+    <ion-item id="select-popover">
+        <ion-label>Wählen Sie Ihr Tätigkeit:</ion-label>
+        <ion-select interface="popover" [(ngModel)]="userType">
+          <ion-option value="1">Sitzende Tätigkeit</ion-option>
+          <ion-option value="2">Handwerkliche Tätigkeit</ion-option>
+          <ion-option value="3">Student/in</ion-option>
+          <ion-option value="4">Hausfrau/mann</ion-option>
+          <ion-option value="5">Pflegende oder betreuende Tätigkeit</ion-option>
+        </ion-select>
+    </ion-item>
+
+    <p>Aktuelles Gewicht:</p>
+    <ion-item id="textfield"> 
+        <ion-input [(ngModel)]="currentWeight" type="decimal" value=""></ion-input>
+        <ion-label color="primary" class="fixedLabel" fixed>kg</ion-label>
+    </ion-item>
+
+    <p>Mein Wochenfortschritt:</p>
+    <ion-item id="textfield">  
+        <ion-input type="number" maxlenght="4" pattern="[0-9]*" min="500" max="1500" value=""></ion-input>
+        <ion-label color="primary" class="fixedLabel" fixed>(500-1500gr)</ion-label>
+    </ion-item>
+
+      <!--
+    <h3 ion-text color="primary">Optional:</h3>
+    <p>Beziehungsstatus</p>
+    <ion-icon name="ios-arrow-down"></ion-icon>
+    <p>Wohnsituation</p>
+    <ion-icon name="ios-arrow-down"></ion-icon>
+    <p>Haustiere</p>
+
+    <ion-row radio-group [(ngModel)]="sexe">
+        <ion-col>
+          <ion-item id="radio-group2">
+            <ion-label>Weiblich</ion-label>
+            <ion-radio value="homme"></ion-radio>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item id="radio-group2">
+           <ion-label>Männlich</ion-label>
+            <ion-radio value="femme"></ion-radio>
+          </ion-item>
+        </ion-col>
+    </ion-row>
+-->
 </ion-content>
 
-<ion-footer class="footer-no-borders">
-        <ion-buttons left>
-            <button ion-button icon-only (click)="gotoProfilePage()">
-                <ion-icon name="arrow-back"></ion-icon>
+
+    <ion-footer no-shadow>
+        <ion-toolbar position="bottom">
+            <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="saveData(); gotoProfilePage();">
+                Speichern
             </button>
-        </ion-buttons>
+        </ion-toolbar>
     </ion-footer>

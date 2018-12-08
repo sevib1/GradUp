@@ -15,19 +15,19 @@
     <!--Auflistung Tagebucheinträge-->
 
     <ion-list>
-        <ion-card *ngFor="let journalEntry of journalEntryCollection; let i = index ">
+        <ion-card *ngFor="let jEntry of journalEntryCollection; let i = index ">
             <ion-card-header>
-                <b>{{ journalEntry.entryDate }}</b>
+                <b>{{ jEntry.entryDate }}</b>
             </ion-card-header>
 
             <ion-card-content>
-                {{ journalEntry.entryText }}
+                {{ jEntry.entryText }}
             </ion-card-content>
 
             <ion-row>
                 <ion-col text-right>
-                  <button ion-button clear small (click)="editJournalEntry(journalEntry.entryId)"><ion-icon name = "create"></ion-icon></button>
-                  <button ion-button clear small (click)="deleteJournalEntry(journalEntry.entryId)"><ion-icon name = "trash"></ion-icon></button>
+                  <button ion-button clear small (click)="editJournalEntry(jEntry.entryId)"><ion-icon name = "create"></ion-icon></button>
+                  <button ion-button clear small (click)="deleteJournalEntry(jEntry.entryId)"><ion-icon name = "trash"></ion-icon></button>
                 </ion-col>
             </ion-row>
 

@@ -9,119 +9,72 @@
 </ion-header>
 
 <ion-content padding>
+   <form [formGroup]="formgroup" (ngSubmit)="onSubmit()"> 
     <p></p>
     <h3 ion-text color="primary">Obligatorisch:</h3>
     <p>Benutzername:</p>
     <ion-item id="textfield">
-        <ion-input [(ngModel)]="inputtext" type="text" value=""></ion-input>
+        <ion-input [(ngModel)]="inputtext" formControlName="username" type="text" value=""></ion-input>
     </ion-item>
-    <p id="text-benutzername">Wählen Sie einen Namen, mit welchem Sie in Zukunft durch GradUp angesprochen werden möchten.</p>
+    <p id="text-benutzername">Wählen Sie einen Namen, mit dem Sie in Zukunft durch GradUp angesprochen werden möchten.</p>
     
-    <!--the ion-card and its content in this view is only for testing purposes-->
-    <ion-card *ngFor="let measure of weightData">
-        <ion-card-header>
-            {{measure.date}}
-        </ion-card-header>
-
-        <ion-card-content>
-            {{measure.value}}
-        </ion-card-content>
-    </ion-card>
-
-    <!--{{formatDate(measure.date, 'HH:mm')}}-->
-
-    <!--test reference-->
-    <ion-card>
-        <ion-card-header>test</ion-card-header>
-        <ion-card-content>testeintrag</ion-card-content>
-    </ion-card>
-
     <p>Tätigkeit:</p>
     <ion-item id="select-popover">
-        <ion-label>Wählen Sie Ihr Tätigkeit:</ion-label>
-        <ion-select interface="popover" [(ngModel)]="userType">
+        <ion-label>Wählen Sie einen Tätigkeitsbereich, der am besten zutrifft:</ion-label>
+        <ion-select interface="popover" [(ngModel)]="userType" formControlName="occupation">
           <ion-option value="1">Sitzende Tätigkeit</ion-option>
           <ion-option value="2">Handwerkliche Tätigkeit</ion-option>
-          <ion-option value="3">Student/in</ion-option>
-          <ion-option value="4">Hausfrau/mann</ion-option>
+          <ion-option value="3">Student/-in</ion-option>
+          <ion-option value="4">Hausfrau/-mann</ion-option>
           <ion-option value="5">Pflegende oder betreuende Tätigkeit</ion-option>
         </ion-select>
     </ion-item>
 
     <p>Aktuelles Gewicht:</p>
     <ion-item id="textfield"> 
-        <ion-input [(ngModel)]="currentWeight" type="decimal" value=""></ion-input>
+        <ion-input [(ngModel)]="currentWeight" formControlName="bodyweight" type="decimal" value=""></ion-input>
         <ion-label color="primary" class="fixedLabel" fixed>kg</ion-label>
     </ion-item>
 
     <p>Mein Wochenfortschritt:</p>
     <ion-item id="textfield">  
-        <ion-input type="number" maxlenght="4" pattern="[0-9]*" min="500" max="1500" value=""></ion-input>
+        <ion-input type="number" formControlName="weightGain" maxlenght="4" pattern="[0-9]*" min="500" max="1500" value=""></ion-input>
         <ion-label color="primary" class="fixedLabel" fixed>(500-1500gr)</ion-label>
     </ion-item>
+    </form>
 
-    <ion-list class="accordion-list">
-        <!-- First Level -->
-        <ion-list-header *ngFor="let item of information; let i = index" no-lines no-padding>
-          <!-- Toggle Button -->
-          <button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': item.open, 'section': !item.open}">
-            <ion-icon item-right name="ios-arrow-down" *ngIf="!item.open"></ion-icon>
-            <ion-icon item-right name="ios-arrow-up" *ngIf="item.open"></ion-icon>
-              {{ item.name }}
-          </button>
-     
-          <ion-list *ngIf="item.children && item.open" no-lines>
-            <!-- Second Level -->
-            <ion-list-header *ngFor="let child of item.children; let j = index" no-padding>
-              <!-- Toggle Button -->
-              <button ion-item (click)="toggleItem(i, j)" *ngIf="child.children" class="child" detail-none>
-                <ion-icon item-right name="ios-arrow-down" *ngIf="!child.open"></ion-icon>
-                <ion-icon item-right name="ios-arrow-up" *ngIf="child.open"></ion-icon>
-                {{ child.id }}
-              </button>
-     
-              <!-- Direct Add Button as Fallback -->
-              <ion-item *ngIf="!child.children" ion-item detail-none class="child-item" text-wrap>
-                <h2>{{ child.id }}</h2>
-                <p text-lowercase>{{ child.title }}</p>
-                <button ion-button outline item-end (click)="buyItem(child)">{{ child.price }}</button>
-              </ion-item>
-
-            </ion-list-header>
-          </ion-list>
-          
-        </ion-list-header>
-      </ion-list>
-    
-      <!--
     <h3 ion-text color="primary">Optional:</h3>
-    <p>Beziehungsstatus</p>
-    <ion-icon name="ios-arrow-down"></ion-icon>
-    <p>Wohnsituation</p>
-    <ion-icon name="ios-arrow-down"></ion-icon>
-    <p>Haustiere</p>
 
-    <ion-row radio-group [(ngModel)]="sexe">
-        <ion-col>
-          <ion-item id="radio-group2">
-            <ion-label>Weiblich</ion-label>
-            <ion-radio value="homme"></ion-radio>
-          </ion-item>
-        </ion-col>
-        <ion-col>
-          <ion-item id="radio-group2">
-           <ion-label>Männlich</ion-label>
-            <ion-radio value="femme"></ion-radio>
-          </ion-item>
-        </ion-col>
-    </ion-row>
--->
+    <accordion-list *ngFor="let user of users" [title]="user.name">
+        <ion-list radio-group [(ngModel)]="relationship_status">
+            <ion-item>
+                <ion-label>single</ion-label>
+                <ion-radio value="single"></ion-radio>
+            </ion-item>
+            <ion-item>
+                <ion-label>in einer Beziehung</ion-label>
+                <ion-radio value="relationship"></ion-radio>
+            </ion-item>
+        </ion-list>
+        <ion-list radio-group [(ngModel)]="residential_status">
+            <ion-item>
+                <ion-label>Ich wohne allein</ion-label>
+                <ion-radio value="alone"></ion-radio>
+            </ion-item>
+            <ion-item>
+                <ion-label>Ich wohne mit</ion-label>
+                <ion-radio value="live"></ion-radio>
+                <ion-input type="number"></ion-input>
+                <ion-label>Person/en zusammen</ion-label>
+            </ion-item>
+        </ion-list>
+    </accordion-list>
+    
 </ion-content>
-
 
     <ion-footer no-shadow>
         <ion-toolbar position="bottom">
-            <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="saveData(); gotoWelcomeContactPage();">
+            <button ion-button [color]="primary" [outline]="false" [round]="true" [disabled]="!formgroup.valid" (click)="saveData(); gotoWelcomeContactPage();">
                 Speichern
             </button>
         </ion-toolbar>

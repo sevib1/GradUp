@@ -55,12 +55,15 @@ import { MidataService } from '../services/MidataService';
 import { Contacts } from '@ionic-native/contacts';
 
 import { DatabaseProvider } from '../providers/database/database';
-import { HttpModule } from '@angular/http';
 
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { NotificationService } from '../services/notification.service';
 
 import { BiovotionConnector } from '@ionic-native/biovotion-connector';
+
+//Accordion
+import { AccordionListComponent } from '../components/accordion-list/accordion-list';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -101,7 +104,8 @@ import { BiovotionConnector } from '@ionic-native/biovotion-connector';
     ProfileTermsPage,
 
     // components
-    TitleLogoComponent
+    TitleLogoComponent,
+    AccordionListComponent
   ],
   imports: [
     BrowserModule,

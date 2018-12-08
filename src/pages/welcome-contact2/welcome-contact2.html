@@ -24,7 +24,7 @@
         <ion-input [(ngModel)]="bezugsperson_telefonnummer" formControlName="telefonnummer" type="tel" value="" pattern="[0-9]+"></ion-input>
     </ion-item>
     <p>SMS-Text:</p>
-    <ion-item id="text">
+    <ion-item id="smstext">
         <ion-textarea [(ngModel)]="bezugsperson_smstext" formControlName="smstext" rows ="1"></ion-textarea>
     </ion-item>
     <p>E-Mail-Adresse:</p>
@@ -32,7 +32,7 @@
         <ion-input [(ngModel)]="bezugsperson_email" formControlName="email" type="email" pattern="[A-Za-z0-9._%+-]{2,}@[a-zA-Z-_.]{2,}[.]{1}[a-zA-Z]{2,}" value=""></ion-input>
     </ion-item>
     <p>E-Mail-Text:</p>
-    <ion-item id="text">
+    <ion-item id="emailtext">
         <ion-textarea [(ngModel)]="bezugsperson_emailtext" formControlName="emailtext" rows ="1"></ion-textarea>
     </ion-item>
     <p id="save-text">* Die Telefonnummer, die E-Mailadresse und die Texte werden lokal auf Ihrem Smartphone gespeichert.</p>

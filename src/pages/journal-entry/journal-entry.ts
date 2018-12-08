@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { JournalPage } from '../journal/journal';
-import { Storage } from '@ionic/storage';
 
 //import Providers
 import { DatabaseProvider } from '../../providers/database/database';
 
-//import utility class
+//import journalEntry utility class
 import { JournalEntry } from '../../classes/journalEntry';
 
 //import journalDeletePage
-import { JournalDeletePage } from '../journal-delete/journal-delete'; //not shure if needed...
+import { JournalDeletePage } from '../journal-delete/journal-delete'; //not sure if needed...
 
 
 @IonicPage()
@@ -20,31 +19,48 @@ import { JournalDeletePage } from '../journal-delete/journal-delete'; //not shur
 })
 export class JournalEntryPage {
 
-  //journal Entry
+  /**
+   *  journal Entry
+   * 
+   */
   journalEntry: JournalEntry;
-  journalEntryId: number;
+  //journalEntryId: number;
 
-  journalEntryExistend : JournalDeletePage;
-
+  /**
+   * collection of journal entries.
+   */
   journalEntryCollection: JournalEntry[] = [];
 
+  journalDeletePage : JournalDeletePage;
+
+  journalEntrySaved: JournalEntry;
+  
   constructor(public navCtrl: NavController, 
-    public navParams: NavParams, 
-    private storage: Storage,
+    public navParams: NavParams,
     public dbp: DatabaseProvider) {
-    this.journalEntry = new JournalEntry();
+    this.journalEntry = new JournalEntry(); //without this, the page will throw a "Uncaught (in promise): TypeError"
   
   }
 
-  //Runs when the page is about to enter and become the active page.
+  /**
+   * 
+   * Runs when the page is about to enter and become the active page.
+   */
   ionViewWillEnter(){
-    console.log("ionHomeViewWillEnter");
+    console.log("willEnter journalEntryPage");
     
+    //this.journalEntryId = this.navParams.data; //-> fetches data from "journal-deletePage" --> do not delete!, otherwise delete won't work properly
+   
+    this.journalEntry = this.navParams.data;
+
+    //this.journalEntrySaved = this.navParams.data;
+
+    console.log(this.journalEntrySaved);
     
   }
 
   //Runs when the page has loaded.
-  ionViewDidLoad() {
+  /*ionViewDidLoad() {
 
     
     console.log('ionViewDidLoad JournalEntryPage');
@@ -57,21 +73,47 @@ export class JournalEntryPage {
     });
 
     //this.journalEntry = this.navParams.data; //-> fetches data from "journal-deletePage"
-    this.journalEntryId = this.navParams.data; //-> fetches data from "journal-deletePage" --> do not delete!, otherwise delete won't work properly
     
-  }
+    
+  }*/
 
     //kochd1: This codeline below is necessary to display the today's date.
     myDate: any = new Date().toISOString();
 
-
-    // save journal Entry to database
-    saveEntry(){
-
-      console.log(this.journalEntry);
-    
-      // deprecated -> this.journalEntry.entryId = this.myDate;
+    /**
+     * save journal entry to database.
+     */
+    saveEntry():void{
       console.log("saveJournalEntry button was clicked")
+
+      if(this.journalEntry.entryId==0 || this.journalEntry.entryId==null){
+        console.log("saveEntry() -> entryId:" + this.journalEntry.entryId);
+        this.journalEntry.entryId = Number(new Date()); //.getTime);
+      }
+      
+      this.dbp.saveJournalEntry(this.journalEntry).then(val => {
+      
+          // alternative zu unten
+          this.dbp.getJournalEntryCollection();
+          
+        
+      });
+
+      this.navCtrl.pop();
+      
+
+      /*this.dbp.saveJournalEntry(this.journalEntry).then(val => {
+        if(val) {
+          // work around, damit später gepoppet wird
+          this.dbp.getJournalEntryCollection().then(val => {
+            this.navCtrl.pop();
+          })
+          
+        }
+      });*/
+
+      /*
+      
       this.dbp.getJournalEntryCollection()
       .then((val) => {
         if(val == null) {
@@ -79,10 +121,8 @@ export class JournalEntryPage {
           this.journalEntryCollection.push(this.journalEntry);
           this.dbp.saveJournalEntry(this.journalEntryCollection);
 
-          console.log(this.journalEntry.entryId)
+          console.log("JEntryId: this.journalEntry.entryId");
           console.log(this.journalEntryCollection)
-
-          this.journalEntry = this.navParams.data;
 
         } else {
           console.log("get-->" + val);
@@ -93,12 +133,12 @@ export class JournalEntryPage {
           console.log(this.journalEntry.entryId)
           console.log(this.journalEntryCollection)
 
-          this.journalEntry = this.navParams.data;
         }
       })
       
-      this.navCtrl.pop();
+      this.navCtrl.pop();*/
     }
+
 
   public gotoJournalPage() {
     this.navCtrl.push(JournalPage, {});
