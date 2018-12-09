@@ -24,6 +24,7 @@
     "@ionic-native/call-number": "^4.18.0",
     "@ionic-native/contacts": "^4.17.0",
     "@ionic-native/core": "~4.15.0",
+    "@ionic-native/email-composer": "^4.18.0",
     "@ionic-native/in-app-browser": "^4.17.0",
     "@ionic-native/local-notifications": "^4.17.0",
     "@ionic-native/native-storage": "^4.17.0",
@@ -40,6 +41,7 @@
     "cordova-plugin-badge": "0.8.8",
     "cordova-plugin-contacts": "^3.0.1",
     "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-email-composer": "0.8.15",
     "cordova-plugin-inappbrowser": "^3.0.0",
     "cordova-plugin-ionic-keyboard": "^2.1.3",
     "cordova-plugin-ionic-webview": "^2.2.5",
@@ -80,7 +82,8 @@
       "cordova-plugin-contacts": {},
       "cordova-plugin-biovotion": {},
       "mx.ferreyra.callnumber": {},
-      "cordova-sms-plugin": {}
+      "cordova-sms-plugin": {},
+      "cordova-plugin-email-composer": {}
     },
     "platforms": [
       "android"

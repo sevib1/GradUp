@@ -5,6 +5,7 @@ import { HelpCopingPage } from '../help-coping/help-coping';
 import { HelpRelaxationPage } from '../help-relaxation/help-relaxation';
 import { CallNumber } from '@ionic-native/call-number';
 import { SMS } from '@ionic-native/sms';
+import { EmailComposer } from '@ionic-native/email-composer';
 import { Storage } from '@ionic/storage';
 
 /**
@@ -35,6 +36,7 @@ export class HelpPage {
     public navParams: NavParams,
     public callNumber: CallNumber,
     private sms: SMS,
+    private emailComposer: EmailComposer,
     private storage: Storage
   ) {
   }
@@ -58,13 +60,13 @@ export class HelpPage {
         var options = {
           replaceLineBreaks: false, // true to replace \n by a new line, false by default
           android: {
-              // send SMS with the native android SMS messaging
-              // * intent: 'INTENT' => send SMS without open any other app
-              // intent: '' => send directly, needs SEND_SMS permissions.
-              intent: '' 
+            // send SMS with the native android SMS messaging
+            // * intent: 'INTENT' => send SMS without open any other app
+            // intent: '' => send directly, needs SEND_SMS permissions.
+            intent: ''
           }
         };
-      
+
         this.sms.send(telNr, text, options)
           .then(() => {
             console.log('sms sent successfully');
@@ -76,10 +78,60 @@ export class HelpPage {
     });
   }
 
+  eMailBezugsperson(): void {
+    this.storage.get("bezugsperson_email").then(mail => {
+      this.storage.get("bezugsperson_emailtext").then(text => {
+        console.log('eMailBezugsperson() : mail:=', mail, ',  text:=', text);
+
+        this.emailComposer.isAvailable().then((available: boolean) => {
+          if (available) {
+            //Now we know we can send
+          }
+        });
+
+        let email = {
+          to: mail,
+          subject: 'Ich brauche Deine Hilfe',
+          body: text,
+          isHtml: true
+        };
+
+        // Send a text message using default options
+        this.emailComposer.open(email);
+
+      });
+    });
+  }
+
   callFachperson(): void {
     this.storage.get("fachperson_telefonnummer").then(value => {
       console.log('callFachperson() : value:=', value);
       this.callNumber.callNumber(value, true);
+    });
+  }
+
+  eMailFachperson(): void {
+    this.storage.get("fachperson_email").then(mail => {
+      this.storage.get("fachperson_emailtext").then(text => {
+        console.log('eMailFachperson() : mail:=', mail, ',  text:=', text);
+
+        this.emailComposer.isAvailable().then((available: boolean) => {
+          if (available) {
+            //Now we know we can send
+          }
+        });
+
+        let email = {
+          to: mail,
+          subject: 'Ich brauche Ihre Hilfe',
+          body: text,
+          isHtml: true
+        };
+
+        // Send a text message using default options
+        this.emailComposer.open(email);
+
+      });
     });
   }
 

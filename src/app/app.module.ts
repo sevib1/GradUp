@@ -57,6 +57,7 @@ import { Contacts } from '@ionic-native/contacts';
 import { DatabaseProvider } from '../providers/database/database';
 import { CallNumber } from '@ionic-native/call-number';
 import { SMS } from '@ionic-native/sms';
+import { EmailComposer } from '@ionic-native/email-composer';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { NotificationService } from '../services/notification.service';
 
@@ -164,7 +165,8 @@ import { HttpModule } from '@angular/http';
     DatabaseProvider,
     BiovotionConnector,
     CallNumber,
-    SMS
+    SMS,
+    EmailComposer
   ]
 })
 export class AppModule {}

@@ -1,12 +1,12 @@
 <ion-header>
 
-        <ion-navbar hideBackButton="true">
-            <ion-title>
-                <title-logo text="Hilfe"></title-logo>
-            </ion-title>
-        </ion-navbar>
-    
-    </ion-header>
+    <ion-navbar hideBackButton="true">
+        <ion-title>
+            <title-logo text="Hilfe"></title-logo>
+        </ion-title>
+    </ion-navbar>
+
+</ion-header>
 
 <ion-content padding>
     <p></p>
@@ -15,7 +15,7 @@
         <p>Direkt mit der <span class="highlight">Bezugsperson</span> in Kontakt treten:</p>
 
         <button ion-button icon-only clear class="" (click)="callBezugsperson()">
-            <ion-icon name="call"></ion-icon>               
+            <ion-icon name="call"></ion-icon>
             <span>Telefon</span>
         </button>
         <button ion-button icon-only clear class="" (click)="writeSMS()">
@@ -25,17 +25,17 @@
         <button ion-button icon-only clear class="" (click)="eMailBezugsperson()">
             <ion-icon name="mail"></ion-icon>
             <span>E-Mail</span>
-        </button>            
+        </button>
     </div>
 
-    
+
     <div text-left class="help-buttons">
         <p>Direkt mit der <span class="highlight">Fachsperson</span> in Kontakt treten:</p>
         <button ion-button icon-only clear class (click)="callFachperson()">
-            <ion-icon name="call"></ion-icon>               
+            <ion-icon name="call"></ion-icon>
             <span>Telefon</span>
         </button>
-        
+
         <button ion-button icon-only clear class="" (click)="eMailFachperson()">
             <ion-icon name="mail"></ion-icon>
             <span>E-Mail</span>
@@ -45,17 +45,17 @@
     <p>Hier erhalten Sie bei Bedarf weitere Hilfestellungen.</p>
 
     <ion-list class="with-borders">
-            <button ion-item (click)="gotoHelpPointsofcontactPage()">
-                <span class="highlight">Anlaufstellen</span>
-            </button>
-    
-            <button ion-item (click)="gotoHelpCopingPage()">
-                <span class="highlight">Bewältigungsstrategien</span>
-            </button>
-    
-            <button ion-item (click)="gotoHelpRelaxationPage()">
-                <span class="highlight">Entspannungsübungen</span>
-            </button>
-        </ion-list>
+        <button ion-item (click)="gotoHelpPointsofcontactPage()">
+            <span class="highlight">Anlaufstellen</span>
+        </button>
 
-</ion-content>  
+        <button ion-item (click)="gotoHelpCopingPage()">
+            <span class="highlight">Bewältigungsstrategien</span>
+        </button>
+
+        <button ion-item (click)="gotoHelpRelaxationPage()">
+            <span class="highlight">Entspannungsübungen</span>
+        </button>
+    </ion-list>
+
+</ion-content>
