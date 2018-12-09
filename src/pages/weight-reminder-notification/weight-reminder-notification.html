@@ -15,13 +15,13 @@
     <div *ngIf="state === 'FORM'">
         <p>Aktuelles Gewicht:</p>
         <ion-item id="textfield">
-            <ion-input [(ngModel)]="currentWeight" type="decimal" value=""></ion-input>
+            <ion-input [(ngModel)]="currentWeight" type="number" maxlenght="4" value=""></ion-input>
             <ion-label color="primary" class="fixedLabel" fixed>kg</ion-label>
         </ion-item>
 
         <p>In der nächsten Woche möchte ich</p>
         <ion-item id="textfield">
-            <ion-input type="number" maxlenght="4" pattern="[0-9]*" min="500" max="1500" value="" [(ngModel)]="currentGoal"></ion-input>
+            <ion-input [(ngModel)]="currentGoal" type="number" maxlenght="4" pattern="[0-9]*" min="500" max="1500" value=""></ion-input>
             <ion-label color="primary" class="fixedLabel" fixed>(500-1500gr)</ion-label>
         </ion-item>
         <p>zunehmen.</p>

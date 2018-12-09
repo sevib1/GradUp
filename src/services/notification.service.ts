@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { App, DateTime } from 'ionic-angular';
-import { LocalNotifications, ILocalNotification, ELocalNotificationTriggerUnit } from '@ionic-native/local-notifications';
+import { LocalNotifications, ILocalNotification, ELocalNotificationTriggerUnit, ILocalNotificationTrigger } from '@ionic-native/local-notifications';
 import { WeightReminderNotificationPage } from '../pages/weight-reminder-notification/weight-reminder-notification';
 import { Storage } from '@ionic/storage';
 
@@ -49,15 +49,14 @@ export class NotificationService {
       console.log('createWeeklyWeightNotification() : userName:=', userName);
 
       // First notification in 7 days, repeating each week
-      let trigger = {
-        every: ELocalNotificationTriggerUnit.WEEK,
-        count: 1
+      let trigger: ILocalNotificationTrigger = {
+        every: ELocalNotificationTriggerUnit.WEEK
       };
 
       // for testing reduced Interval to 1 minute
       trigger = {
         every: ELocalNotificationTriggerUnit.MINUTE,
-        count: 1
+        count: 5
       };
 
       this.schedule({
