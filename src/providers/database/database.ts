@@ -27,6 +27,7 @@ export class DatabaseProvider {
    * @param jEntry 
    */
   saveJournalEntry(jEntry: JournalEntry): Promise<boolean>{
+    
     console.log("entryId of JournalEntry which is going to be saved: " + jEntry.entryId);
     return this.storage.get(this.journalEntryCollection_key).then(valArr => {
       if (valArr == null) {
@@ -68,6 +69,7 @@ export class DatabaseProvider {
   }*/
 
   deleteJournalEntryById(id: number): Promise<boolean> {
+
     return this.storage.get(this.journalEntryCollection_key).then((valArr) => {
       let newArr = valArr.filter(val => val.entryId != id); //true -> wird in newArr geschrieben
       this.storage.set(this.journalEntryCollection_key, newArr);
@@ -80,6 +82,7 @@ export class DatabaseProvider {
    * @param id 
    */
   getJournalEntryById(id: number): Promise<JournalEntry> {
+
     return this.storage.get(this.journalEntryCollection_key).then((valArr) => {
       return valArr.find(JournalEntry => JournalEntry.entryId == id);
     });
@@ -87,6 +90,7 @@ export class DatabaseProvider {
 
   //get all journal entries
   getJournalEntryCollection(): Promise<JournalEntry[]> {
+
     return this.storage.get(this.journalEntryCollection_key);
   }
 

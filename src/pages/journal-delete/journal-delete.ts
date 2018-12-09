@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Events } from 'ionic-angular';
 import { JournalPage } from '../journal/journal';
 
 import { JournalEntry } from '../../classes/journalEntry';
@@ -40,18 +40,20 @@ export class JournalDeletePage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public dbp: DatabaseProvider,
+    public events: Events,
     private alertCtrl: AlertController) {
       console.log("visited constructor JournalDeletePage");
+
+      /*this.events.subscribe('journalEntryCollection:updated', () => {
+        this.ionViewWillEnter()
+      
+      });*/
+
     //this.journalEntry = new JournalEntry();
   }
 
-  ionViewDidLoad() {
+  ionViewDidLoad() { //-> does not work, page is not getting reloaded after updating an journal entry
     console.log('ionViewDidLoad JournalDeletePage');
-
-  }
-
-  ionViewWillEnter(){
-    console.log("ionHomeViewWillEnter");
 
     this.dbp.getJournalEntryCollection().then((val) => {
       if(val == null) {
@@ -63,6 +65,28 @@ export class JournalDeletePage {
         /*this.dbp.getJournalEntryById(this.journalEntryId).then((val) => {
           this.journalEntry = val;
         });*/
+      }
+    });
+
+  }
+
+  ionViewWillEnter(){
+    console.log("ionHomeViewWillEnter");
+
+    //this.journalEntryCollection = this.navParams.data;
+    //console.log("jEntryColl.: " + this.journalEntryCollection);
+
+    this.dbp.getJournalEntryCollection().then((val) => {
+      if(val == null) {
+        // There's no journalEntry
+
+      } else {
+        this.journalEntryCollection = val;
+
+        this.journalEntryCollection.forEach(jEntry =>{
+          console.log(jEntry.entryId);
+        })
+
       }
     });
   }
