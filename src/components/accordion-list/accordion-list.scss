@@ -3,6 +3,11 @@ accordion-list {
     .card-content {
         padding: 0px 16px;
         max-height: 0px;
+        padding-left: 0;
     }
- 
+
+    .ion-icon {
+      order: 2;
+    }
+
 }

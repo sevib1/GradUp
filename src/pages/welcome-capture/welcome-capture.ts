@@ -45,9 +45,6 @@ export class WelcomeCapturePage {
   weightData: Array<{date: Date, value: number }>;
   currentWeight;
 
-  //Accordion List
-  users: any[] = [];
-
   //Form Validation 
   formgroup:FormGroup;
   username:AbstractControl;
@@ -78,12 +75,6 @@ export class WelcomeCapturePage {
     this.occupation = this.formgroup.controls['occupation'];
     this.bodyweight = this.formgroup.controls['bodyweight'];
     this.weightGain = this.formgroup.controls['weightGain'];
-
-    //Accoridon List
-    this.http.get('assets/information.json').subscribe((data) => {
-      this.users = data.json();
-      console.log(this.users);
-    })
 
     //#MIDATA
     //this.dailyData = this.navParams.get('data');

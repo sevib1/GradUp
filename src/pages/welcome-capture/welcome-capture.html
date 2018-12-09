@@ -45,31 +45,53 @@
 
     <h3 ion-text color="primary">Optional:</h3>
 
-    <accordion-list *ngFor="let user of users" [title]="user.name">
+    <accordion-list item-left title="Beziehungsstatus">
         <ion-list radio-group [(ngModel)]="relationship_status">
             <ion-item>
                 <ion-label>single</ion-label>
-                <ion-radio value="single"></ion-radio>
+                <ion-radio value="single" item-left></ion-radio>
             </ion-item>
             <ion-item>
                 <ion-label>in einer Beziehung</ion-label>
-                <ion-radio value="relationship"></ion-radio>
-            </ion-item>
-        </ion-list>
-        <ion-list radio-group [(ngModel)]="residential_status">
-            <ion-item>
-                <ion-label>Ich wohne allein</ion-label>
-                <ion-radio value="alone"></ion-radio>
-            </ion-item>
-            <ion-item>
-                <ion-label>Ich wohne mit</ion-label>
-                <ion-radio value="live"></ion-radio>
-                <ion-input type="number"></ion-input>
-                <ion-label>Person/en zusammen</ion-label>
+                <ion-radio value="relationship" item-left></ion-radio>
             </ion-item>
         </ion-list>
     </accordion-list>
-    
+    <accordion-list title="Wohnsituation">
+        <ion-list radio-group [(ngModel)]="residential_status">
+            <ion-item>
+                <ion-label>Ich wohne allein</ion-label>
+                <ion-radio value="alone" item-left></ion-radio>
+            </ion-item>
+            <ion-item>
+                <ion-label>Ich wohne mit</ion-label>
+                <ion-radio value="live" item-left></ion-radio>
+                <ion-input id="input-number" type="number" item-center></ion-input><br>
+                <ion-label item-right>Person/en zusammen</ion-label>
+            </ion-item>
+        </ion-list>
+    </accordion-list>
+    <accordion-list title="Haustiere">
+        <ion-list radio-group [(ngModel)]="pet_status">
+            <ion-item>
+                <ion-label>Ja,</ion-label>
+                <ion-radio value="yes" item-left></ion-radio>
+                <ion-input type="text" placeholder="Welche"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Nein</ion-label>
+                <ion-radio value="no" item-left></ion-radio>
+            </ion-item>
+        </ion-list>
+    </accordion-list>
+    <accordion-list title="Hobbies">
+        <ion-list>
+            <ion-item>
+                <ion-input class="input-hobbies" type="text" placeholder="Bitte ergänzen Sie Ihre Hobbies im Eingabefeld"></ion-input>
+            </ion-item>
+        </ion-list>
+    </accordion-list>
+
 </ion-content>
 
     <ion-footer no-shadow>
