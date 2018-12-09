@@ -55,7 +55,8 @@ import { MidataService } from '../services/MidataService';
 import { Contacts } from '@ionic-native/contacts';
 
 import { DatabaseProvider } from '../providers/database/database';
-
+import { CallNumber } from '@ionic-native/call-number';
+import { SMS } from '@ionic-native/sms';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { NotificationService } from '../services/notification.service';
 
@@ -161,7 +162,9 @@ import { HttpModule } from '@angular/http';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Contacts,
     DatabaseProvider,
-    BiovotionConnector
+    BiovotionConnector,
+    CallNumber,
+    SMS
   ]
 })
 export class AppModule {}

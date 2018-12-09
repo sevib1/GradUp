@@ -92,5 +92,8 @@
     <plugin name="cordova-plugin-local-notification" spec="0.9.0-beta.2" />
     <plugin name="cordova-plugin-contacts" spec="^3.0.1" />
     <plugin name="cordova-plugin-biovotion" spec="..\biovotionIonicPlugin" />
+    <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
+    <plugin name="cordova-sms-plugin" spec="0.1.13" />
+    <plugin name="cordova-plugin-android-permissions" spec="1.0.0" />
     <engine name="android" spec="7.1.1" />
 </widget>
