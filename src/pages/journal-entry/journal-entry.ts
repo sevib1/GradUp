@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { JournalPage } from '../journal/journal';
 
 //import Providers
@@ -24,7 +24,6 @@ export class JournalEntryPage {
    * 
    */
   journalEntry: JournalEntry;
-  //journalEntryId: number;
 
   /**
    * collection of journal entries.
@@ -33,11 +32,11 @@ export class JournalEntryPage {
 
   journalDeletePage : JournalDeletePage;
 
-  journalEntrySaved: JournalEntry;
   
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    public dbp: DatabaseProvider) {
+    public dbp: DatabaseProvider,
+    public events: Events) {
     this.journalEntry = new JournalEntry(); //without this, the page will throw a "Uncaught (in promise): TypeError"
   
   }
@@ -52,10 +51,6 @@ export class JournalEntryPage {
     //this.journalEntryId = this.navParams.data; //-> fetches data from "journal-deletePage" --> do not delete!, otherwise delete won't work properly
    
     this.journalEntry = this.navParams.data;
-
-    //this.journalEntrySaved = this.navParams.data;
-
-    console.log(this.journalEntrySaved);
     
   }
 
@@ -84,22 +79,20 @@ export class JournalEntryPage {
      * save journal entry to database.
      */
     saveEntry():void{
-      console.log("saveJournalEntry button was clicked")
-
+      console.log("saveJournalEntry button was clicked");
       if(this.journalEntry.entryId==0 || this.journalEntry.entryId==null){
         console.log("saveEntry() -> entryId:" + this.journalEntry.entryId);
         this.journalEntry.entryId = Number(new Date()); //.getTime);
       }
       
       this.dbp.saveJournalEntry(this.journalEntry).then(val => {
-      
-          // alternative zu unten
-          this.dbp.getJournalEntryCollection();
-          
-        
+        if(val)
+          this.dbp.getJournalEntryCollection().then((val) =>{
+            this.navCtrl.pop();
+          });
       });
-
-      this.navCtrl.pop();
+    }
+      //this.events.publish('journalEntryCollection:updated', this.journalEntryCollection);
       
 
       /*this.dbp.saveJournalEntry(this.journalEntry).then(val => {
@@ -137,7 +130,7 @@ export class JournalEntryPage {
       })
       
       this.navCtrl.pop();*/
-    }
+    
 
 
   public gotoJournalPage() {
