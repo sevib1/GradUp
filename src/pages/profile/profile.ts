@@ -7,7 +7,6 @@ import { ProfileCustomizePage } from '../profile-customize/profile-customize';
 import { ProfileCustomizecontactsPage } from '../profile-customizecontacts/profile-customizecontacts';
 import { ProfileBiovotionPage } from '../profile-biovotion/profile-biovotion';
 import { ProfileAccessrightsPage } from '../profile-accessrights/profile-accessrights';
-import { WelcomeCapturePage } from '../welcome-capture/welcome-capture';
 import { WelcomePage } from '../welcome/welcome';
 
 import { MidataService } from '../../services/MidataService';
@@ -27,7 +26,7 @@ export class ProfilePage {
   }
 
   public gotoProfileCustomizePage() {
-    this.navCtrl.push(WelcomeCapturePage, {});
+    this.navCtrl.push(ProfileCustomizePage, {});
   }
 
   public gotoProfileCustomizecontactsPage() {
