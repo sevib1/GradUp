@@ -105,9 +105,9 @@ export class WelcomeCapturePage {
     this.midataService.save(new BodyWeight(+this.currentWeight, MessageDate.toISOString()));
 
     //Erstellt neue Goal und fügt neue Wert hinein. Durch save-Methode wird persistiert. 
-    let goal = new Goal();
-    goal.addGoal(750);
-    this.midataService.save(goal);
+    /** 
+    goal.addGoal(750);*/
+    
 
     this.notificationService.createWeeklyWeightNotification();
   }  
@@ -124,6 +124,11 @@ export class WelcomeCapturePage {
 
     //push the data to the array
     this.weightData.push({ date: date, value: measure });
+  }
+
+  addGoal() {
+    let goal = new Goal();
+    this.midataService.save(goal);
   }
  
 

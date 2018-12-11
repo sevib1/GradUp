@@ -28,10 +28,18 @@ page-welcome-capture {
         align-items: baseline;
     }
 
-    .input-hobbies  {
+    .input-hobbies {
         max-width: 90%;
         font-size: 0.5em;
-        border: none;
+        border-bottom: 1px solid #488aff;
+    }
+
+    #input-number {
+        max-width: 25%;
+    }
+
+    .input-haustiere {
+        max-width: 50%;
     }
 
 }

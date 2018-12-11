@@ -11,25 +11,29 @@
 
 <ion-content padding>
 
+    <form [formGroup]="formgroup" (ngSubmit)="onSubmit()">
+
     <p></p>
     <p>Daten und Text für die <span class="highlight">Fachperson</span> erfassen.</p>
     <p>Name der Fachperson:</p>
     <ion-item id="textfield">
-        <ion-input [(ngModel)]="inputtext" type="text" value=""></ion-input>
+        <ion-input [(ngModel)]="fachperson_inputtext" formControlName="inputtext" type="text" value=""></ion-input>
     </ion-item>
     <p>Praxis-Telefonnummer:</p>
     <ion-item id="telefonnummer">
-        <ion-input [(ngModel)]="inputtext" type="tel" value=""></ion-input>
+        <ion-input [(ngModel)]="fachperson_telefonnummer" formControlName="telefonnummer" type="tel" pattern="[0-9]+" value=""></ion-input>
     </ion-item>
     <p>E-Mail-Adresse:</p>
     <ion-item id="e-mail">
-        <ion-input [(ngModel)]="inputtext" type="email" value=""></ion-input>
+        <ion-input [(ngModel)]="fachperson_email" formControlName="email" type="email" pattern="[A-Za-z0-9._%+-]{2,}@[a-zA-Z-_.]{2,}[.]{1}[a-zA-Z]{2,}" value=""></ion-input>
     </ion-item>
     <p>E-Mail-Text:</p>
     <ion-item id="text">
-        <ion-textarea [(ngModel)]="emailtext" rows ="1"></ion-textarea>
+        <ion-textarea [(ngModel)]="fachperson_emailtext" formControlName="emailtext" rows ="1"></ion-textarea>
     </ion-item>
     <p id="save-text">* Die Telefonnummer, die E-Mailadresse und der Text werden lokal auf Ihrem Smartphone gespeichert.</p>
+
+    </form>
 
 </ion-content>
 
@@ -40,7 +44,7 @@
                 <ion-icon name="arrow-back"></ion-icon>
             </button>
         </ion-buttons>
-        <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="gotoWelcomeConnectPage()">
+        <button ion-button [color]="primary" [disabled]="!formgroup.valid" type="submit" [outline]="false" [round]="true" (click)="saveData(); gotoWelcomeConnectPage();">
             Speichern
         </button>
     </ion-toolbar>
