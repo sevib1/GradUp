@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-import { WelcomeConnect2Page } from '../welcome-connect2/welcome-connect2';
 import { MidataService } from '../../services/MidataService';
-import { TabsPage } from '../tabs/tabs';
 import { WelcomeCapturePage } from '../welcome-capture/welcome-capture';
 import { Page } from 'ionic-angular/umd/navigation/nav-util';
 
@@ -34,22 +32,6 @@ export class WelcomeAppexplanationPage {
         });
 
         loading.present().catch();
-
-        // developer@midodoku.ch
-        // Test1234
-
-        // var data = this.midataService.getConnection();
-        // data.login('developer@midodoku.ch', 'Test1234')
-        //     .then((result) => {
-        //         console.log(result);
-        //         loading.dismiss().catch();
-        //         return this.navCtrl.setRoot(this.nextPage);
-        //     })
-        //     .catch((error) => {
-        //         console.log(error);
-        //     });
-
-        // return;
 
         this.midataService.authenticate()
             .then((success: boolean) => {
