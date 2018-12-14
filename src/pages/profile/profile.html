@@ -10,7 +10,7 @@
 
 <ion-content padding>
     <p></p>
-    <p>Hier können Sie sämtliche Angaben und Einstellungen verwalten, sowie die getätigten Zugriffsrechte Widerrufen.</p>
+    <p>Hier können Sie sämtliche Angaben und Einstellungen verwalten.</p>
 
     <ion-list class="with-borders">
             <button ion-item (click)="gotoProfileCustomizePage()">
@@ -25,12 +25,12 @@
                     <span class="highlight">Biovotion Everion Sensor verbinden</span>                
             </button>
     
-            <button ion-item (click)="gotoProfileAccessrightsPage()">
-                    <span class="highlight">Zugriffsrechte widerrufen / erteilen</span>                
+            <button ion-item (click)="goNext()">
+                    <span class="highlight">MIDATA anmelden</span>                
             </button>
 
             <button ion-item (click)="logout()">
-                   <span class="highlight">Log Out (Midata)</span>
+                   <span class="highlight">MIDATA abmelden</span>
             </button>
         </ion-list>
 
