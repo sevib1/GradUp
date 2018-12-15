@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { App, DateTime } from 'ionic-angular';
+import { App } from 'ionic-angular';
 import { LocalNotifications, ILocalNotification, ELocalNotificationTriggerUnit, ILocalNotificationTrigger } from '@ionic-native/local-notifications';
 import { WeightReminderNotificationPage } from '../pages/weight-reminder-notification/weight-reminder-notification';
 import { Storage } from '@ionic/storage';
