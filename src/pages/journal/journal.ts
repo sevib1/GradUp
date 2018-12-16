@@ -20,7 +20,7 @@ export class JournalPage {
     console.log('ionViewDidLoad JournalPage');
 
     // für DEMO, wenn dev buttons ausgeblendet sind
-    // this.notificationService.createWeeklyWeightNotification();
+    this.notificationService.createWeeklyWeightNotification();
   }
   
   ionViewDidLeave() {

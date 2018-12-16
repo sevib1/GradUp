@@ -18,8 +18,6 @@ import { Page } from 'ionic-angular/umd/navigation/nav-util';
 })
 export class ProfilePage {
 
-  nextPage: Page;
-
   constructor(
     public app: App,
     private midataService: MidataService,
@@ -27,9 +25,7 @@ export class ProfilePage {
     private menuCtrl: MenuController,
     private loadingCtrl: LoadingController,
     public navParams: NavParams
-  ) {
-    this.nextPage = JournalPage;
-  }
+  ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
@@ -63,21 +59,26 @@ export class ProfilePage {
     this.navCtrl.push(ProfileTermsPage, {});
   }
 
+  public isLoggedIn(): boolean {
+    const user = this.midataService.getUser();
+    const result = user && (parseInt(user.id) > 0);
+    return result;
+  }
+
   // Logout
-  logout() {
+  public logout() {
     this.midataService.logout()
       .then(() => {
         this.menuCtrl.close();
-        this.app.getRootNav().setRoot(JournalPage);
-
+        this.navCtrl.push(JournalPage, {});
       })
       .catch(() => {
-        this.app.getRootNav().setRoot(JournalPage);
+        this.navCtrl.push(JournalPage, {});
       })
   }
 
   // Login
-  public goNext() {
+  public login() {
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
@@ -86,7 +87,7 @@ export class ProfilePage {
 
     this.midataService.authenticate()
       .then((success: boolean) => {
-        return this.navCtrl.setRoot(this.nextPage)
+        return this.navCtrl.setRoot(JournalPage);
       })
       .then(() => {
         loading.dismiss().catch();

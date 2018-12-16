@@ -1,0 +1,16 @@
+{
+    "files.exclude": {
+        "**/node_modules*": true,
+        "**/platforms*": true,
+        "**/plugins*": true,
+        "**/.sourcemaps*": true
+    },
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/platforms": true,
+        "**/plugins*": true,
+        "**/.sourcemaps*": true
+    },
+    "editor.tabSize": 2,
+    "editor.detectIndentation": true
+}

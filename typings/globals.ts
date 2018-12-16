@@ -31,9 +31,9 @@ export const HEARTRATE = {
 }
 
 export const BODYWEIGHT = {
-        system: "http://loinc.org",
-        code: "29463-7",
-        get toString() {
-            return this.system + '|' + this.code;
-        }
+    system: "http://loinc.org",
+    code: "29463-7",
+    get toString() {
+        return this.system + '|' + this.code;
+    }
 }

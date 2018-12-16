@@ -48,12 +48,12 @@ export class NotificationService {
     this.storage.get("username").then(userName => {
       console.log('createWeeklyWeightNotification() : userName:=', userName);
 
-      // First notification in 7 days, repeating each week
+      // First notification in 7 days, repeating each week => For the time being, this only works if you are logged in to MIDATA. Should be corrected after the prototype phase.
       let trigger: ILocalNotificationTrigger = {
         every: ELocalNotificationTriggerUnit.WEEK
       };
 
-      // for testing reduced Interval to 1 minute
+      // for testing reduced Interval to 1 minute => For the time being, this only works if you are logged in to MIDATA. Should be corrected after the prototype phase.
       trigger = {
         every: ELocalNotificationTriggerUnit.MINUTE,
         count: 5

@@ -1,52 +1,52 @@
 <ion-header>
 
-        <ion-navbar hideBackButton="true">
-            <ion-title>
-                <title-logo text="Profil"></title-logo>
-            </ion-title>
-        </ion-navbar>
-    
-    </ion-header>
+    <ion-navbar hideBackButton="true">
+        <ion-title>
+            <title-logo text="Profil"></title-logo>
+        </ion-title>
+    </ion-navbar>
+
+</ion-header>
 
 <ion-content padding>
     <p></p>
     <p>Hier können Sie sämtliche Angaben und Einstellungen verwalten.</p>
 
     <ion-list class="with-borders">
-            <button ion-item (click)="gotoProfileCustomizePage()">
-                    <span class="highlight">Profil anpassen</span>                
-            </button>
-    
-            <button ion-item (click)="gotoProfileCustomizecontactsPage()">
-                    <span class="highlight">Kontakte anpassen / erfassen</span>                
-            </button>
-    
-            <button ion-item (click)="gotoProfileBiovotionPage()">
-                    <span class="highlight">Biovotion Everion Sensor verbinden</span>                
-            </button>
-    
-            <button ion-item (click)="goNext()">
-                    <span class="highlight">MIDATA anmelden</span>                
-            </button>
+        <button ion-item (click)="gotoProfileCustomizePage()">
+            <span class="highlight">Profil anpassen</span>
+        </button>
 
-            <button ion-item (click)="logout()">
-                   <span class="highlight">MIDATA abmelden</span>
-            </button>
-        </ion-list>
+        <button ion-item (click)="gotoProfileCustomizecontactsPage()">
+            <span class="highlight">Kontakte anpassen / erfassen</span>
+        </button>
 
-       <p>Mehr:</p>
+        <button ion-item (click)="gotoProfileBiovotionPage()">
+            <span class="highlight">Biovotion Everion Sensor verbinden</span>
+        </button>
+
+        <button ion-item (click)="login()" *ngIf="!isLoggedIn()">
+            <span class="highlight">MIDATA verbinden</span>
+        </button>
+
+        <button ion-item (click)="logout()" *ngIf="isLoggedIn()">
+            <span class="highlight">MIDATA Verbindung trennen</span>
+        </button>
+    </ion-list>
+
+    <p>Mehr:</p>
 
     <ion-list class="with-borders">
         <button ion-item (click)="gotoProfileImpressumPage()">
-                <span class="highlight">Impressum</span>            
+            <span class="highlight">Impressum</span>
         </button>
 
         <button ion-item (click)="gotoProfilePrivacyPage()">
-                <span class="highlight">Datenschutzerklärung</span>            
+            <span class="highlight">Datenschutzerklärung</span>
         </button>
 
         <button ion-item (click)="gotoProfileTermsPage()">
-                <span class="highlight">Nutzungsbedingungen</span>            
+            <span class="highlight">Nutzungsbedingungen</span>
         </button>
     </ion-list>
 
