@@ -6,7 +6,6 @@ import { ProfileTermsPage } from '../profile-terms/profile-terms';
 import { ProfileCustomizePage } from '../profile-customize/profile-customize';
 import { ProfileCustomizecontactsPage } from '../profile-customizecontacts/profile-customizecontacts';
 import { ProfileBiovotionPage } from '../profile-biovotion/profile-biovotion';
-import { ProfileAccessrightsPage } from '../profile-accessrights/profile-accessrights';
 import { JournalPage } from '../journal/journal';
 import { MidataService } from '../../services/MidataService';
 import { Page } from 'ionic-angular/umd/navigation/nav-util';
@@ -41,10 +40,6 @@ export class ProfilePage {
 
   public gotoProfileBiovotionPage() {
     this.navCtrl.push(ProfileBiovotionPage, {});
-  }
-
-  public gotoProfileAccessrightsPage() {
-    this.navCtrl.push(ProfileAccessrightsPage, {});
   }
 
   public gotoProfileImpressumPage() {

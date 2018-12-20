@@ -17,8 +17,6 @@ import { WelcomeContactPage } from '../pages/welcome-contact/welcome-contact';
 import { WelcomeContact2Page } from '../pages/welcome-contact2/welcome-contact2';
 import { WelcomeContact3Page } from '../pages/welcome-contact3/welcome-contact3';
 import { WelcomeConnectPage } from '../pages/welcome-connect/welcome-connect';
-import { WelcomeConnect2Page } from '../pages/welcome-connect2/welcome-connect2';
-import { WelcomeConnect3Page } from '../pages/welcome-connect3/welcome-connect3';
 
 import { WeightReminderNotificationPage } from '../pages/weight-reminder-notification/weight-reminder-notification';
 
@@ -42,7 +40,6 @@ import { ProfilePage } from '../pages/profile/profile';
 import { ProfileCustomizePage } from '../pages/profile-customize/profile-customize';
 import { ProfileCustomizecontactsPage } from '../pages/profile-customizecontacts/profile-customizecontacts';
 import { ProfileBiovotionPage } from '../pages/profile-biovotion/profile-biovotion';
-import { ProfileAccessrightsPage } from '../pages/profile-accessrights/profile-accessrights';
 import { ProfileImpressumPage } from '../pages/profile-impressum/profile-impressum';
 import { ProfilePrivacyPage } from '../pages/profile-privacy/profile-privacy';
 import { ProfileTermsPage } from '../pages/profile-terms/profile-terms';
@@ -80,8 +77,6 @@ import { HttpModule } from '@angular/http';
     WelcomeContact2Page,
     WelcomeContact3Page,
     WelcomeConnectPage,
-    WelcomeConnect2Page,
-    WelcomeConnect3Page,
     WeightReminderNotificationPage,
     TabsPage,
     JournalPage,
@@ -100,7 +95,6 @@ import { HttpModule } from '@angular/http';
     ProfileCustomizePage,
     ProfileCustomizecontactsPage,
     ProfileBiovotionPage,
-    ProfileAccessrightsPage,
     ProfileImpressumPage,
     ProfilePrivacyPage,
     ProfileTermsPage,
@@ -126,8 +120,6 @@ import { HttpModule } from '@angular/http';
     WelcomeContact2Page,
     WelcomeContact3Page,
     WelcomeConnectPage,
-    WelcomeConnect2Page,
-    WelcomeConnect3Page,
     WeightReminderNotificationPage,
     TabsPage,
     JournalPage,
@@ -146,7 +138,6 @@ import { HttpModule } from '@angular/http';
     ProfileCustomizePage,
     ProfileCustomizecontactsPage,
     ProfileBiovotionPage,
-    ProfileAccessrightsPage,
     ProfileImpressumPage,
     ProfilePrivacyPage,
     ProfileTermsPage
