@@ -38,7 +38,7 @@
 
     <p>Mein Wochenfortschritt:</p>
     <ion-item id="textfield">  
-        <ion-input type="number" formControlName="weightGain" maxlenght="4" pattern="[0-9]*" min="500" max="1500" value=""></ion-input>
+        <ion-input [(ngModel)]="weightGain" type="number" formControlName="weightGains" maxlenght="4" pattern="[0-9]*" min="500" max="1500" value=""></ion-input>
         <ion-label color="primary" class="fixedLabel" fixed>(500-1500gr)</ion-label>
     </ion-item>
     

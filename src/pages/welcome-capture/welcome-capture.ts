@@ -43,14 +43,19 @@ export class WelcomeCapturePage {
      store the raw data in this array.
    */
   weightData: Array<{date: Date, value: number }>;
+  
+  //Global variable for currentWeight
   currentWeight;
+
+  //Global variable for Goal weight 
+  weightGain: number;
 
   //Form Validation 
   formgroup:FormGroup;
   username:AbstractControl;
   occupation:AbstractControl;
   bodyweight:AbstractControl;
-  weightGain:AbstractControl;
+  weightGains:AbstractControl;
 
 
   constructor(
@@ -74,7 +79,7 @@ export class WelcomeCapturePage {
     this.username = this.formgroup.controls['username'];
     this.occupation = this.formgroup.controls['occupation'];
     this.bodyweight = this.formgroup.controls['bodyweight'];
-    this.weightGain = this.formgroup.controls['weightGain'];
+    this.weightGains = this.formgroup.controls['weightGains'];
 
     //#MIDATA
     //this.dailyData = this.navParams.get('data');
@@ -104,9 +109,10 @@ export class WelcomeCapturePage {
     //#MIDATA persistance
     this.midataService.save(new BodyWeight(+this.currentWeight, MessageDate.toISOString()));
 
-    //Erstellt neue Goal und fügt neue Wert hinein. Durch save-Methode wird persistiert. 
-    /** 
-    goal.addGoal(750);*/
+    let goal = new Goal();
+    goal.addGoal(this.weightGain);
+    this.midataService.save(goal);
+    //this.addGoal();
     
 
     this.notificationService.createWeeklyWeightNotification();
@@ -128,6 +134,7 @@ export class WelcomeCapturePage {
 
   addGoal() {
     let goal = new Goal();
+    goal.addGoal(this.weightGain);
     this.midataService.save(goal);
   }
  
