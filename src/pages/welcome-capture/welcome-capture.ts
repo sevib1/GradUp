@@ -35,9 +35,6 @@ export class WelcomeCapturePage {
   inputtext:string;
   key:string="username";
 
-  userType:string;
-  key1:string="userType";
-
   /**
    * #MIDATA -> array for the weight data 
      store the raw data in this array.
@@ -49,6 +46,10 @@ export class WelcomeCapturePage {
 
   //Global variable for Goal weight 
   weightGain: number;
+
+  //Global variable for work Occupation
+  userType:string;
+  key1:string="userType";
 
   //Form Validation 
   formgroup:FormGroup;
@@ -109,14 +110,19 @@ export class WelcomeCapturePage {
     //#MIDATA persistance
     this.midataService.save(new BodyWeight(+this.currentWeight, MessageDate.toISOString()));
 
-    let goal = new Goal();
-    goal.addGoal(this.weightGain);
-    this.midataService.save(goal);
-    //this.addGoal();
-    
+    let goal = new Goal(this.weightGain);
+    //goal.addGoal(this.weightGain);
+    this.midataService.save(goal)
+    .then((response) => {
+      // we can now access the midata response
+      console.log("juhu wir speichern auf midata!!!:D");
+      this.notificationService.createWeeklyWeightNotification();
 
-    this.notificationService.createWeeklyWeightNotification();
-  }  
+    }).catch((error) => {
+        console.error("Error in save request:", error);
+    });
+}
+    //this.addGoal();
 
   /**
    * #MIDATA: add the weight values to the weightData array.
@@ -132,11 +138,13 @@ export class WelcomeCapturePage {
     this.weightData.push({ date: date, value: measure });
   }
 
-  addGoal() {
-    let goal = new Goal();
-    goal.addGoal(this.weightGain);
+  /** 
+  addGoal(measure1: number, measure2: string): void {
+    let goal = new Goal(this.weightGain);
+    //goal.addGoal(this.weightGain);
+    console.log(goal);
     this.midataService.save(goal);
-  }
+  }*/
  
 
   /**
@@ -157,7 +165,25 @@ export class WelcomeCapturePage {
         }
       }
       );
+
+      this.midataService.search('Goal/$lastn', { max: 1000, _sort: '-date', code: Goal.toString, patient: this.midataService.getUser().id })
+      .then(response => {
+        if( response.length > 0) {
+
+          console.log(response);
+          response.forEach((measure: Goal) => {
+            console.log(measure);
+            //console.log(measure.getProperty('valueQuantity')['value'], measure.getProperty('effectiveDateTime'));
+            //this.addGoal(measure.getProperty('detailQuantity')['value'], measure.getProperty('detailQuantity')['unit']);
+          });
+          /* TODO:  to test */
+          /* TODO: catch error */
+        }
+      }
+      );
   }
+
+
 
   /*formatDate(date: Date, format: string): string {
     return moment(date).format(format);

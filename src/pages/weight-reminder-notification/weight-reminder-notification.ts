@@ -28,6 +28,7 @@ export class WeightReminderNotificationPage {
   previousGoal: any;
   userName: any;
 
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -111,8 +112,8 @@ export class WeightReminderNotificationPage {
 
     let saveWeight = this.midataService.save(new BodyWeight(this.currentWeight, new Date().toISOString()))
 
-    let goal = new Goal();
-    goal.addGoal(this.currentGoal);
+    let goal = new Goal(this.currentGoal);
+    //goal.addGoal(this.currentGoal);
     let saveGoal = this.midataService.save(goal);
 
     // let saveWeight = new Promise<Resource>((resolve) => {

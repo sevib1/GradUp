@@ -9,12 +9,12 @@ export class Goal extends Resource {
 // to find out the required fields of the resource.
 // It's recommended that you define these already in the constructor
 // so there will be no way to save a resource without the required stuff
-constructor() {
+constructor(goal: number) {
 
             // call the super constructor for the definition of the resource type (as string)
             super('Goal');
 
-            let target = this.addGoal(750);
+            let target = this.addGoal(goal);
             console.log(target);
 
             let description = this.getDescription();
