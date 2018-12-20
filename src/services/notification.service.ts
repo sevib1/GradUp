@@ -56,7 +56,7 @@ export class NotificationService {
       // for testing reduced Interval to 1 minute => For the time being, this only works if you are logged in to MIDATA. Should be corrected after the prototype phase.
       trigger = {
         every: ELocalNotificationTriggerUnit.MINUTE,
-        count: 5
+        count: 1
       };
 
       this.schedule({
