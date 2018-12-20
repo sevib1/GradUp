@@ -5,6 +5,10 @@ import { JournalPage } from '../journal/journal';
 //import Providers
 import { DatabaseProvider } from '../../providers/database/database';
 
+//MIDATA imports
+import { MidataService } from '../../services/MidataService';
+import { ObsMentalCondition } from '../../resources/subjectiveCondition';
+
 //import journalEntry utility class
 import { JournalEntry } from '../../classes/journalEntry';
 
@@ -35,6 +39,7 @@ export class JournalEntryPage {
   
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
+    private midataService: MidataService,
     public dbp: DatabaseProvider,
     public events: Events) {
     this.journalEntry = new JournalEntry(); //without this, the page will throw a "Uncaught (in promise): TypeError"
@@ -91,7 +96,31 @@ export class JournalEntryPage {
             this.navCtrl.pop();
           });
       });
+    
+      let mentalCondition = new ObsMentalCondition(1);
+      this.midataService.save(mentalCondition)
+      .then((response) => {
+        // we can now access the midata response
+        console.log("ObsMentalCondition fired on MIDATA");
+      
+  
+      }).catch((error) => {
+          console.error("Error in save request:", error);
+      });
+
+      console.log("mental condition: " + mentalCondition);
+
+    //this.addMentalCondition();
+    //console.log("addMentalCondition is called");
+      
     }
+
+    /*addMentalCondition() {
+      let mentalCondition = new ObsMentalCondition();
+      this.midataService.save(mentalCondition);
+
+      console.log("mental condition: " + mentalCondition);
+    }*/
       //this.events.publish('journalEntryCollection:updated', this.journalEntryCollection);
       
 
