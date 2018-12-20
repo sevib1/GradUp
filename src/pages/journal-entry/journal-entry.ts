@@ -7,6 +7,7 @@ import { DatabaseProvider } from '../../providers/database/database';
 
 //MIDATA imports
 import { MidataService } from '../../services/MidataService';
+import { Observation } from 'Midata';
 import { ObsMentalCondition } from '../../resources/subjectiveCondition';
 
 //import journalEntry utility class
@@ -25,16 +26,21 @@ export class JournalEntryPage {
 
   /**
    *  journal Entry
-   * 
    */
   journalEntry: JournalEntry;
 
   /**
-   * collection of journal entries.
+   * collection of journal entries
    */
   journalEntryCollection: JournalEntry[] = [];
 
   journalDeletePage : JournalDeletePage;
+
+  /**
+   * #MIDATA -> array for the weight data 
+     store the raw data in this array.
+   */
+  subjectiveConditionData: Array<{date: Date, value: number }>;
 
   
   constructor(public navCtrl: NavController, 
@@ -43,6 +49,9 @@ export class JournalEntryPage {
     public dbp: DatabaseProvider,
     public events: Events) {
     this.journalEntry = new JournalEntry(); //without this, the page will throw a "Uncaught (in promise): TypeError"
+
+    //#MIDATA
+    this.subjectiveConditionData = new Array<{ date: Date, value: number }>();
   
   }
 
@@ -56,26 +65,29 @@ export class JournalEntryPage {
     //this.journalEntryId = this.navParams.data; //-> fetches data from "journal-deletePage" --> do not delete!, otherwise delete won't work properly
    
     this.journalEntry = this.navParams.data;
+
+    //#MIDATA -> load the elements
+    this.loadData();
     
   }
 
   //Runs when the page has loaded.
-  /*ionViewDidLoad() {
+  ionViewDidLoad() {
 
-    
-    console.log('ionViewDidLoad JournalEntryPage');
+    this.loadData();
+    /*console.log('ionViewDidLoad JournalEntryPage');
     this.dbp.getJournalEntryCollection().then((val) => {
      if(val == null ) {
         //no entry there
      } else {
        this.journalEntryCollection = val;
      }
-    });
+    });*/
 
     //this.journalEntry = this.navParams.data; //-> fetches data from "journal-deletePage"
     
     
-  }*/
+  }
 
     //kochd1: This codeline below is necessary to display the today's date.
     myDate: any = new Date().toISOString();
@@ -115,14 +127,22 @@ export class JournalEntryPage {
       
     }
 
-    /*addMentalCondition() {
-      let mentalCondition = new ObsMentalCondition();
-      this.midataService.save(mentalCondition);
-
-      console.log("mental condition: " + mentalCondition);
-    }*/
-      //this.events.publish('journalEntryCollection:updated', this.journalEntryCollection);
-      
+    /**
+   * #MIDATA: loads the data (FHIR Observations with code "subjective-condition") from the MIDATA server
+   */
+  private loadData(): void {
+    this.midataService.search('Observation/$lastn', { max: 1000, _sort: '-date', code: "subjective-condition", patient: this.midataService.getUser().id })
+      .then(response => {
+        if( response.length > 0) {
+          response.forEach((measure: Observation) => {
+            //console.log(measure.getProperty('valueQuantity')['value'], measure.getProperty('effectiveDateTime'));
+            this.addSubjectiveCondition(measure.getProperty('valueQuantity')['value'], measure.getProperty('effectiveDateTime'));
+          });
+          /* TODO:  to test */
+          /* TODO: catch error */
+        }
+      }
+      );
 
       /*this.dbp.saveJournalEntry(this.journalEntry).then(val => {
         if(val) {
@@ -160,23 +180,40 @@ export class JournalEntryPage {
       
       this.navCtrl.pop();*/
     
+    }
 
+ /**
+   * #MIDATA: add the weight values to the weightData array.
+   * 
+   * @param measure 
+   * @param date 
+   */
+  addSubjectiveCondition(measure: number, date: Date): void {
+    /*if (moment().diff(date) >= 0){ 
+    }*/
+
+    //push the data to the array
+    this.subjectiveConditionData.push({ date: date, value: measure });
+  }
 
   public gotoJournalPage() {
     this.navCtrl.push(JournalPage, {});
-  }
 
+    for (let entry of this.subjectiveConditionData){
+      console.log(entry);
+    }
+  }
 
 
   clickMainFAB(){
     console.log("Clicked open menu")
   }
 
-  openCamera(){ //this method will be written in sprint 2
+  openCamera(){ //this method will be written in a later project
 
   }
 
-  openGallery(){ //this method will be written in sprint 2
+  openGallery(){ //this method will be written in sprint 3
 
   }
 
