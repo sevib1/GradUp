@@ -32,7 +32,7 @@
 
     <p>Aktuelles Gewicht:</p>
     <ion-item id="textfield"> 
-        <ion-input [(ngModel)]="currentWeight" formControlName="bodyweight" type="decimal" value=""></ion-input>
+        <ion-input [(ngModel)]="currentWeight" formControlName="bodyweight" type="number" value=""></ion-input>
         <ion-label color="primary" class="fixedLabel" fixed>kg</ion-label>
     </ion-item>
 
@@ -41,6 +41,7 @@
         <ion-input type="number" formControlName="weightGain" maxlenght="4" pattern="[0-9]*" min="500" max="1500" value=""></ion-input>
         <ion-label color="primary" class="fixedLabel" fixed>(500-1500gr)</ion-label>
     </ion-item>
+    
     </form>
 
     <h3 ion-text color="primary">Optional:</h3>
@@ -48,7 +49,7 @@
     <accordion-list item-left title="Beziehungsstatus">
         <ion-list radio-group [(ngModel)]="relationship_status">
             <ion-item>
-                <ion-label>single</ion-label>
+                <ion-label>ledig</ion-label>
                 <ion-radio value="single" item-left></ion-radio>
             </ion-item>
             <ion-item>
