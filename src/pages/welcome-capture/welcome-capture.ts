@@ -74,7 +74,7 @@ export class WelcomeCapturePage {
       username:['', Validators.required],
       occupation:['', Validators.required],
       bodyweight:['', Validators.required],
-      weightGain:['', Validators.required]
+      weightGains:['', Validators.required]
     });
 
     this.username = this.formgroup.controls['username'];
