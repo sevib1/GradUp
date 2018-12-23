@@ -4,6 +4,7 @@ import { JournalEntryPage } from '../journal-entry/journal-entry';
 import { JournalDeletePage } from '../journal-delete/journal-delete';
 import { NotificationService } from '../../services/notification.service';
 import { WeightReminderNotificationPage } from '../weight-reminder-notification/weight-reminder-notification';
+import { PulseStepsService } from '../../services/pulse-steps.service';
 
 @Component({
   selector: 'page-journal',
@@ -14,15 +15,14 @@ export class JournalPage {
   constructor(
     public navCtrl: NavController,
     private notificationService: NotificationService,
+    private pulseStepsService: PulseStepsService,
   ) { }
-  
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad JournalPage');
-
-    // für DEMO, wenn dev buttons ausgeblendet sind
-    this.notificationService.createWeeklyWeightNotification();
+    this.scheduleNotification();
   }
-  
+
   ionViewDidLeave() {
     console.log('ionViewDidLeave JournalPage');
   }
@@ -42,6 +42,6 @@ export class JournalPage {
 
   public scheduleNotification() {
     this.notificationService.createWeeklyWeightNotification();
+    this.pulseStepsService.schedule();
   }
-
 }

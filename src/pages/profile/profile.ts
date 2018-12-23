@@ -8,7 +8,7 @@ import { ProfileCustomizecontactsPage } from '../profile-customizecontacts/profi
 import { ProfileBiovotionPage } from '../profile-biovotion/profile-biovotion';
 import { JournalPage } from '../journal/journal';
 import { MidataService } from '../../services/MidataService';
-import { Page } from 'ionic-angular/umd/navigation/nav-util';
+
 
 @IonicPage()
 @Component({

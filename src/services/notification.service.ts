@@ -6,7 +6,7 @@ import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class NotificationService {
-
+  
   constructor(
     private app: App,
     private localNotifications: LocalNotifications,
@@ -14,6 +14,8 @@ export class NotificationService {
   ) {
 
     // Register click event listener for each local notification
+    // For the time being, this only works if the application is already open.
+    // Should be corrected after the prototype phase.
     var observable = this.localNotifications.on('click');
     observable.subscribe(
       notification => {
@@ -36,35 +38,63 @@ export class NotificationService {
   }
 
   public schedule(options: ILocalNotification): any {
+    console.log('schedule() : options:=', options);
+
     this.localNotifications.requestPermission().then((permission) => {
-      //alert('permission' + permission);
-      this.localNotifications.schedule(options);
+      this.storage.get("username").then(userName => {
+        var s = options.text as string
+        if (s) {
+          options.text = s.replace('{{UserName}}', userName);  
+        }
+
+        this.localNotifications.schedule(options);
+      });
+
     }).catch(error => {
       alert('no permission' + error);
     });
   }
 
   public createWeeklyWeightNotification() {
-    this.storage.get("username").then(userName => {
-      console.log('createWeeklyWeightNotification() : userName:=', userName);
+    // First notification in 7 days, repeating each week
+    let trigger: ILocalNotificationTrigger = {
+      every: ELocalNotificationTriggerUnit.WEEK
+    };
 
-      // First notification in 7 days, repeating each week => For the time being, this only works if you are logged in to MIDATA. Should be corrected after the prototype phase.
-      let trigger: ILocalNotificationTrigger = {
-        every: ELocalNotificationTriggerUnit.WEEK
-      };
+    // for testing reduced Interval to 1 minute
+    trigger = {
+      every: ELocalNotificationTriggerUnit.MINUTE,
+      count: 1
+    };
 
-      // for testing reduced Interval to 1 minute => For the time being, this only works if you are logged in to MIDATA. Should be corrected after the prototype phase.
-      trigger = {
-        every: ELocalNotificationTriggerUnit.MINUTE,
-        count: 1
-      };
-
-      this.schedule({
-        text: `Hallo ${userName}, es sind schon wieder 7 Tage vergangen. Klicke auf diese Nachricht um die neuen Werte aktuelles Gewicht und Wochenfortschritt einzugeben.`,
-        trigger: trigger,
-        data: 'ENTER_WEIGHT'
-      });
+    this.schedule({
+      text: `Hallo {{UserName}}, es sind schon wieder 7 Tage vergangen. Klicke auf diese Nachricht um die neuen Werte aktuelles Gewicht und Wochenfortschritt einzugeben.`,
+      trigger: trigger,
+      data: 'ENTER_WEIGHT'
     });
   }
 
+  showNegativeHeartRate() {
+    let at = new Date(new Date().getTime() + 1000);
+    console.log("showNegativeHeartRate() : at:=", at);
+
+    this.schedule({
+      text: `Hallo {{UserName}}, achte bitte besser auf Dich und Deine Gesundheit. Verzichte bitte auf körperliche Anstrengungen.`,
+      trigger: {
+        at: at
+      }
+    });
+  }
+
+  showPositiveHeartRate(): any {
+    let at = new Date(new Date().getTime() + 1000);
+    console.log("showPositiveHeartRate() : at:=", at);
+
+    this.schedule({
+      text: `Hallo {{UserName}}, Du befindest Dich aktuell vermutlich in einer Stresssituation. Versuche ganz ruhig zu atmen.`,
+      trigger: {
+        at: at
+      }
+    });
+  }
 }

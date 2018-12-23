@@ -47,7 +47,6 @@ import { ProfileTermsPage } from '../pages/profile-terms/profile-terms';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TitleLogoComponent } from '../components/title-logo/title-logo';
-import { MidataService } from '../services/MidataService';
 
 import { Contacts } from '@ionic-native/contacts';
 
@@ -56,13 +55,18 @@ import { CallNumber } from '@ionic-native/call-number';
 import { SMS } from '@ionic-native/sms';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { LocalNotifications } from '@ionic-native/local-notifications';
-import { NotificationService } from '../services/notification.service';
-
 import { BiovotionConnector } from '@ionic-native/biovotion-connector';
 
 //Accordion
 import { AccordionListComponent } from '../components/accordion-list/accordion-list';
 import { HttpModule } from '@angular/http';
+
+import { MidataService } from '../services/MidataService';
+import { MidataStepsService } from '../services/midata-steps.service';
+import { MidataPulseService } from '../services/midata-pulse.service';
+import { PulseStepsService } from '../services/pulse-steps.service';
+import { NotificationService } from '../services/notification.service';
+
 
 @NgModule({
   declarations: [
@@ -147,6 +151,9 @@ import { HttpModule } from '@angular/http';
     SplashScreen,
     MidataService,
     NotificationService,
+    MidataPulseService,
+    MidataStepsService,
+    PulseStepsService,
     NativeStorage,
     SecureStorage,
     Network,
