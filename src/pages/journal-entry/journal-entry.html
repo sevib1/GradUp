@@ -48,17 +48,23 @@
             </ion-fab-list>
     </ion-fab>
        
-    <ion-fab bottom right> <!--this button must not scroll-->
-        <button ion-button clear class ="checkmark-circle" (click) = "saveEntry()"><ion-icon name="checkmark-circle"></ion-icon></button>
-    </ion-fab>
+    <!--<ion-fab bottom right> this button must not scroll-->
+        <!--<button ion-button clear class ="checkmark-circle" (click) = "saveEntry()"><ion-icon name="checkmark-circle"></ion-icon></button>-->
+    <!--</ion-fab>-->
     
-   
 </ion-content>
 
-<ion-footer class="footer-no-borders">
-    <ion-buttons left>
-        <button ion-button icon-only (click)="gotoJournalPage()">
-            <ion-icon name="arrow-back"></ion-icon>
+<ion-footer no-shadow>
+       
+    <ion-toolbar no shadow position="bottom">
+        <ion-buttons left>
+                <button ion-button icon-only (click)="gotoJournalPage()">
+                    <ion-icon name="arrow-back"></ion-icon>
+                </button>
+        </ion-buttons>
+        
+        <button ion-button class = "saveBtn" [color]="primary" [outline]="false" [round]="true" (click)="saveEntry();">
+            Speichern
         </button>
-    </ion-buttons>
+    </ion-toolbar>
 </ion-footer>
