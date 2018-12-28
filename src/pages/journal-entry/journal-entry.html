@@ -24,21 +24,22 @@
 
     </div>
     <br>
-    <div text-left>
+    
+    <div text-left >
         <p>Wie haben Sie sich dabei gefühlt?</p>
-        <button ion-button icon-only clear class ="smileyBtn">
+        <button ion-button icon-only clear class ="smileyBtn" (click)="addSubjConditionInput(0)" name="happy">
             <ion-img [width]= "56" [height]= "56" src = "assets/imgs/happy.png"> </ion-img>
         </button>
 
-        <button ion-button icon-only clear class ="smileyBtn">
+        <button ion-button icon-only clear class ="smileyBtn" (click)="addSubjConditionInput(1)" name="meh">
             <ion-img [width]= "56" [height]= "56" src = "assets/imgs/meh.png"> </ion-img>
         </button>
 
-        <button ion-button icon-only clear class ="smileyBtn">
+        <button ion-button icon-only clear class ="smileyBtn" (click)="addSubjConditionInput(2)" name="sad">
             <ion-img [width]= "56" [height]= "56" src = "assets/imgs/sad.png"> </ion-img>
         </button>
     </div>
-
+<!--</div>-->
    <ion-fab class = "fab1" #fab1>
         <button ion-fab mini (click) = "clickMainFAB()"><ion-icon name ="add"></ion-icon></button>
             <ion-fab-list>

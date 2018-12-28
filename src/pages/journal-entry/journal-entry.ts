@@ -37,6 +37,11 @@ export class JournalEntryPage {
   journalDeletePage : JournalDeletePage;
 
   /**
+   * variable which stores the user input concerning the subj. condition.
+   */
+  subjectiveCondition: number;
+
+  /**
    * #MIDATA -> array for the weight data 
      store the raw data in this array.
    */
@@ -69,6 +74,14 @@ export class JournalEntryPage {
     //#MIDATA -> load the elements
     this.loadData();
     
+  }
+
+  /**
+   * Adds subjective condition from user input to the resp. global variable.
+   * @param value 
+   */
+  addSubjConditionInput(value: number){
+    this.subjectiveCondition = value;
   }
 
   //Runs when the page has loaded.
@@ -105,11 +118,11 @@ export class JournalEntryPage {
       this.dbp.saveJournalEntry(this.journalEntry).then(val => {
         if(val)
           this.dbp.getJournalEntryCollection().then((val) =>{
-            this.navCtrl.pop();
+            this.navCtrl.push(JournalPage);
           });
       });
     
-      let mentalCondition = new ObsMentalCondition(1);
+      let mentalCondition = new ObsMentalCondition(this.subjectiveCondition);
       this.midataService.save(mentalCondition)
       .then((response) => {
         // we can now access the midata response
