@@ -15,7 +15,7 @@
     <!--Auflistung Tagebucheinträge-->
 
     <ion-list>
-        <ion-card *ngFor="let jEntry of journalEntryCollection; let i = index ">
+        <ion-card *ngFor="let jEntry of journalEntryCollection.slice().reverse(); let i = index ">
             <ion-card-header>
                 <b>{{ jEntry.entryDate }}</b>
             </ion-card-header>
