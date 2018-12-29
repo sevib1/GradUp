@@ -38,9 +38,9 @@ constructor(goal: number) {
         "measure": {
             "coding": [
               {
-                "system": "http://loinc.org",
-                "display": "Body weight",
-                "code": "29463-7"
+                "system": "http://snomed.info/sct",
+                "display": "Weight gain",
+                "code": "8943002"
               }
             ]
           },
@@ -69,9 +69,9 @@ constructor(goal: number) {
         return {
             "coding": [
               {
-                "system": "http://snomed.info/sct",
-                "code": "8943002",
-                "display": "Weight gain"
+                "system": "http://loinc.org",
+                "code": "29463-7",
+                "display": "Body Weight"
               }
             ]
           }

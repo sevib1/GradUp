@@ -14,8 +14,10 @@ import { Goal } from '../../resources/goal';
 import { MidataService } from '../../services/MidataService';
 import * as Globals from '../../../typings/globals';
 
+
 //Accordion
 import { Http } from '@angular/http';
+import { MyResource } from '../../resources/occupation';
 
 /**
  * Generated class for the WelcomeCapturePage page.
@@ -31,7 +33,7 @@ import { Http } from '@angular/http';
 })
 export class WelcomeCapturePage {
 
-  //Storage
+  //Local storage for username 
   inputtext:string;
   key:string="username";
 
@@ -48,13 +50,14 @@ export class WelcomeCapturePage {
   weightGain: number;
 
   //Global variable for work Occupation
-  userType:string;
-  key1:string="userType";
+  userType: number;
+
+  items: any;
 
   //Form Validation 
   formgroup:FormGroup;
   username:AbstractControl;
-  occupation:AbstractControl;
+  occupationM:AbstractControl;
   bodyweight:AbstractControl;
   weightGains:AbstractControl;
 
@@ -78,19 +81,20 @@ export class WelcomeCapturePage {
     });
 
     this.username = this.formgroup.controls['username'];
-    this.occupation = this.formgroup.controls['occupation'];
+    this.occupationM = this.formgroup.controls['occupationM'];
     this.bodyweight = this.formgroup.controls['bodyweight'];
     this.weightGains = this.formgroup.controls['weightGains'];
 
     //#MIDATA
     //this.dailyData = this.navParams.get('data');
     this.weightData = new Array<{ date: Date, value: number }>();
+    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WelcomeCapturePage');
 
-  +  //#MIDATA -> load the elements
+   //#MIDATA -> load the elements
     this.loadData();
   }
 
@@ -102,16 +106,15 @@ export class WelcomeCapturePage {
   saveData() {
     let MessageDate = new Date();
     this.storage.set(this.key, this.inputtext);
-    this.storage.set(this.key1, this.userType);
-    this.storage.get(this.key1).then((data) => {
-      console.log('Your username is', data);
+    this.storage.get(this.key).then((value) => {
+      console.log('Your username is', value);
     });
 
     //#MIDATA persistance
     this.midataService.save(new BodyWeight(+this.currentWeight, MessageDate.toISOString()));
 
+    //#MIDATA persistance: adds new Goal 
     let goal = new Goal(this.weightGain);
-    //goal.addGoal(this.weightGain);
     this.midataService.save(goal)
     .then((response) => {
       // we can now access the midata response
@@ -121,8 +124,19 @@ export class WelcomeCapturePage {
     }).catch((error) => {
         console.error("Error in save request:", error);
     });
+
+    let occupation = new MyResource(this.userType);
+    this.midataService.save(occupation)
+    .then((response) => {
+      // we can now access the midata response
+      console.log("juhu wir speichern auf midata!!!:D");
+      this.notificationService.createWeeklyWeightNotification();
+
+    }).catch((error) => {
+        console.error("Error in save request:", error);
+    });
+    
 }
-    //this.addGoal();
 
   /**
    * #MIDATA: add the weight values to the weightData array.
