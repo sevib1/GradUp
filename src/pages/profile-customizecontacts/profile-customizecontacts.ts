@@ -9,19 +9,109 @@ import { Storage } from '@ionic/storage';
   selector: 'page-profile-customizecontacts',
   templateUrl: 'profile-customizecontacts.html',
 })
+
+
 export class ProfileCustomizecontactsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage,) {
-    this.storage.get('fachperson_email').then((val) => {
-      console.log('Your e-mail', val);
-    });
+  contacts = [];
+  contact_nummer = [];
+  contact_email = [];
+  contact_emailtext = [];
+
+  bezug = [];
+  bezug_nummer = [];
+  bezug_sms = [];
+  bezug_email = [];
+  bezug_emailtext = [];
+
+  fachperson: string;
+  key:string="fachperson";
+ 
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private storage: Storage,) {
+    
+      this.getData();
+  }
+
+  getData() {
+    let that = this;
+
+    this.storage.get('bezugsperson_inputtext').then((value) => {
+      if(value !== null){
+        console.log(value);
+        that.bezug.push(value);
+      }
+  });
+
+    this.storage.get('bezugsperson_telefonnummer').then((value) => {
+      if(value !== null){
+        console.log(value);
+        that.bezug_nummer.push(value);
+      }
+  });
+
+    this.storage.get('bezugsperson_smstext').then((value) => {
+      if(value !== null){
+        console.log(value);
+        that.bezug_sms.push(value);
+      }
+  });
+
+    this.storage.get('bezugperson_email').then((value) => {
+      if(value !== null){
+        console.log(value);
+        that.bezug_email.push(value);
+      }
+  });
+
+    this.storage.get('bezugsperson_emailtext').then((value) => {
+      if(value !== null){
+        console.log(value);
+        that.bezug_emailtext.push(value);
+      }
+  });
+
+    this.storage.get('fachperson_inputtext').then((value) => {
+      if(value !== null){
+        console.log(value);
+        that.contacts.push(value);
+      } 
+  });
+
+    this.storage.get('fachperson_telefonnummer').then((value) => {
+      if(value !== null){
+        console.log(value);
+        that.contact_nummer.push(value);
+      }
+  });
+
+    this.storage.get('fachperson_email').then((value) => {
+      if(value !== null){
+        console.log(value);
+        that.contact_email.push(value);
+      }
+  });
+
+    this.storage.get('fachperson_emailtext').then((value) => {
+      if(value !== null){
+        console.log(value);
+        that.contact_emailtext.push(value);
+      }
+  });
+  }
+
+  saveData() {
+    this.contacts.push('fachperson');
+    this.storage.set('fachperson', this.contacts);
+    this.storage.get('fachperson');
+    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfileCustomizecontactsPage');
   }
-
-  
 
   public gotoProfilePage() {
     this.navCtrl.push(ProfilePage, {});

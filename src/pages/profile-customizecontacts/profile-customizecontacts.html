@@ -12,16 +12,72 @@
     <p></p>
     <p>Hier können Sie die gesamten Kontaktdaten und Texte pflegen.</p>
 
-    <ion-card>
-        <p>Name der Bezugsperson:</p>
-    </ion-card>
+  <ion-list>
+    <ion-item id="textfield" *ngFor="let e of bezug; let i = index">
+      <ion-label stacked>Name der Bezugsperson:</ion-label>
+      <ion-input [(ngModel)]="fachperson" type="text" value="{{ e }}"></ion-input>
+    </ion-item>
+
+    <ion-item id="textfield" *ngFor="let f of bezug_nummer; let i = index">
+      <ion-label stacked>Telefonnummer:</ion-label>
+      <ion-input [(ngModel)]="fachperson_telefonnummer" type="text" value="{{ f }}"></ion-input>
+    </ion-item>
+
+    <ion-item id="textfield" *ngFor="let g of bezug_sms; let i = index">
+        <ion-label stacked>SMS-Text:</ion-label>
+        <ion-textarea [(ngModel)]="fachperson_emailtext" type="text" value="{{ g }}"></ion-textarea>
+    </ion-item>
+
+    <ion-item id="textfield" *ngFor="let h of bezug_email; let i = index">
+      <ion-label stacked>E-Mail-Adresse:</ion-label>
+      <ion-input [(ngModel)]="fachperson_email" type="text" value="{{ h }}"></ion-input>
+    </ion-item>
+
+    <ion-item id="textfield" *ngFor="let j of bezug_emailtext; let i = index">
+      <ion-label stacked>E-Mail-Text:</ion-label>
+      <ion-textarea [(ngModel)]="fachperson_emailtext" type="text" value="{{ j }}"></ion-textarea>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+      <ion-item id="textfield" *ngFor="let a of contacts; let i = index">
+        <ion-label stacked>Name der Fachperson:</ion-label>
+        <ion-input [(ngModel)]="fachperson" type="text" value="{{ a }}"></ion-input>
+      </ion-item>
+  
+      <ion-item id="textfield" *ngFor="let b of contact_nummer; let i = index">
+        <ion-label stacked>Praxis-Telefonnummer:</ion-label>
+        <ion-input [(ngModel)]="fachperson_telefonnummer" type="text" value="{{ b }}"></ion-input>
+      </ion-item>
+  
+      <ion-item id="textfield" *ngFor="let c of contact_email; let i = index">
+        <ion-label stacked>E-Mail-Adresse:</ion-label>
+        <ion-input [(ngModel)]="fachperson_email" type="text" value="{{ c }}"></ion-input>
+      </ion-item>
+  
+      <ion-item id="textfield" *ngFor="let d of contact_emailtext; let i = index">
+        <ion-label stacked>E-Mail-Text:</ion-label>
+        <ion-textarea [(ngModel)]="fachperson_emailtext" type="text" value="{{ d }}"></ion-textarea>
+      </ion-item>
+    </ion-list>
 
 </ion-content>
 
-<ion-footer class="footer-no-borders">
-        <ion-buttons left>
-            <button ion-button icon-only (click)="gotoProfilePage()">
-                <ion-icon name="arrow-back"></ion-icon>
-            </button>
-        </ion-buttons>
-    </ion-footer>
+<ion-footer>
+    <ion-row>
+        <ion-col col-4>
+            <ion-buttons left class="footer-no-borders">
+                <button ion-button icon-only (click)="gotoProfilePage()">
+                    <ion-icon name="arrow-back"></ion-icon>
+                </button>
+            </ion-buttons>
+        </ion-col>
+        <ion-col col-2 left>
+            <ion-buttons no-shadow>
+                <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="saveData(); gotoProfilePage();">
+                    Speichern
+                </button>
+            </ion-buttons>
+        </ion-col>
+    </ion-row>
+</ion-footer>
