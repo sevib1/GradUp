@@ -5,6 +5,7 @@ import { SecureStorage } from "@ionic-native/secure-storage";
 import { Network } from "@ionic-native/network";
 import { NativeStorage } from '@ionic-native/native-storage';
 import { IonicStorageModule } from '@ionic/storage';
+import { Camera, CameraOptions } from '@ionic-native/camera';
  
 import { MyApp } from './app.component';
 
@@ -66,6 +67,7 @@ import { MidataStepsService } from '../services/midata-steps.service';
 import { MidataPulseService } from '../services/midata-pulse.service';
 import { PulseStepsService } from '../services/pulse-steps.service';
 import { NotificationService } from '../services/notification.service';
+import { PhotoProvider } from '../providers/photo/photo';
 
 
 @NgModule({
@@ -164,7 +166,10 @@ import { NotificationService } from '../services/notification.service';
     BiovotionConnector,
     CallNumber,
     SMS,
-    EmailComposer
+    EmailComposer,
+    Camera,
+    //CameraOptions,
+    //PhotoProvider
   ]
 })
 export class AppModule {}

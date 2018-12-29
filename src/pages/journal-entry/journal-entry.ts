@@ -1,14 +1,17 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { JournalPage } from '../journal/journal';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 //import Providers
 import { DatabaseProvider } from '../../providers/database/database';
+//import { PhotoProvider } from '../../providers/photo/photo';
 
 //MIDATA imports
 import { MidataService } from '../../services/MidataService';
 import { Observation } from 'Midata';
 import { ObsMentalCondition } from '../../resources/subjectiveCondition';
+
 
 //import journalEntry utility class
 import { JournalEntry } from '../../classes/journalEntry';
@@ -47,11 +50,18 @@ export class JournalEntryPage {
    */
   subjectiveConditionData: Array<{date: Date, value: number }>;
 
+  /**
+   * variable to store the image data
+   */
+  myPhoto:any;
+
+
   
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private midataService: MidataService,
     public dbp: DatabaseProvider,
+    private camera: Camera,
     public events: Events) {
     this.journalEntry = new JournalEntry(); //without this, the page will throw a "Uncaught (in promise): TypeError"
 
@@ -222,12 +232,40 @@ export class JournalEntryPage {
     console.log("Clicked open menu")
   }
 
-  openCamera(){ //this method will be written in a later project
+  getImage(){
+
+    const options: CameraOptions = {
+      quality: 70,
+      destinationType: this.camera.DestinationType.DATA_URL,//this.camera.DestinationType.FILE_URI,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      saveToPhotoAlbum:false
+    }
+    
+    this.camera.getPicture(options).then((imageData) => {
+     // imageData is either a base64 encoded string or a file URI
+     // If it's base64 (DATA_URL):
+     this.myPhoto = 'data:image/jpg;base64,' + imageData; // 'data:image/jpeg;base64,'
+    }, (err) => {
+     // Handle error
+    });
 
   }
 
-  openGallery(){ //this method will be written in sprint 3
-
+  takePhoto(){
+    const options: CameraOptions = {
+      quality: 70,
+      destinationType: this.camera.DestinationType.DATA_URL,//this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    
+    this.camera.getPicture(options).then((imageData) => {
+     // imageData is either a base64 encoded string or a file URI
+     // If it's base64 (DATA_URL):
+     this.myPhoto = 'data:image/jpg;base64,' + imageData; // 'data:image/jpeg;base64,'
+    }, (err) => {
+     // Handle error
+    });
   }
 
 }

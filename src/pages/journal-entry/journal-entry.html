@@ -22,6 +22,8 @@
         <ion-textarea [(ngModel)]="journalEntry.entryText" [ngModelOptions]="{standalone: true}" placeholder = "Erfassen Sie hier Ihr heutiges Erlebnis." rows ="5"></ion-textarea>
         </ion-item>
 
+        <p><img src="{{ myPhoto }}"></p>
+
     </div>
     <br>
     
@@ -43,10 +45,12 @@
    <ion-fab class = "fab1" #fab1>
         <button ion-fab mini (click) = "clickMainFAB()"><ion-icon name ="add"></ion-icon></button>
             <ion-fab-list>
-                <button ion-fab (click)="openCamera('camera', fab1)"><ion-icon name = "camera"></ion-icon></button>
-                <button ion-fab (click)="openGallery('gallery', fab1)"><ion-icon name = "images"></ion-icon></button>
+                <button ion-fab (click)="takePhoto('camera', fab1)"><ion-icon name = "camera"></ion-icon></button>
+                <button ion-fab (click)="getImage('gallery', fab1)"><ion-icon name = "images"></ion-icon></button>
             </ion-fab-list>
     </ion-fab>
+
+    
        
     <!--<ion-fab bottom right> this button must not scroll-->
         <!--<button ion-button clear class ="checkmark-circle" (click) = "saveEntry()"><ion-icon name="checkmark-circle"></ion-icon></button>-->
