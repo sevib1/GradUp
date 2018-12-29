@@ -75,7 +75,7 @@ export class WelcomeCapturePage {
     //Form Validation
     this.formgroup = formBuilder.group({
       username:['', Validators.required],
-      occupation:['', Validators.required],
+      occupationM:['', Validators.required],
       bodyweight:['', Validators.required],
       weightGains:['', Validators.required]
     });
