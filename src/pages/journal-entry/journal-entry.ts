@@ -238,7 +238,7 @@ export class JournalEntryPage {
       quality: 70,
       destinationType: this.camera.DestinationType.DATA_URL,//this.camera.DestinationType.FILE_URI,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-      saveToPhotoAlbum:false
+      saveToPhotoAlbum:true
     }
     
     this.camera.getPicture(options).then((imageData) => {

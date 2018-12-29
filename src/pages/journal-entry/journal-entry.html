@@ -22,7 +22,12 @@
         <ion-textarea [(ngModel)]="journalEntry.entryText" [ngModelOptions]="{standalone: true}" placeholder = "Erfassen Sie hier Ihr heutiges Erlebnis." rows ="5"></ion-textarea>
         </ion-item>
 
-        <p><img src="{{ myPhoto }}"></p>
+        <ion-item no-lines>
+            <ion-thumbnail item-start>
+                <ion-img src="{{ myPhoto }}" imageViewer="{{ myPhoto }}"></ion-img>
+            </ion-thumbnail>
+        </ion-item>
+        
 
     </div>
     <br>
