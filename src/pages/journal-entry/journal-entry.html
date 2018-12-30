@@ -23,17 +23,19 @@
         <ion-textarea [(ngModel)]="journalEntry.entryText" formControlName="text" placeholder = "Erfassen Sie hier Ihr heutiges Erlebnis." rows ="5"></ion-textarea> <!--[ngModelOptions]="{standalone: true}"-->
         </ion-item>
 
-<!--<div *ngIf = "myPhoto"> dito-->
-        <ion-item no-lines> <!--*ngIf = "myPhoto" alleine funktioniert nicht richtig -> thumbnail wird nicht aktualisiert.-->
-            <ion-thumbnail item-start>
-                <ion-img src="{{ myPhoto||'assets/imgs/photo_placeholder.jpg' }}" imageViewer="{{ myPhoto||'assets/imgs/photo_placeholder.jpg' }}" ></ion-img> <!--formControlName="photo"-->
-            </ion-thumbnail>
-        </ion-item>
-<!--</div>-->      
+    <!--Platzhalter für Foto-->
+    <ion-item no-lines> <!--*ngIf = "myPhoto" alleine funktioniert nicht richtig -> thumbnail wird nicht aktualisiert.-->
+        <ion-thumbnail item-start>
+            <ion-img src="{{ myPhoto||'assets/imgs/photo_placeholder.jpg' }}" imageViewer="{{ myPhoto||'assets/imgs/photo_placeholder.jpg' }}"></ion-img> <!--[(ngModel)]="journalEntry.entryPhoto" formControlName="photo"-->
+        </ion-thumbnail>
+    </ion-item>
 
     </div>
     <br>
 </form>
+
+
+    
     
     <div text-left >
         <p>Wie haben Sie sich dabei gefühlt?</p>

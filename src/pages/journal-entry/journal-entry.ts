@@ -78,11 +78,12 @@ export class JournalEntryPage {
     //Form Validation
     this.formgroup = formBuilder.group({
       date:['', Validators.required],
-      text:['', Validators.required]
-      //photo:['', Validators.required],
+      text:['', Validators.required],
+      //photo:['', Validators.required]
       //smilie:['', Validators.required]
     });
 
+    //controls
     this.date = this.formgroup.controls['date'];
     this.text = this.formgroup.controls['text'];
     //this.photo = this.formgroup.controls['photo'];
@@ -106,6 +107,8 @@ export class JournalEntryPage {
     //this.journalEntryId = this.navParams.data; //-> fetches data from "journal-deletePage" --> do not delete!, otherwise delete won't work properly
    
     this.journalEntry = this.navParams.data;
+
+    this.myPhoto = this.journalEntry.entryPhoto;
 
     //#MIDATA -> load the elements
     this.loadData();
@@ -147,8 +150,11 @@ export class JournalEntryPage {
     saveEntry():void{
       console.log("saveJournalEntry button was clicked");
       if(this.journalEntry.entryId==0 || this.journalEntry.entryId==null){
-        console.log("saveEntry() -> entryId:" + this.journalEntry.entryId);
+        console.log("saveEntry() -> entryId:", this.journalEntry.entryId);
         this.journalEntry.entryId = Number(new Date()); //.getTime);
+
+        console.log("saveEntry() -> entryPhoto", this.myPhoto);
+        this.journalEntry.entryPhoto = this.myPhoto;
       }
       
       this.dbp.saveJournalEntry(this.journalEntry).then(val => {
