@@ -10,27 +10,30 @@
 
 
 <ion-content class = "no-scroll" padding>
+<form [formGroup]="formgroup" (ngSubmit)="onSubmit()"> 
     <br>
     <div class = "JEntryDiv">
         <ion-item>
         <ion-label><b>Datum:</b></ion-label> <!--must be an ion-label here!-->
-        <ion-datetime displayFormat ="DD.MM.YYYY" pickerFormat = "DD MM YYYY" [(ngModel)]="journalEntry.entryDate" placeholder =""></ion-datetime> 
+        <ion-datetime displayFormat ="DD.MM.YYYY" pickerFormat = "DD MM YYYY" [(ngModel)]="journalEntry.entryDate" formControlName="date" placeholder =""></ion-datetime> 
         </ion-item>
 
     <!--<input type="date" [ngModel]= "dt" placeholder = "">-->
         <ion-item>
-        <ion-textarea [(ngModel)]="journalEntry.entryText" [ngModelOptions]="{standalone: true}" placeholder = "Erfassen Sie hier Ihr heutiges Erlebnis." rows ="5"></ion-textarea>
+        <ion-textarea [(ngModel)]="journalEntry.entryText" formControlName="text" placeholder = "Erfassen Sie hier Ihr heutiges Erlebnis." rows ="5"></ion-textarea> <!--[ngModelOptions]="{standalone: true}"-->
         </ion-item>
 
-        <ion-item no-lines>
+<!--<div *ngIf = "myPhoto"> dito-->
+        <ion-item no-lines> <!--*ngIf = "myPhoto" alleine funktioniert nicht richtig -> thumbnail wird nicht aktualisiert.-->
             <ion-thumbnail item-start>
-                <ion-img src="{{ myPhoto }}" imageViewer="{{ myPhoto }}"></ion-img>
+                <ion-img src="{{ myPhoto||'assets/imgs/photo_placeholder.jpg' }}" imageViewer="{{ myPhoto||'assets/imgs/photo_placeholder.jpg' }}" ></ion-img> <!--formControlName="photo"-->
             </ion-thumbnail>
         </ion-item>
-        
+<!--</div>-->      
 
     </div>
     <br>
+</form>
     
     <div text-left >
         <p>Wie haben Sie sich dabei gefühlt?</p>
@@ -72,7 +75,7 @@
                 </button>
         </ion-buttons>
         
-        <button ion-button class = "saveBtn" [color]="primary" [outline]="false" [round]="true" (click)="saveEntry();">
+        <button ion-button class = "saveBtn" [color]="primary" [outline]="false" [round]="true" [disabled]="!formgroup.valid" (click)="saveEntry();">
             Speichern
         </button>
     </ion-toolbar>

@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { JournalPage } from '../journal/journal';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
+//Form Validation
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+
 //import Providers
 import { DatabaseProvider } from '../../providers/database/database';
 //import { PhotoProvider } from '../../providers/photo/photo';
@@ -26,6 +29,13 @@ import { JournalDeletePage } from '../journal-delete/journal-delete'; //not sure
   templateUrl: 'journal-entry.html',
 })
 export class JournalEntryPage {
+
+  //Form Validation 
+  formgroup:FormGroup;
+  date:AbstractControl;
+  text:AbstractControl;
+  //photo:AbstractControl;
+  //smilie:AbstractControl;
 
   /**
    *  journal Entry
@@ -62,7 +72,23 @@ export class JournalEntryPage {
     private midataService: MidataService,
     public dbp: DatabaseProvider,
     private camera: Camera,
+    private formBuilder: FormBuilder,
     public events: Events) {
+
+    //Form Validation
+    this.formgroup = formBuilder.group({
+      date:['', Validators.required],
+      text:['', Validators.required]
+      //photo:['', Validators.required],
+      //smilie:['', Validators.required]
+    });
+
+    this.date = this.formgroup.controls['date'];
+    this.text = this.formgroup.controls['text'];
+    //this.photo = this.formgroup.controls['photo'];
+    //this.smilie = this.formgroup.controls['smilie'];
+
+
     this.journalEntry = new JournalEntry(); //without this, the page will throw a "Uncaught (in promise): TypeError"
 
     //#MIDATA
@@ -232,6 +258,9 @@ export class JournalEntryPage {
     console.log("Clicked open menu")
   }
 
+  /**
+   * Gets image from Android photo gallery and fills the image placeholder with the respective image.
+   */
   getImage(){
 
     const options: CameraOptions = {
@@ -244,13 +273,20 @@ export class JournalEntryPage {
     this.camera.getPicture(options).then((imageData) => {
      // imageData is either a base64 encoded string or a file URI
      // If it's base64 (DATA_URL):
-     this.myPhoto = 'data:image/jpg;base64,' + imageData; // 'data:image/jpeg;base64,'
+     
+    //this.navCtrl.push(JournalEntryPage);
+
+    this.myPhoto = 'data:image/jpg;base64,' + imageData; // 'data:image/jpeg;base64,'
+
     }, (err) => {
      // Handle error
     });
 
   }
 
+  /**
+   * Activates the Android camera funtion and fills the image placeholder with the taken picture.
+   */
   takePhoto(){
     const options: CameraOptions = {
       quality: 70,
