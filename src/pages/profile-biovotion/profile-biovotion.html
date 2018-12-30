@@ -15,8 +15,10 @@
     
         <ion-item>
             <ion-label> Biovotion Everion Sensor </ion-label>
-                <ion-toggle checked = "isToggled" [(ngModel)]="isToggled" (ngModelChange)="handleSensorConnection()" ></ion-toggle>
+                <ion-toggle [(ngModel)]="isToggled" (ngModelChange)="handleSensorConnection()"></ion-toggle> <!--checked = "isToggled"  -->
         </ion-item>
+
+        <!--Entwicklung -> isToggled?: {{ isToggled }}-->
         
 </ion-content>
 

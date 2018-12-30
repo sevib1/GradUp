@@ -21,8 +21,12 @@
             <span class="highlight">Kontakte anpassen / erfassen</span>
         </button>
 
-        <button ion-item (click)="gotoProfileBiovotionPage()">
+        <button ion-item (click)="gotoProfileBiovotionPage()" *ngIf="true"> <!--in Bearbeitung-->
             <span class="highlight">Biovotion Everion Sensor verbinden</span>
+        </button>
+
+        <button ion-item (click)="gotoProfileBiovotionPage()" *ngIf=""> <!--in Bearbeitung-->
+            <span class="highlight">Biovotion Everion Sensor trennen</span>
         </button>
 
         <button ion-item (click)="login()" *ngIf="!isLoggedIn()">
