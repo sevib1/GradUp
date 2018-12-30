@@ -1,6 +1,13 @@
-<ion-tabs>
+<!-- <ion-tabs>
   <ion-tab [root]="tab1Root" tabTitle="Tagebuch" tabIcon="paper"></ion-tab>
   <ion-tab [root]="tab2Root" tabTitle="Information" tabIcon="information-circle"></ion-tab>
   <ion-tab [root]="tab3Root" tabTitle="Hilfe" tabIcon="help-circle"></ion-tab>
   <ion-tab [root]="tab4Root" tabTitle="Profil" tabIcon="contact"></ion-tab>
-</ion-tabs>
+</ion-tabs> -->
+
+  <ion-tabs #mainTabs (ionChange)="tabChanged($event)">
+    <ion-tab [root]="tab1" tabTitle="Tagebuch" tabIcon="paper"></ion-tab>
+    <ion-tab [root]="tab2" tabTitle="Information" tabIcon="information-circle"></ion-tab>
+    <ion-tab [root]="tab3" tabTitle="Hilfe" tabIcon="help-circle"></ion-tab>
+    <ion-tab [root]="tab4" tabTitle="Profil" tabIcon="contact"></ion-tab>
+  </ion-tabs>

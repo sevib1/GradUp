@@ -65,10 +65,10 @@ export class ProfilePage {
     this.midataService.logout()
       .then(() => {
         this.menuCtrl.close();
-        this.navCtrl.push(JournalPage, {});
+        this.selectJournalPage();
       })
       .catch(() => {
-        this.navCtrl.push(JournalPage, {});
+        this.selectJournalPage();
       })
   }
 
@@ -82,7 +82,7 @@ export class ProfilePage {
 
     this.midataService.authenticate()
       .then((success: boolean) => {
-        return this.navCtrl.setRoot(JournalPage);
+        this.selectJournalPage();
       })
       .then(() => {
         loading.dismiss().catch();
@@ -92,6 +92,12 @@ export class ProfilePage {
         console.log(this.midataService.getNetworkState());
         loading.dismiss().catch();
       })
+  }
+
+  public selectJournalPage() {
+    // select JournalPage (tab 0 of tab page)
+    //return this.navCtrl.setRoot(JournalPage);
+    return this.navCtrl.parent.select(0);
   }
 
 }
