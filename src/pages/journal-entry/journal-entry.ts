@@ -107,8 +107,11 @@ export class JournalEntryPage {
     //this.journalEntryId = this.navParams.data; //-> fetches data from "journal-deletePage" --> do not delete!, otherwise delete won't work properly
    
     this.journalEntry = this.navParams.data;
-
+    console.log("ionViewWillEnter() -> journalEntry:", this.journalEntry);
     this.myPhoto = this.journalEntry.entryPhoto;
+
+    this.subjectiveCondition = this.journalEntry.entrySubjCondition;
+    console.log("ionViewWillEnter() -> subj. Condition:", this.journalEntry.entrySubjCondition);
 
     //#MIDATA -> load the elements
     this.loadData();
@@ -166,21 +169,22 @@ export class JournalEntryPage {
       
       console.log("saveEntry() -> subjectiveCondition:", this.subjectiveCondition);
 
-      if(this.subjectiveCondition){
+      if(this.subjectiveCondition==0 || this.subjectiveCondition==1 || this.subjectiveCondition==2){
 
         let mentalCondition = new ObsMentalCondition(this.subjectiveCondition);
-      this.midataService.save(mentalCondition)
-      .then((response) => {
-        // we can now access the midata response
-        console.log("ObsMentalCondition fired on MIDATA");
-      
-  
-      }).catch((error) => {
-          console.error("Error in save request:", error);
-      });
+        this.journalEntry.entrySubjCondition = this.subjectiveCondition; //local copy
+        this.midataService.save(mentalCondition)
+        .then((response) => {
+          // we can now access the midata response
+          console.log("ObsMentalCondition fired on MIDATA");
+        
+    
+        }).catch((error) => {
+            console.error("Error in save request:", error);
+        });
 
-      console.log("mental condition: " + mentalCondition);
-      }
+        console.log("mental condition: " + mentalCondition);
+        }
       
     //this.addMentalCondition();
     //console.log("addMentalCondition is called");
@@ -260,7 +264,7 @@ export class JournalEntryPage {
     this.navCtrl.push(JournalPage, {});
 
     for (let entry of this.subjectiveConditionData){
-      console.log(entry);
+      console.log("All subjCondition values (MIDATA)", entry);
     }
   }
 
@@ -278,7 +282,7 @@ export class JournalEntryPage {
       quality: 70,
       destinationType: this.camera.DestinationType.DATA_URL,//this.camera.DestinationType.FILE_URI,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-      saveToPhotoAlbum:true
+      saveToPhotoAlbum:false
     }
     
     this.camera.getPicture(options).then((imageData) => {
@@ -303,7 +307,8 @@ export class JournalEntryPage {
       quality: 70,
       destinationType: this.camera.DestinationType.DATA_URL,//this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
+      mediaType: this.camera.MediaType.PICTURE,
+      saveToPhotoAlbum:true
     }
     
     this.camera.getPicture(options).then((imageData) => {
