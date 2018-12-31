@@ -163,8 +163,12 @@ export class JournalEntryPage {
             this.navCtrl.push(JournalPage);
           });
       });
-    
-      let mentalCondition = new ObsMentalCondition(this.subjectiveCondition);
+      
+      console.log("saveEntry() -> subjectiveCondition:", this.subjectiveCondition);
+
+      if(this.subjectiveCondition){
+
+        let mentalCondition = new ObsMentalCondition(this.subjectiveCondition);
       this.midataService.save(mentalCondition)
       .then((response) => {
         // we can now access the midata response
@@ -176,7 +180,8 @@ export class JournalEntryPage {
       });
 
       console.log("mental condition: " + mentalCondition);
-
+      }
+      
     //this.addMentalCondition();
     //console.log("addMentalCondition is called");
       
