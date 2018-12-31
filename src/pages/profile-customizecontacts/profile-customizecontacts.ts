@@ -42,6 +42,8 @@ export class ProfileCustomizecontactsPage {
       if(value !== null){
         console.log(value);
         that.bezug.push(value);
+      } else {
+        that.contacts.push('Kein Eintrag vorhanden');
       }
   });
 
@@ -49,6 +51,8 @@ export class ProfileCustomizecontactsPage {
       if(value !== null){
         console.log(value);
         that.bezug_nummer.push(value);
+      } else {
+        that.contacts.push('Kein Eintrag vorhanden');
       }
   });
 
@@ -56,6 +60,8 @@ export class ProfileCustomizecontactsPage {
       if(value !== null){
         console.log(value);
         that.bezug_sms.push(value);
+      } else {
+        that.contacts.push('Kein Eintrag vorhanden');
       }
   });
 
@@ -63,6 +69,8 @@ export class ProfileCustomizecontactsPage {
       if(value !== null){
         console.log(value);
         that.bezug_email.push(value);
+      } else {
+        that.contacts.push('Kein Eintrag vorhanden');
       }
   });
 
@@ -70,6 +78,8 @@ export class ProfileCustomizecontactsPage {
       if(value !== null){
         console.log(value);
         that.bezug_emailtext.push(value);
+      } else {
+        that.contacts.push('Kein Eintrag vorhanden');
       }
   });
 
@@ -77,13 +87,17 @@ export class ProfileCustomizecontactsPage {
       if(value !== null){
         console.log(value);
         that.contacts.push(value);
-      } 
+      } else {
+        that.contacts.push('Kein Eintrag vorhanden');
+      }
   });
 
     this.storage.get('fachperson_telefonnummer').then((value) => {
       if(value !== null){
         console.log(value);
         that.contact_nummer.push(value);
+      } else {
+        that.contacts.push('Kein Eintrag vorhanden');
       }
   });
 
@@ -91,6 +105,8 @@ export class ProfileCustomizecontactsPage {
       if(value !== null){
         console.log(value);
         that.contact_email.push(value);
+      } else {
+        that.contacts.push('Kein Eintrag vorhanden');
       }
   });
 
@@ -98,14 +114,16 @@ export class ProfileCustomizecontactsPage {
       if(value !== null){
         console.log(value);
         that.contact_emailtext.push(value);
+      } else {
+        that.contacts.push('Kein Eintrag vorhanden');
       }
   });
   }
 
   saveData() {
-    this.contacts.push('fachperson');
-    this.storage.set('fachperson', this.contacts);
-    this.storage.get('fachperson');
+    //this.contacts.push('fachperson');
+    //this.storage.set('fachperson', this.contacts);
+    //this.storage.get('fachperson');
     
   }
 

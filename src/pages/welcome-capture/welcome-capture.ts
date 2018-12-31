@@ -34,8 +34,27 @@ import { MyResource } from '../../resources/occupation';
 export class WelcomeCapturePage {
 
   //Local storage for username 
-  inputtext:string;
-  key:string="username";
+  inputtext: string;
+  key: string="username";
+
+  relationship_status: string;
+  key1: string="relationship_status";
+
+  hobbies_status: string;
+  key2: string="hobbies_status";
+
+  pet_input: string;
+  key3: string="pet_input";
+
+  pet_status: string;
+  key4: string="pet_status";
+
+  residential_input: string;
+  key5: string="residential_input";
+
+  residential_status: string;
+  key6: string="residential_status";
+
 
   /**
    * #MIDATA -> array for the weight data 
@@ -106,8 +125,14 @@ export class WelcomeCapturePage {
   saveData() {
     let MessageDate = new Date();
     this.storage.set(this.key, this.inputtext);
-    this.storage.get(this.key).then((value) => {
-      console.log('Your username is', value);
+    this.storage.set(this.key1, this.relationship_status);
+    this.storage.set(this.key2, this.hobbies_status);
+    this.storage.set(this.key3, this.pet_input);
+    this.storage.set(this.key4, this.pet_status);
+    this.storage.set(this.key5, this.residential_input);
+    this.storage.set(this.key6, this.residential_status);
+    this.storage.get(this.key2).then((value) => {
+      console.log('Status Marriage', value);
     });
 
     //#MIDATA persistance
@@ -125,6 +150,7 @@ export class WelcomeCapturePage {
         console.error("Error in save request:", error);
     });
 
+     //#MIDATA persistance: adds new Work Occupation 
     let occupation = new MyResource(this.userType);
     this.midataService.save(occupation)
     .then((response) => {

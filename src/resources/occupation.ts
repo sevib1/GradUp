@@ -16,8 +16,8 @@ export class MyResource extends Observation {
           ]
       };
 
-      let valueCodeableConcept = {
-        "valueCodeableConcept": {
+      let valueQuantity = {
+        "valueQuantity": {
           "value": workOccupation
         }
       };
@@ -25,6 +25,7 @@ export class MyResource extends Observation {
       super({effectiveDateTime: new Date().toISOString()},
               OBSERVATIONSTATUS.preliminary,
               CAT_SOCIALHISTORY,
-              code);
+              code, valueQuantity);
   }
+
 }

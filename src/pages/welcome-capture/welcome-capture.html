@@ -23,7 +23,8 @@
         <ion-label>Wählen Sie einen Tätigkeitsbereich, der am besten zutrifft:</ion-label>
         <ion-select interface="popover" [(ngModel)]="userType" formControlName="occupationM">
           <ion-option value="1">Sitzende Tätigkeit</ion-option>
-          <ion-option value="2">Handwerkliche Tätigkeit</ion-option>
+          <ion-option value="2">Handwerkliche Tätigk                     
+             eit</ion-option>
           <ion-option value="3">Student/-in</ion-option>
           <ion-option value="4">Hausfrau/-mann</ion-option>
           <ion-option value="5">Pflegende oder betreuende Tätigkeit</ion-option>
@@ -67,33 +68,41 @@
                         <ion-radio value="alone" item-left></ion-radio>
                     </ion-item>
                 </ion-col>
-                <ion-col>
-                    <ion-item>
-                        <ion-label>Ich wohne mit</ion-label>
-                        <ion-radio value="live" item-left></ion-radio>
-                    </ion-item>
-                    <ion-item>
-                        <ion-input id="input-number" type="number" item-left></ion-input>
-                        <ion-label item-right>Person/en zusammen</ion-label>
-                    </ion-item>
-                </ion-col>
+                <ion-row>
+                  <ion-col>
+                      <ion-item>
+                          <ion-label>Ich wohne mit</ion-label>
+                          <ion-radio value="live" item-left></ion-radio>
+                      </ion-item>
+                  </ion-col>
+                  <ion-col>   
+                      <ion-item>
+                          <ion-input [(ngModel)]="residential_input" id="input-number" type="number" item-left></ion-input>
+                          <ion-label item-right>Person/en zusammen</ion-label>
+                      </ion-item>
+                  </ion-col>
+                </ion-row>
             </ion-row>
         </ion-grid>
     </accordion-list>
     <accordion-list title="Haustiere">
         <ion-grid>
             <ion-row radio-group [(ngModel)]="pet_status">
-                <ion-col>
+              <ion-row>
+                <ion-col col-6>
                     <ion-item>
-                        <ion-label>Ja,</ion-label>
-                        <ion-radio value="yes" item-left></ion-radio>
-                        <ion-input class="input-haustiere" type="text" placeholder="Welche" item-right></ion-input>
+                      <ion-label>Ja,</ion-label>
+                      <ion-radio value="yes" item-left></ion-radio>
                     </ion-item>
                 </ion-col>
                 <ion-col>
+                    <ion-input [(ngModel)]="pet_input" class="input-haustiere" type="text" placeholder="Welche" item-right></ion-input>
+                </ion-col>
+              </ion-row>  
+                <ion-col>
                     <ion-item>
-                        <ion-label>Nein</ion-label>
-                        <ion-radio value="no" item-left></ion-radio>
+                      <ion-label>Nein</ion-label>
+                      <ion-radio value="no" item-left></ion-radio>
                     </ion-item>
                 </ion-col>
             </ion-row>
@@ -101,15 +110,15 @@
     </accordion-list>
     <accordion-list title="Hobbies">
             <ion-item no-lines>
-                <ion-input class="input-hobbies" type="text" placeholder="Bitte ergänzen Sie Ihre Hobbies im Eingabefeld"></ion-input>
+                <ion-input [(ngModel)]="hobbies_status" class="input-hobbies" type="text" placeholder="Bitte ergänzen Sie Ihre Hobbies im Eingabefeld"></ion-input>
             </ion-item>
     </accordion-list>
 
 </ion-content>
 
     <ion-footer no-shadow>
-        <ion-toolbar position="bottom">
-            <button ion-button [color]="primary" [outline]="false" [round]="true" [disabled]="!formgroup.valid" (click)="saveData(); gotoWelcomeContactPage();">
+        <ion-toolbar position="bottom"> 
+            <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="saveData(); gotoWelcomeContactPage();">
                 Speichern
             </button>
         </ion-toolbar>
