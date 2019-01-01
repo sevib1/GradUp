@@ -66,7 +66,6 @@ export class WelcomeContact2Page {
       this.smstext = this.formgroup.contains['smstext'];
       this.email = this.formgroup.contains['email'];
       this.emailtext = this.formgroup.contains['emailtext'];
-
   }
 
   //Lokal Storage  
