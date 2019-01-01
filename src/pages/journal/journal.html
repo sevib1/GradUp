@@ -10,9 +10,14 @@
 
 <ion-content padding>
     <p></p>
-    <p>In Ihrem persönlichen Tagebuch können Sie Ausflüge / Unternehmungen / Erlebnisse oder auch Rückmeldungen usw.
-        nach Lust und Laune erfassen.</p>
-    <p>Sie können die Einträge mit einem passenden Bild ergänzen.</p>
+    <p>
+        In Ihrem persönlichen Tagebuch können Sie Ausflüge 
+        / Unternehmungen / Erlebnisse oder auch Rückmeldungen usw.
+        nach Lust und Laune erfassen.
+    </p>
+    <p>
+        Sie können die Einträge mit einem passenden Bild ergänzen.
+    </p>
 
     <ion-list class="with-borders">
         <button ion-item (click)="gotoJournalEntryPage()">
@@ -22,6 +27,25 @@
         <button ion-item (click)="gotoJournalDeletePage()">
             <span class="highlight">Alle Einträge ansehen und bearbeiten</span>
         </button>
-    </ion-list>    
-        
+    </ion-list>
+
+
+    <!-- für demo display:none -->
+    <div style="display:block">
+
+        <p style="color:red">
+            Für Entwicklung:
+        </p>
+
+        <ion-list class="with-borders">
+            <button ion-item (click)="scheduleNotification()">
+                <span class="highlight">Notification Test</span>
+            </button>
+
+            <button ion-item (click)="gotoWeightReminderPage()">
+                <span class="highlight">Zur Weight Reminder Page</span>
+            </button>
+        </ion-list>
+    </div>
+
 </ion-content>

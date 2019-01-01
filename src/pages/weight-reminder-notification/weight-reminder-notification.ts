@@ -57,24 +57,35 @@ export class WeightReminderNotificationPage {
           this.previousWeight = value['value'];
           console.log('ionViewDidLoad() : previousWeight:=', this.previousWeight);
         });
+      })
+      .catch((error) => {
+        console.error('ionViewDidLoad() : failed to load previousWeight', error);
+        this.previousWeight = 0;
       });
 
-    // this.midataService
-    //   .search('Goal/$lastn', {
-    //     max: 1, 
-    //     _sort: '-date', 
-    //     code: Globals.Goal.toString,
-    //     patient: this.midataService.getUser().id
-    //   })
-    //   .then(response => {
-    //     (response || []).forEach((measure: Goal) => {
-    //       this.previousGoal = 500;
-    //     });
-    // });
-
-    // TODO: load previous goal.
-    this.previousGoal = 500;
-    console.log('ionViewDidLoad() : previousGoal:=', this.previousGoal);
+    // TODO: how to we get it from the resources/goal.ts object?
+    // new Goal().getDescription().coding.system?
+    const code = 'http://snomed.info/sct|8943002';
+    //const code = 'http://loinc.org|3141-9';
+    
+    this.midataService
+      .search('Observation/$lastn', {
+        max: 1, 
+        _sort: '-date', 
+        code: code,
+        patient: userId
+      })
+      .then(response => {
+        (response || []).forEach((measure: Goal) => {
+          let value = measure.getProperty('valueQuantity');
+          this.previousGoal = value['value'];
+          console.log('ionViewDidLoad() : previousGoal:=', this.previousGoal);
+        });
+      })
+      .catch((error) => {
+        console.error('ionViewDidLoad() : failed to load previousGoal', error);
+        this.previousGoal = 0;
+      });
 
     this.storage.get("username").then(username => {
       this.userName = username;
@@ -83,7 +94,6 @@ export class WeightReminderNotificationPage {
   }
 
   saveData() {
-
     let a = parseFloat(this.currentWeight);
     let b = parseFloat(this.previousWeight);
     if (a === NaN || b === NaN) {
