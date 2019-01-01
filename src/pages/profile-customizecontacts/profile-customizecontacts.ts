@@ -32,6 +32,10 @@ export class ProfileCustomizecontactsPage {
 
     this.getData();
   }
+  
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ProfileCustomizecontactsPage');
+  }
 
   getData() {
     let that = this;
@@ -74,19 +78,27 @@ export class ProfileCustomizecontactsPage {
   }
 
   saveData() {
-    this.storage.set('bezugsperson_inputtext', this.bezugsperson_inputtext)
-    this.storage.set('bezugsperson_telefonnummer', this.bezugsperson_telefonnummer);
-    this.storage.set('bezugsperson_smstext', this.bezugsperson_sms);
-    this.storage.set('bezugperson_email', this.bezugsperson_email);
-    this.storage.set('bezugsperson_emailtext', this.bezugsperson_emailtext);
-    this.storage.set('fachperson_inputtext', this.fachperson_inputtext);
-    this.storage.set('fachperson_telefonnummer', this.fachperson_telefonnummer);
-    this.storage.set('fachperson_email', this.fachperson_email);
-    this.storage.set('fachperson_emailtext', this.fachperson_emailtext);
+    let saveAll = [
+      this.storage.set('bezugsperson_inputtext', this.cleanValue(this.bezugsperson_inputtext)),
+      this.storage.set('bezugsperson_telefonnummer', this.cleanValue(this.bezugsperson_telefonnummer)),
+      this.storage.set('bezugsperson_smstext', this.cleanValue(this.bezugsperson_sms)),
+      this.storage.set('bezugperson_email', this.cleanValue(this.bezugsperson_email)),
+      this.storage.set('bezugsperson_emailtext', this.cleanValue(this.bezugsperson_emailtext)),
+      this.storage.set('fachperson_inputtext', this.cleanValue(this.fachperson_inputtext)),
+      this.storage.set('fachperson_telefonnummer', this.cleanValue(this.fachperson_telefonnummer)),
+      this.storage.set('fachperson_email', this.cleanValue(this.fachperson_email)),
+      this.storage.set('fachperson_emailtext', this.cleanValue(this.fachperson_emailtext))
+    ]
+
+    Promise.all(saveAll).then(() => {
+      this.gotoProfilePage();
+    });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfileCustomizecontactsPage');
+  private cleanValue(s: string): string {
+    s = (s || "").trim()
+    s = s === 'Kein Eintrag vorhanden' ? '' : s;
+    return s;
   }
 
   public gotoProfilePage() {
