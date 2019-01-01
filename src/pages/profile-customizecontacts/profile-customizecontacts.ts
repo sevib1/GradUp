@@ -9,122 +9,80 @@ import { Storage } from '@ionic/storage';
   selector: 'page-profile-customizecontacts',
   templateUrl: 'profile-customizecontacts.html',
 })
-
-
 export class ProfileCustomizecontactsPage {
 
-  contacts = [];
-  contact_nummer = [];
-  contact_email = [];
-  contact_emailtext = [];
+  fachperson_inputtext = '';
+  fachperson_telefonnummer = '';
+  fachperson_email = '';
+  fachperson_emailtext = '';
 
-  bezug = [];
-  bezug_nummer = [];
-  bezug_sms = [];
-  bezug_email = [];
-  bezug_emailtext = [];
+  bezugsperson_inputtext = '';
+  bezugsperson_telefonnummer = '';
+  bezugsperson_sms = '';
+  bezugsperson_email = '';
+  bezugsperson_emailtext = '';
 
   fachperson: string;
-  key:string="fachperson";
- 
+  key: string = "fachperson";
+
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
-    private storage: Storage,) {
-    
-      this.getData();
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private storage: Storage, ) {
+
+    this.getData();
   }
 
   getData() {
     let that = this;
 
     this.storage.get('bezugsperson_inputtext').then((value) => {
-      if(value !== null){
-        console.log(value);
-        that.bezug.push(value);
-      } else {
-        that.contacts.push('Kein Eintrag vorhanden');
-      }
-  });
+      that.bezugsperson_inputtext = value || 'Kein Eintrag vorhanden';
+    });
 
     this.storage.get('bezugsperson_telefonnummer').then((value) => {
-      if(value !== null){
-        console.log(value);
-        that.bezug_nummer.push(value);
-      } else {
-        that.contacts.push('Kein Eintrag vorhanden');
-      }
-  });
+      that.bezugsperson_telefonnummer = value || 'Kein Eintrag vorhanden';
+    });
 
     this.storage.get('bezugsperson_smstext').then((value) => {
-      if(value !== null){
-        console.log(value);
-        that.bezug_sms.push(value);
-      } else {
-        that.contacts.push('Kein Eintrag vorhanden');
-      }
-  });
+      that.bezugsperson_sms = value || 'Kein Eintrag vorhanden';
+    });
 
     this.storage.get('bezugperson_email').then((value) => {
-      if(value !== null){
-        console.log(value);
-        that.bezug_email.push(value);
-      } else {
-        that.contacts.push('Kein Eintrag vorhanden');
-      }
-  });
+      that.bezugsperson_email = value || 'Kein Eintrag vorhanden';
+    });
 
     this.storage.get('bezugsperson_emailtext').then((value) => {
-      if(value !== null){
-        console.log(value);
-        that.bezug_emailtext.push(value);
-      } else {
-        that.contacts.push('Kein Eintrag vorhanden');
-      }
-  });
+      that.bezugsperson_emailtext = value || 'Kein Eintrag vorhanden';
+    });
 
     this.storage.get('fachperson_inputtext').then((value) => {
-      if(value !== null){
-        console.log(value);
-        that.contacts.push(value);
-      } else {
-        that.contacts.push('Kein Eintrag vorhanden');
-      }
-  });
+      that.fachperson_inputtext = value || 'Kein Eintrag vorhanden';
+    });
 
     this.storage.get('fachperson_telefonnummer').then((value) => {
-      if(value !== null){
-        console.log(value);
-        that.contact_nummer.push(value);
-      } else {
-        that.contacts.push('Kein Eintrag vorhanden');
-      }
-  });
+      that.fachperson_telefonnummer = value || 'Kein Eintrag vorhanden';
+    });
 
     this.storage.get('fachperson_email').then((value) => {
-      if(value !== null){
-        console.log(value);
-        that.contact_email.push(value);
-      } else {
-        that.contacts.push('Kein Eintrag vorhanden');
-      }
-  });
+      that.fachperson_email = value || 'Kein Eintrag vorhanden';
+    });
 
     this.storage.get('fachperson_emailtext').then((value) => {
-      if(value !== null){
-        console.log(value);
-        that.contact_emailtext.push(value);
-      } else {
-        that.contacts.push('Kein Eintrag vorhanden');
-      }
-  });
+      that.fachperson_emailtext = value || 'Kein Eintrag vorhanden';
+    });
   }
 
   saveData() {
-    //this.contacts.push('fachperson');
-    //this.storage.set('fachperson', this.contacts);
-    //this.storage.get('fachperson');
-    
+    this.storage.set('bezugsperson_inputtext', this.bezugsperson_inputtext)
+    this.storage.set('bezugsperson_telefonnummer', this.bezugsperson_telefonnummer);
+    this.storage.set('bezugsperson_smstext', this.bezugsperson_sms);
+    this.storage.set('bezugperson_email', this.bezugsperson_email);
+    this.storage.set('bezugsperson_emailtext', this.bezugsperson_emailtext);
+    this.storage.set('fachperson_inputtext', this.fachperson_inputtext);
+    this.storage.set('fachperson_telefonnummer', this.fachperson_telefonnummer);
+    this.storage.set('fachperson_email', this.fachperson_email);
+    this.storage.set('fachperson_emailtext', this.fachperson_emailtext);
   }
 
   ionViewDidLoad() {

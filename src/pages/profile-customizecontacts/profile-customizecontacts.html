@@ -1,64 +1,65 @@
 <ion-header>
 
-        <ion-navbar hideBackButton="true">
-            <ion-title>
-                <title-logo text="Profil"></title-logo>
-            </ion-title>
-        </ion-navbar>
-    
-    </ion-header>
+    <ion-navbar hideBackButton="true">
+        <ion-title>
+            <title-logo text="Profil"></title-logo>
+        </ion-title>
+    </ion-navbar>
+
+</ion-header>
 
 <ion-content padding>
     <p></p>
     <p>Hier können Sie die gesamten Kontaktdaten und Texte pflegen.</p>
 
-  <ion-list>
-    <ion-item id="textfield" *ngFor="let e of bezug; let i = index">
-      <ion-label stacked>Name der Bezugsperson:</ion-label>
-      <ion-input [(ngModel)]="fachperson" type="text" value="{{ e }}"></ion-input>
-    </ion-item>
+    <ion-list>
+        <ion-item>
+            <ion-label stacked>Name der Bezugsperson:</ion-label>
+            <ion-input [(ngModel)]="bezugsperson_inputtext" type="text"></ion-input>
+        </ion-item>
 
-    <ion-item id="textfield" *ngFor="let f of bezug_nummer; let i = index">
-      <ion-label stacked>Telefonnummer:</ion-label>
-      <ion-input [(ngModel)]="fachperson_telefonnummer" type="text" value="{{ f }}"></ion-input>
-    </ion-item>
+        <ion-item>
+            <ion-label stacked>Telefonnummer:</ion-label>
+            <ion-input [(ngModel)]="bezugsperson_telefonnummer" type="tel"
+            pattern="[0-9]+"></ion-input>
+        </ion-item>
 
-    <ion-item id="textfield" *ngFor="let g of bezug_sms; let i = index">
-        <ion-label stacked>SMS-Text:</ion-label>
-        <ion-textarea [(ngModel)]="fachperson_emailtext" type="text" value="{{ g }}"></ion-textarea>
-    </ion-item>
+        <ion-item>
+            <ion-label stacked>SMS-Text:</ion-label>
+            <ion-textarea [(ngModel)]="bezugsperson_sms" type="text" rows="1"></ion-textarea>
+        </ion-item>
 
-    <ion-item id="textfield" *ngFor="let h of bezug_email; let i = index">
-      <ion-label stacked>E-Mail-Adresse:</ion-label>
-      <ion-input [(ngModel)]="fachperson_email" type="text" value="{{ h }}"></ion-input>
-    </ion-item>
+        <ion-item>
+            <ion-label stacked>E-Mail-Adresse:</ion-label>
+            <ion-input [(ngModel)]="bezugsperson_email" type="email" pattern="[A-Za-z0-9._%+-]{2,}@[a-zA-Z-_.]{2,}[.]{1}[a-zA-Z]{2,}"></ion-input>
+        </ion-item>
 
-    <ion-item id="textfield" *ngFor="let j of bezug_emailtext; let i = index">
-      <ion-label stacked>E-Mail-Text:</ion-label>
-      <ion-textarea [(ngModel)]="fachperson_emailtext" type="text" value="{{ j }}"></ion-textarea>
-    </ion-item>
-  </ion-list>
+        <ion-item>
+            <ion-label stacked>E-Mail-Text:</ion-label>
+            <ion-textarea [(ngModel)]="bezugsperson_emailtext" type="text" rows="1"></ion-textarea>
+        </ion-item>
+    </ion-list>
 
-  <ion-list>
-      <ion-item id="textfield" *ngFor="let a of contacts; let i = index">
-        <ion-label stacked>Name der Fachperson:</ion-label>
-        <ion-input [(ngModel)]="fachperson" type="text" value="{{ a }}"></ion-input>
-      </ion-item>
-  
-      <ion-item id="textfield" *ngFor="let b of contact_nummer; let i = index">
-        <ion-label stacked>Praxis-Telefonnummer:</ion-label>
-        <ion-input [(ngModel)]="fachperson_telefonnummer" type="text" value="{{ b }}"></ion-input>
-      </ion-item>
-  
-      <ion-item id="textfield" *ngFor="let c of contact_email; let i = index">
-        <ion-label stacked>E-Mail-Adresse:</ion-label>
-        <ion-input [(ngModel)]="fachperson_email" type="text" value="{{ c }}"></ion-input>
-      </ion-item>
-  
-      <ion-item id="textfield" *ngFor="let d of contact_emailtext; let i = index">
-        <ion-label stacked>E-Mail-Text:</ion-label>
-        <ion-textarea [(ngModel)]="fachperson_emailtext" type="text" value="{{ d }}"></ion-textarea>
-      </ion-item>
+    <ion-list>
+        <ion-item>
+            <ion-label stacked>Name der Fachperson:</ion-label>
+            <ion-input [(ngModel)]="fachperson_inputtext" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Praxis-Telefonnummer:</ion-label>
+            <ion-input [(ngModel)]="fachperson_telefonnummer" type="tel" pattern="[0-9]+"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>E-Mail-Adresse:</ion-label>
+            <ion-input [(ngModel)]="fachperson_email" type="email" pattern="[A-Za-z0-9._%+-]{2,}@[a-zA-Z-_.]{2,}[.]{1}[a-zA-Z]{2,}" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>E-Mail-Text:</ion-label>
+            <ion-textarea [(ngModel)]="fachperson_emailtext" type="text"></ion-textarea>
+        </ion-item>
     </ion-list>
 
 </ion-content>
