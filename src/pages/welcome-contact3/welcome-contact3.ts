@@ -26,9 +26,6 @@ export class WelcomeContact3Page {
   
     fachperson_telefonnummer:any;
     key1:any="fachperson_telefonnummer";
-
-    fachperson_smstext:string;
-    key2:string="fachperson_smstext";
   
     fachperson_email:string;
     key3:string="fachperson_email";
@@ -40,7 +37,6 @@ export class WelcomeContact3Page {
     formgroup:FormGroup;
     inputtext:AbstractControl;
     telefonnummer:AbstractControl;
-    smstext:AbstractControl;
     email:AbstractControl;
     emailtext:AbstractControl;
 
@@ -53,14 +49,12 @@ export class WelcomeContact3Page {
       this.formgroup = formBuilder.group({
       inputtext:['', Validators.required],
       telefonnummer:['', Validators.required],
-      smstext:['', Validators.required],
       email:['', Validators.required],
       emailtext:['', Validators.required]
       });
 
       this.inputtext = this.formgroup.contains['inputtext'];
       this.telefonnummer = this.formgroup.contains['telefonnummer'];
-      this.smstext = this.formgroup.contains['smstext'];
       this.email = this.formgroup.contains['email'];
       this.emailtext = this.formgroup.contains['emailtext'];
   }
@@ -69,7 +63,6 @@ export class WelcomeContact3Page {
     saveData() {
       this.storage.set(this.key, this.fachperson_inputtext);
       this.storage.set(this.key1, this.fachperson_telefonnummer);
-      this.storage.set(this.key2, this.fachperson_smstext);
       this.storage.set(this.key3, this.fachperson_email);
       this.storage.set(this.key4, this.fachperson_emailtext);
       /**For testing 
