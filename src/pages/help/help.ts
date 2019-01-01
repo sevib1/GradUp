@@ -67,7 +67,7 @@ export class HelpPage {
         {
           text: 'Profil',
           handler: () => {
-            this.navCtrl.push(ProfileCustomizecontactsPage);
+            this.gotoCustomizeContacts()
           }
         },
         {
@@ -127,7 +127,7 @@ export class HelpPage {
         {
           text: 'Profil',
           handler: () => {
-            this.navCtrl.push(ProfileCustomizecontactsPage);
+            this.gotoCustomizeContacts()
           }
         },
         {
@@ -191,7 +191,7 @@ export class HelpPage {
         {
           text: 'Profil',
           handler: () => {
-            this.navCtrl.push(ProfileCustomizecontactsPage);
+            this.gotoCustomizeContacts()
           }
         },
         {
@@ -220,7 +220,7 @@ export class HelpPage {
         {
           text: 'Profil',
           handler: () => {
-            this.navCtrl.push(ProfileCustomizecontactsPage);
+            this.gotoCustomizeContacts()
           }
         },
         {
@@ -283,7 +283,6 @@ export class HelpPage {
 
         // Send a text message using default options
         this.emailComposer.open(email);
-
       });
     });
   }
@@ -298,5 +297,14 @@ export class HelpPage {
 
   public gotoHelpRelaxationPage() {
     this.navCtrl.push(HelpRelaxationPage, {});
+  }
+
+  public gotoCustomizeContacts() {
+    // this would work, but do not know how to navigate to sub page
+    // from outside. emit an event maybe?
+    // var tabs = this.navCtrl.parent;
+    // tabs.select(3);
+    
+    this.navCtrl.push(ProfileCustomizecontactsPage);
   }
 }
