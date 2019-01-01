@@ -32,7 +32,7 @@ export class WelcomeContact2Page {
   key2:string="bezugsperson_smstext";
 
   bezugsperson_email:string;
-  key3:string="bezugperson_email";
+  key3:string="bezugsperson_email";
 
   bezugsperson_emailtext:string;
   key4:string="bezugsperson_emailtext";
