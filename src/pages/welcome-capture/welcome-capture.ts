@@ -103,18 +103,10 @@ export class WelcomeCapturePage {
     this.occupationM = this.formgroup.controls['occupationM'];
     this.bodyweight = this.formgroup.controls['bodyweight'];
     this.weightGains = this.formgroup.controls['weightGains'];
-
-    //#MIDATA
-    //this.dailyData = this.navParams.get('data');
-    this.weightData = new Array<{ date: Date, value: number }>();
-    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WelcomeCapturePage');
-
-   //#MIDATA -> load the elements
-    this.loadData();
   }
 
   public gotoWelcomeContactPage() {
@@ -160,73 +152,6 @@ export class WelcomeCapturePage {
 
     }).catch((error) => {
         console.error("Error in save request:", error);
-    });
-    
-}
-
-  /**
-   * #MIDATA: add the weight values to the weightData array.
-   * 
-   * @param measure 
-   * @param date 
-   */
-  addWeightMeasure(measure: number, date: Date): void {
-    /*if (moment().diff(date) >= 0){ 
-    }*/
-
-    //push the data to the array
-    this.weightData.push({ date: date, value: measure });
+    });  
   }
-
-  /** 
-  addGoal(measure1: number, measure2: string): void {
-    let goal = new Goal(this.weightGain);
-    //goal.addGoal(this.weightGain);
-    console.log(goal);
-    this.midataService.save(goal);
-  }*/
- 
-
-  /**
-   * #MIDATA: loads the data (FHIR Observations with code "body weight") from the MIDATA server
-   */
-  private loadData(): void {
-    this.midataService.search('Observation/$lastn', { max: 1000, _sort: '-date', code: Globals.BODYWEIGHT.toString, patient: this.midataService.getUser().id })
-      .then(response => {
-        if( response.length > 0) {
-
-
-          response.forEach((measure: Observation) => {
-            //console.log(measure.getProperty('valueQuantity')['value'], measure.getProperty('effectiveDateTime'));
-            this.addWeightMeasure(measure.getProperty('valueQuantity')['value'], measure.getProperty('effectiveDateTime'));
-          });
-          /* TODO:  to test */
-          /* TODO: catch error */
-        }
-      }
-      );
-
-      this.midataService.search('Goal/$lastn', { max: 1000, _sort: '-date', code: Goal.toString, patient: this.midataService.getUser().id })
-      .then(response => {
-        if( response.length > 0) {
-
-          console.log(response);
-          response.forEach((measure: Goal) => {
-            console.log(measure);
-            //console.log(measure.getProperty('valueQuantity')['value'], measure.getProperty('effectiveDateTime'));
-            //this.addGoal(measure.getProperty('detailQuantity')['value'], measure.getProperty('detailQuantity')['unit']);
-          });
-          /* TODO:  to test */
-          /* TODO: catch error */
-        }
-      }
-      );
-  }
-
-
-
-  /*formatDate(date: Date, format: string): string {
-    return moment(date).format(format);
-  }*/ // -> what is "moment"?!
-
 }
