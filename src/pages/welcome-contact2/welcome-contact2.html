@@ -13,56 +13,41 @@
 
     <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
 
-        <p *ngIf="isSubmitted" style="color: #ea6153;">Bitte alle Felder korrekt ausfüllen.</p>
         <p></p>
 
         <p>Daten und Texte für die <span class="highlight">Bezugsperson</span> erfassen.</p>
+
         <p>Name der Bezugsperson:</p>
-        
         <ion-item id="textfield">
-            <ion-input
-                [(ngModel)]="bezugsperson_inputtext"
-                formControlName="inputtext"
-                type="text"
-            ></ion-input>
+            <ion-input [(ngModel)]="bezugsperson_inputtext" formControlName="inputtext" type="text"></ion-input>
         </ion-item>
 
         <p>Telefonnummer:</p>
         <ion-item id="telefonnummer">
-            <ion-input
-                [(ngModel)]="bezugsperson_telefonnummer"
-                formControlName="telefonnummer"
-                type="tel"
-            ></ion-input>
+            <ion-input [(ngModel)]="bezugsperson_telefonnummer" formControlName="telefonnummer" type="tel">
+            </ion-input>
         </ion-item>
+        <p *ngIf="isSubmitted && !formGroup.controls.telefonnummer.valid" class="error-message">Bitte korrekte Telefon
+            Nummer eingeben.</p>
 
         <p>SMS-Text:</p>
         <ion-item id="smstext">
-            <ion-textarea
-                [(ngModel)]="bezugsperson_smstext"
-                formControlName="smstext"
-                rows="1"
-            ></ion-textarea>
+            <ion-textarea [(ngModel)]="bezugsperson_smstext" formControlName="smstext" rows="1"></ion-textarea>
         </ion-item>
 
         <p>E-Mail-Adresse:</p>
         <ion-item id="e-mail">
-            <ion-input
-                [(ngModel)]="bezugsperson_email"
-                formControlName="email"
-                type="email"
-            ></ion-input>
+            <ion-input [(ngModel)]="bezugsperson_email" formControlName="email" type="email">
+            </ion-input>
         </ion-item>
+        <p *ngIf="isSubmitted && !formGroup.controls.email.valid" class="error-message">Bitte korrekte E-Mail-Adresse
+            eingeben.</p>
 
         <p>E-Mail-Text:</p>
         <ion-item id="emailtext">
-            <ion-textarea
-                [(ngModel)]="bezugsperson_emailtext"
-                formControlName="emailtext"
-                rows="1"
-            ></ion-textarea>
+            <ion-textarea [(ngModel)]="bezugsperson_emailtext" formControlName="emailtext" rows="1"></ion-textarea>
         </ion-item>
-        
+
         <p class="save-text">
             * Die Telefonnummer, die E-Mailadresse und die Texte werden lokal auf Ihrem Smartphone gespeichert.
         </p>

@@ -5,6 +5,7 @@ import { WelcomeContactPage } from '../welcome-contact/welcome-contact';
 
 import { Storage } from '@ionic/storage';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'; 
+import { validatePhoneIfNotEmpty, validateEmailIfNotEmpty } from '../../services/validators';
 
 /**
  * Generated class for the WelcomeContact2Page page.
@@ -20,31 +21,14 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 })
 export class WelcomeContact2Page {
 
-  //Key Value Storage
   bezugsperson_inputtext: string;
-  key: string = "bezugsperson_inputtext";
-
   bezugsperson_telefonnummer: any;
-  key1: any = "bezugsperson_telefonnummer";
-
   bezugsperson_smstext: string;
-  key2: string = "bezugsperson_smstext";
-
   bezugsperson_email: string;
-  key3: string = "bezugsperson_email";
-
   bezugsperson_emailtext: string;
-  key4: string = "bezugsperson_emailtext";
 
   isSubmitted: boolean = false;
-
-  //For Validation of Fields
-  formGroup: FormGroup;
-  inputtext: AbstractControl;
-  telefonnummer: AbstractControl;
-  smstext: AbstractControl;
-  email: AbstractControl;
-  emailtext: AbstractControl;
+  formGroup: FormGroup; 
 
   constructor(
     public navCtrl: NavController,
@@ -54,38 +38,11 @@ export class WelcomeContact2Page {
   ) {
   
     this.formGroup = formBuilder.group({
-      inputtext: [
-        ''
-      ],
-      telefonnummer: [
-        '',
-        (control: AbstractControl) => {
-          var result = null;
-          if (control.value) {
-            // https://regex101.com/r/BBMPv2/2
-            result = Validators.pattern(/^(\+41|0)\s?(\d{2})\s?(\d{3})\s?(\d{2})\s?(\d{2})$/)(control);
-          }          
-          console.debug('validate telefonnummer', control.value, result);
-          return result;
-        }
-      ],
-      smstext: [
-        ''
-      ],
-      email: [
-        '',
-        (control: AbstractControl) => {
-          var result = null;
-          if (control.value) {
-            result = Validators.email(control);
-          }
-          console.debug('validate email', control.value, result);
-          return result;
-        }
-      ],
-      emailtext: [
-        ''
-      ]
+      inputtext: [''],
+      telefonnummer: ['', validatePhoneIfNotEmpty],
+      smstext: [''],
+      email: ['', validateEmailIfNotEmpty],
+      emailtext: ['']
     });
   }
 
@@ -94,17 +51,17 @@ export class WelcomeContact2Page {
 
     this.isSubmitted = true;
  
-    this.formGroup.valid
     if (!this.formGroup.valid) {
       return
     }
 
+    // TODO: move to separate service...
     Promise.all([
-      this.storage.set(this.key, this.bezugsperson_inputtext),
-      this.storage.set(this.key1, this.bezugsperson_telefonnummer),
-      this.storage.set(this.key2, this.bezugsperson_smstext),
-      this.storage.set(this.key3, this.bezugsperson_email),
-      this.storage.set(this.key4, this.bezugsperson_emailtext)
+      this.storage.set('bezugsperson_inputtext', this.bezugsperson_inputtext),
+      this.storage.set('bezugsperson_telefonnummer', this.bezugsperson_telefonnummer),
+      this.storage.set('bezugsperson_smstext', this.bezugsperson_smstext),
+      this.storage.set('bezugsperson_email', this.bezugsperson_email),
+      this.storage.set('bezugsperson_emailtext', this.bezugsperson_emailtext)
     ]).then(() => {
       this.gotoWelcomeContact3Page();
     })  
