@@ -9,58 +9,76 @@
 </ion-header>
 
 <ion-content padding>
-    <p></p>
-    <p>Hier können Sie die gesamten Kontaktdaten und Texte pflegen.</p>
 
-    <ion-list>
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+
+        <p></p>
+        <p>Hier können Sie die gesamten Kontaktdaten und Texte pflegen.</p>
+
         <ion-item>
             <ion-label stacked>Name der Bezugsperson:</ion-label>
-            <ion-input [(ngModel)]="bezugsperson_inputtext" type="text"></ion-input>
+            <ion-input [(ngModel)]="bezugsperson_inputtext" formControlName="bezugsperson_inputtext" placeholder="Kein Eintrag vorhanden"
+                type="text">
+            </ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label stacked>Telefonnummer:</ion-label>
-            <ion-input [(ngModel)]="bezugsperson_telefonnummer" type="tel"
-            pattern="[0-9]+"></ion-input>
+            <ion-input [(ngModel)]="bezugsperson_telefonnummer" formControlName="bezugsperson_telefonnummer" type="tel" placeholder="Kein Eintrag vorhanden">
+            </ion-input>
         </ion-item>
+        <p *ngIf="isSubmitted && !formGroup.controls.bezugsperson_telefonnummer.valid" class="error-message">Bitte
+            korrekte Telefon Nummer eingeben.</p>
 
         <ion-item>
             <ion-label stacked>SMS-Text:</ion-label>
-            <ion-textarea [(ngModel)]="bezugsperson_sms" type="text" rows="1"></ion-textarea>
+            <ion-textarea [(ngModel)]="bezugsperson_smstext" formControlName="bezugsperson_smstext" rows="1" placeholder="Kein Eintrag vorhanden">
+            </ion-textarea>
         </ion-item>
 
         <ion-item>
             <ion-label stacked>E-Mail-Adresse:</ion-label>
-            <ion-input [(ngModel)]="bezugsperson_email" type="email" pattern="[A-Za-z0-9._%+-]{2,}@[a-zA-Z-_.]{2,}[.]{1}[a-zA-Z]{2,}"></ion-input>
+            <ion-input [(ngModel)]="bezugsperson_email" formControlName="bezugsperson_email" type="email" placeholder="Kein Eintrag vorhanden">
+            </ion-input>
         </ion-item>
+        <p *ngIf="isSubmitted && !formGroup.controls.bezugsperson_email.valid" class="error-message">Bitte korrekte
+            E-Mail-Adresse eingeben.</p>
 
         <ion-item>
             <ion-label stacked>E-Mail-Text:</ion-label>
-            <ion-textarea [(ngModel)]="bezugsperson_emailtext" type="text" rows="1"></ion-textarea>
+            <ion-textarea [(ngModel)]="bezugsperson_emailtext" formControlName="bezugsperson_emailtext" rows="1" placeholder="Kein Eintrag vorhanden">
+            </ion-textarea>
         </ion-item>
-    </ion-list>
 
-    <ion-list>
         <ion-item>
             <ion-label stacked>Name der Fachperson:</ion-label>
-            <ion-input [(ngModel)]="fachperson_inputtext" type="text"></ion-input>
+            <ion-input [(ngModel)]="fachperson_inputtext" formControlName="fachperson_inputtext" type="text" placeholder="Kein Eintrag vorhanden">
+            </ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label stacked>Praxis-Telefonnummer:</ion-label>
-            <ion-input [(ngModel)]="fachperson_telefonnummer" type="tel" pattern="[0-9]+"></ion-input>
+            <ion-input [(ngModel)]="fachperson_telefonnummer" formControlName="fachperson_telefonnummer" type="tel" placeholder="Kein Eintrag vorhanden">
+            </ion-input>
         </ion-item>
+        <p *ngIf="isSubmitted && !formGroup.controls.fachperson_telefonnummer.valid" class="error-message">Bitte
+            korrekte Telefon Nummer eingeben.</p>
 
         <ion-item>
             <ion-label stacked>E-Mail-Adresse:</ion-label>
-            <ion-input [(ngModel)]="fachperson_email" type="email" pattern="[A-Za-z0-9._%+-]{2,}@[a-zA-Z-_.]{2,}[.]{1}[a-zA-Z]{2,}" ></ion-input>
+            <ion-input [(ngModel)]="fachperson_email" formControlName="fachperson_email" type="email" placeholder="Kein Eintrag vorhanden">
+            </ion-input>
         </ion-item>
+        <p *ngIf="isSubmitted && !formGroup.controls.fachperson_email.valid" class="error-message">Bitte korrekte
+            E-Mail-Adresse eingeben.</p>
 
         <ion-item>
             <ion-label stacked>E-Mail-Text:</ion-label>
-            <ion-textarea [(ngModel)]="fachperson_emailtext" type="text"></ion-textarea>
+            <ion-textarea [(ngModel)]="fachperson_emailtext" formControlName="fachperson_emailtext" rows="1" placeholder="Kein Eintrag vorhanden">
+            </ion-textarea>
         </ion-item>
-    </ion-list>
+
+    </form>
 
 </ion-content>
 
