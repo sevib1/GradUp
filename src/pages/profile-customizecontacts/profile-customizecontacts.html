@@ -24,7 +24,8 @@
 
         <ion-item>
             <ion-label stacked>Telefonnummer:</ion-label>
-            <ion-input [(ngModel)]="bezugsperson_telefonnummer" formControlName="bezugsperson_telefonnummer" type="tel" placeholder="Kein Eintrag vorhanden">
+            <ion-input [(ngModel)]="bezugsperson_telefonnummer" formControlName="bezugsperson_telefonnummer" type="tel"
+                placeholder="Kein Eintrag vorhanden">
             </ion-input>
         </ion-item>
         <p *ngIf="isSubmitted && !formGroup.controls.bezugsperson_telefonnummer.valid" class="error-message">Bitte
@@ -32,7 +33,8 @@
 
         <ion-item>
             <ion-label stacked>SMS-Text:</ion-label>
-            <ion-textarea [(ngModel)]="bezugsperson_smstext" formControlName="bezugsperson_smstext" rows="1" placeholder="Kein Eintrag vorhanden">
+            <ion-textarea [(ngModel)]="bezugsperson_smstext" formControlName="bezugsperson_smstext" rows="1"
+                placeholder="Kein Eintrag vorhanden">
             </ion-textarea>
         </ion-item>
 
@@ -46,19 +48,22 @@
 
         <ion-item>
             <ion-label stacked>E-Mail-Text:</ion-label>
-            <ion-textarea [(ngModel)]="bezugsperson_emailtext" formControlName="bezugsperson_emailtext" rows="1" placeholder="Kein Eintrag vorhanden">
+            <ion-textarea [(ngModel)]="bezugsperson_emailtext" formControlName="bezugsperson_emailtext" rows="1"
+                placeholder="Kein Eintrag vorhanden">
             </ion-textarea>
         </ion-item>
 
         <ion-item>
             <ion-label stacked>Name der Fachperson:</ion-label>
-            <ion-input [(ngModel)]="fachperson_inputtext" formControlName="fachperson_inputtext" type="text" placeholder="Kein Eintrag vorhanden">
+            <ion-input [(ngModel)]="fachperson_inputtext" formControlName="fachperson_inputtext" type="text"
+                placeholder="Kein Eintrag vorhanden">
             </ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label stacked>Praxis-Telefonnummer:</ion-label>
-            <ion-input [(ngModel)]="fachperson_telefonnummer" formControlName="fachperson_telefonnummer" type="tel" placeholder="Kein Eintrag vorhanden">
+            <ion-input [(ngModel)]="fachperson_telefonnummer" formControlName="fachperson_telefonnummer" type="tel"
+                placeholder="Kein Eintrag vorhanden">
             </ion-input>
         </ion-item>
         <p *ngIf="isSubmitted && !formGroup.controls.fachperson_telefonnummer.valid" class="error-message">Bitte
@@ -74,7 +79,8 @@
 
         <ion-item>
             <ion-label stacked>E-Mail-Text:</ion-label>
-            <ion-textarea [(ngModel)]="fachperson_emailtext" formControlName="fachperson_emailtext" rows="1" placeholder="Kein Eintrag vorhanden">
+            <ion-textarea [(ngModel)]="fachperson_emailtext" formControlName="fachperson_emailtext" rows="1"
+                placeholder="Kein Eintrag vorhanden">
             </ion-textarea>
         </ion-item>
 

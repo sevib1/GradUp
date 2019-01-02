@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ProfilePage } from '../profile/profile';
 
 import { Storage } from '@ionic/storage';
-import { Validators, AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { validatePhoneIfNotEmpty, validateEmailIfNotEmpty } from '../../services/validators';
 
 @IonicPage()

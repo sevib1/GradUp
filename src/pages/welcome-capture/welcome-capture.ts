@@ -16,7 +16,6 @@ import * as Globals from '../../../typings/globals';
 
 
 //Accordion
-import { Http } from '@angular/http';
 import { MyResource } from '../../resources/occupation';
 import { validateWeight, validateWeightGains } from '../../services/validators';
 
@@ -115,43 +114,43 @@ export class WelcomeCapturePage {
     let MessageDate = new Date();
     this.storage.set(this.key, this.inputtext);
     this.storage.set(this.key1, this.relationship_status);
+    this.storage.set('userType', this.userType);
     this.storage.set(this.key2, this.hobbies_status);
     this.storage.set(this.key3, this.pet_input);
     this.storage.set(this.key4, this.pet_status);
     this.storage.set(this.key5, this.residential_input);
     this.storage.set(this.key6, this.residential_status);
-    this.storage.get(this.key2).then((value) => {
-      console.log('Status Marriage', value);
-    });
 
-    //#MIDATA persistance
-    this.midataService.save(new BodyWeight(+this.currentWeight, MessageDate.toISOString()));
+    // #MIDATA persistance: add Weight
+    var saveWeight = this.midataService.save(new BodyWeight(+this.currentWeight, MessageDate.toISOString()));
 
-    //#MIDATA persistance: adds new Goal 
+    // #MIDATA persistance: add Goal 
     let goal = new Goal(this.weightGains);
-    this.midataService.save(goal)
+    let saveGoal = this.midataService.save(goal)
       .then((response) => {
-        // we can now access the midata response
-        console.log("juhu wir speichern auf midata!!!:D");
-        this.notificationService.createWeeklyWeightNotification();
-
-      }).catch((error) => {
+        console.log("goal saved", response);
+      })
+      .catch((error) => {
         console.error("Error in save request:", error);
       });
 
-    //#MIDATA persistance: adds new Work Occupation 
+    // #MIDATA persistance: add Occupation 
     let occupation = new MyResource(this.userType);
-    this.midataService.save(occupation)
+    let saveOccupation = this.midataService.save(occupation)
       .then((response) => {
-        // we can now access the midata response
-        console.log("juhu wir speichern auf midata!!!:D");
-        this.notificationService.createWeeklyWeightNotification();
-
-      }).catch((error) => {
+        console.log("occupation saved", response);
+      })
+      .catch((error) => {
         console.error("Error in save request:", error);
       });
 
-    // TODO: should only redirect after save successful...
-    this.gotoWelcomeContactPage();
+    Promise.all([
+      saveWeight,
+      saveGoal,
+      saveOccupation
+    ]).then(() => {
+      this.notificationService.createWeeklyWeightNotification();
+      this.gotoWelcomeContactPage();
+    });
   }
 }

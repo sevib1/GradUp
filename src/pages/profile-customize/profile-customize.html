@@ -9,75 +9,138 @@
 </ion-header>
 
 <ion-content padding>
-    <p></p>
-    <h3 ion-text color="primary">Obligatorisch:</h3>
-    <p>Benutzername:</p>
-    <ion-item id="textfield">
-        <ion-input [(ngModel)]="inputtext" type="text" value=""></ion-input>
-    </ion-item>
-    <p id="text-benutzername">Wählen Sie einen Namen, mit welchem Sie in Zukunft durch GradUp angesprochen werden möchten.</p>
-    
-    <!--the ion-card and its content in this view is only for testing purposes-->
-    <ion-card *ngFor="let measure of weightData">
-        <ion-card-header>
-            {{measure.date}}
-        </ion-card-header>
+        <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
 
-        <ion-card-content>
-            {{measure.value}}
-        </ion-card-content>
-    </ion-card>
+                <p></p>
+        <p>Hier können Sie ihr Profil anpassen.</p>
+        
+               <ion-item>
+               <ion-label stacked>Benutzername:</ion-label>
+                    <ion-input
+                    [(ngModel)]="inputtext"
+                    formControlName="username"
+                    type="text"
+                    value="">
+                </ion-input>
+                </ion-item>
+                <p *ngIf="isSubmitted && !formGroup.controls.username.valid" class="error-message">
+                    Bitte einen Benutzernamen eingeben.
+                </p>
+        
+                
+                <ion-item id="select-popover">
+                        <ion-label stacked>Ihr Tätigkeitsbereich:</ion-label>
+                    
+                    <ion-select interface="popover" [(ngModel)]="userType" formControlName="occupationM">
+                        <ion-option value="1">Sitzende Tätigkeit</ion-option>
+                        <ion-option value="2">Handwerkliche Tätigkeit</ion-option>
+                        <ion-option value="3">Student/-in</ion-option>
+                        <ion-option value="4">Hausfrau/-mann</ion-option>
+                        <ion-option value="5">Pflegende oder betreuende Tätigkeit</ion-option>
+                    </ion-select>
+                </ion-item>
+                <p *ngIf="isSubmitted && !formGroup.controls.occupationM.valid" class="error-message">
+                    Bitte wählen Sie einen Tätigkeitsbereich.
+                </p>               
+        
+            </form>
+        
+            <h3 ion-text color="primary">Optional:</h3>
 
-    <!--{{formatDate(measure.date, 'HH:mm')}}-->
-
-    <!--test reference-->
-    <ion-card>
-        <ion-card-header>test</ion-card-header>
-        <ion-card-content>testeintrag</ion-card-content>
-    </ion-card>
-
-    <p>Tätigkeit:</p>
-    <ion-item id="select-popover">
-        <ion-label>Wählen Sie Ihr Tätigkeit:</ion-label>
-        <ion-select interface="popover" [(ngModel)]="userType">
-          <ion-option value="1">Sitzende Tätigkeit</ion-option>
-          <ion-option value="2">Handwerkliche Tätigkeit</ion-option>
-          <ion-option value="3">Student/in</ion-option>
-          <ion-option value="4">Hausfrau/mann</ion-option>
-          <ion-option value="5">Pflegende oder betreuende Tätigkeit</ion-option>
-        </ion-select>
-    </ion-item>
-
-      <!--
-    <h3 ion-text color="primary">Optional:</h3>
-    <p>Beziehungsstatus</p>
-    <ion-icon name="ios-arrow-down"></ion-icon>
-    <p>Wohnsituation</p>
-    <ion-icon name="ios-arrow-down"></ion-icon>
-    <p>Haustiere</p>
-
-    <ion-row radio-group [(ngModel)]="sexe">
-        <ion-col>
-          <ion-item id="radio-group2">
-            <ion-label>Weiblich</ion-label>
-            <ion-radio value="homme"></ion-radio>
-          </ion-item>
-        </ion-col>
-        <ion-col>
-          <ion-item id="radio-group2">
-           <ion-label>Männlich</ion-label>
-            <ion-radio value="femme"></ion-radio>
-          </ion-item>
-        </ion-col>
-    </ion-row>
--->
-</ion-content>
-
-
-    <ion-footer no-shadow>
-        <ion-toolbar position="bottom">
-            <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="saveData(); gotoProfilePage();">
-                Speichern
-            </button>
-        </ion-toolbar>
-    </ion-footer>
+        <ion-label stacked>Ihr Beziehungsstatus:</ion-label>
+            <accordion-list item-left title="Beziehungsstatus">
+                    <ion-list radio-group [(ngModel)]="relationship_status">
+                    <ion-item>
+                        <ion-label>ledig</ion-label>
+                        <ion-radio value="single" item-left></ion-radio>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>in einer Beziehung</ion-label>
+                        <ion-radio value="relationship" item-left></ion-radio>
+                    </ion-item>
+                </ion-list>
+            </accordion-list>
+        
+            <accordion-list title="Wohnsituation">
+                <ion-grid>
+                    <ion-row radio-group [(ngModel)]="residential_status">
+                        <ion-col>
+                            <ion-item>
+                                <ion-label>Ich wohne allein</ion-label>
+                                <ion-radio value="alone" item-left></ion-radio>
+                            </ion-item>
+                        </ion-col>
+                        <ion-row>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-label>Ich wohne mit</ion-label>
+                                    <ion-radio value="live" item-left></ion-radio>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-input [(ngModel)]="residential_input" id="input-number" type="number" item-left></ion-input>
+                                    <ion-label item-right>Person/en zusammen</ion-label>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                    </ion-row>
+                </ion-grid>
+            </accordion-list>
+        
+            <accordion-list title="Haustiere">
+                <ion-grid>
+                    <ion-row radio-group [(ngModel)]="pet_status">
+                        <ion-row>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-label>Ja,</ion-label>
+                                    <ion-radio value="yes" item-left></ion-radio>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col>
+                                <ion-input [(ngModel)]="pet_input" class="input-haustiere" type="text" placeholder="Welche"
+                                    item-right></ion-input>
+                            </ion-col>
+                        </ion-row>
+                        <ion-col>
+                            <ion-item>
+                                <ion-label>Nein</ion-label>
+                                <ion-radio value="no" item-left></ion-radio>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </accordion-list>
+        
+            <accordion-list title="Hobbies">
+                <ion-item no-lines>
+                    <ion-input [(ngModel)]="hobbies_status" class="input-hobbies" type="text" placeholder="Bitte ergänzen Sie Ihre Hobbies im Eingabefeld"></ion-input>
+                </ion-item>
+            </accordion-list>
+        
+            <p class="save-text">
+                * Der Benutzername, der Beziehungsstatus, die Wohnsituation, die Haustiere und die Hobbies werden lokal auf
+                Ihrem Smartphone gespeichert.
+            </p>
+        
+        </ion-content>
+        
+        <ion-footer>
+                <ion-row>
+                    <ion-col col-4>
+                        <ion-buttons left class="footer-no-borders">
+                            <button ion-button icon-only (click)="gotoProfilePage()">
+                                <ion-icon name="arrow-back"></ion-icon>
+                            </button>
+                        </ion-buttons>
+                    </ion-col>
+                    <ion-col col-2 left>
+                        <ion-buttons no-shadow>
+                            <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="saveData()">
+                                Speichern
+                            </button>
+                        </ion-buttons>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
