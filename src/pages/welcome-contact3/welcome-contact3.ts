@@ -5,6 +5,7 @@ import { WelcomeContactPage } from '../welcome-contact/welcome-contact';
 
 import { Storage } from '@ionic/storage';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { validatePhoneIfNotEmpty, validateEmailIfNotEmpty } from '../../services/validators';
 
 /**
  * Generated class for the WelcomeContact3Page page.
@@ -20,56 +21,48 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 })
 export class WelcomeContact3Page {
 
-    //Key Value Storage
-    fachperson_inputtext:string;
-    key:string="fachperson_inputtext";
-  
-    fachperson_telefonnummer:any;
-    key1:any="fachperson_telefonnummer";
-  
-    fachperson_email:string;
-    key3:string="fachperson_email";
-  
-    fachperson_emailtext:string;
-    key4:string="fachperson_emailtext";
-  
-    //For Validation of Fields
-    formgroup:FormGroup;
-    inputtext:AbstractControl;
-    telefonnummer:AbstractControl;
-    email:AbstractControl;
-    emailtext:AbstractControl;
+  fachperson_inputtext: string;
+  fachperson_telefonnummer: any;
+  fachperson_email: string;
+  fachperson_emailtext: string;
 
-  constructor(public navCtrl: NavController, 
-              public navParams: NavParams,
-              private storage: Storage,
-              private formBuilder: FormBuilder) {
+  isSubmitted: boolean = false;
+  formGroup: FormGroup;
 
-      //Validation of Inputfields
-      this.formgroup = formBuilder.group({
-      inputtext:['', Validators.required],
-      telefonnummer:['', Validators.required],
-      email:['', Validators.required],
-      emailtext:['', Validators.required]
-      });
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private storage: Storage,
+    formBuilder: FormBuilder
+  ) {
 
-      this.inputtext = this.formgroup.contains['inputtext'];
-      this.telefonnummer = this.formgroup.contains['telefonnummer'];
-      this.email = this.formgroup.contains['email'];
-      this.emailtext = this.formgroup.contains['emailtext'];
+    this.formGroup = formBuilder.group({
+      inputtext: [''],
+      telefonnummer: ['', validatePhoneIfNotEmpty],
+      email: ['', validateEmailIfNotEmpty],
+      emailtext: ['']
+    });
   }
 
-    //Lokal Storage  
-    saveData() {
-      this.storage.set(this.key, this.fachperson_inputtext);
-      this.storage.set(this.key1, this.fachperson_telefonnummer);
-      this.storage.set(this.key3, this.fachperson_email);
-      this.storage.set(this.key4, this.fachperson_emailtext);
-      /**For testing 
-      this.storage.get(this.key), this.storage.get(this.key1).then((values) => {
-        console.log('Your username is', values);
-      }); */
+  //Lokal Storage  
+  saveData() {
+
+    this.isSubmitted = true;
+
+    if (!this.formGroup.valid) {
+      return
     }
+
+    // TODO: move to separate service...
+    Promise.all([
+      this.storage.set('fachperson_inputtext', this.fachperson_inputtext),
+      this.storage.set('fachperson_telefonnummer', this.fachperson_telefonnummer),
+      this.storage.set('fachperson_email', this.fachperson_email),
+      this.storage.set('fachperson_emailtext', this.fachperson_emailtext)
+    ]).then(() => {
+      this.gotoWelcomeConnectPage();
+    })
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WelcomeContact3Page');
