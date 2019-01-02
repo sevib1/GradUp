@@ -6,6 +6,8 @@ import { MidataService } from '../../services/MidataService';
 import { Goal } from '../../resources/goal';
 import * as Globals from '../../../typings/globals';
 import { Storage } from '@ionic/storage';
+import { FormBuilder, Validators } from '@angular/forms';
+import { validateWeight, validateWeightGains } from '../../services/validators';
 
 /**
  * Generated class for the WeightReminderNotificationPage page.
@@ -23,10 +25,13 @@ export class WeightReminderNotificationPage {
   state = 'FORM';
   message: string;
   currentWeight: any;
-  currentGoal: any;
+  weightGains: any;
   previousWeight: any;
   previousGoal: any;
   userName: any;
+
+  formGroup: any;
+  isSubmitted: boolean;
 
 
   constructor(
@@ -34,8 +39,13 @@ export class WeightReminderNotificationPage {
     public navParams: NavParams,
     private midataService: MidataService,
     private storage: Storage,
-    private zone: NgZone
+    private zone: NgZone,
+    formBuilder: FormBuilder
   ) {
+    this.formGroup = formBuilder.group({
+      currentWeight: ['', validateWeight],
+      weightGains: ['', validateWeightGains]
+    });
   }
 
   ionViewDidLoad() {
@@ -94,6 +104,12 @@ export class WeightReminderNotificationPage {
   }
 
   saveData() {
+    this.isSubmitted = true;
+
+    if (!this.formGroup.valid) {
+      return
+    }
+
     let a = parseFloat(this.currentWeight);
     let b = parseFloat(this.previousWeight);
     if (a === NaN || b === NaN) {
@@ -122,8 +138,7 @@ export class WeightReminderNotificationPage {
 
     let saveWeight = this.midataService.save(new BodyWeight(this.currentWeight, new Date().toISOString()))
 
-    let goal = new Goal(this.currentGoal);
-    //goal.addGoal(this.currentGoal);
+    let goal = new Goal(this.weightGains);
     let saveGoal = this.midataService.save(goal);
 
     // let saveWeight = new Promise<Resource>((resolve) => {
