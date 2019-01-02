@@ -1,5 +1,5 @@
 <ion-header>
-    
+
     <ion-navbar hideBackButton="true">
         <ion-title>
             <title-logo text="Profil erfassen"></title-logo>
@@ -9,39 +9,59 @@
 </ion-header>
 
 <ion-content padding>
-   <form [formGroup]="formgroup" (ngSubmit)="onSubmit()"> 
-    <p></p>
-    <h3 ion-text color="primary">Obligatorisch:</h3>
-    <p>Benutzername:</p>
-    <ion-item id="textfield">
-        <ion-input [(ngModel)]="inputtext" formControlName="username" type="text" value=""></ion-input>
-    </ion-item>
-    <p id="text-benutzername">Wählen Sie einen Namen, mit dem Sie in Zukunft durch GradUp angesprochen werden möchten.</p>
-    
-    <p>Tätigkeit:</p>
-    <ion-item id="select-popover">
-        <ion-label>Wählen Sie einen Tätigkeitsbereich, der am besten zutrifft:</ion-label>
-        <ion-select interface="popover" [(ngModel)]="userType" formControlName="occupationM">
-          <ion-option value="1">Sitzende Tätigkeit</ion-option>
-          <ion-option value="2">Handwerkliche Tätigkeit</ion-option>
-          <ion-option value="3">Student/-in</ion-option>
-          <ion-option value="4">Hausfrau/-mann</ion-option>
-          <ion-option value="5">Pflegende oder betreuende Tätigkeit</ion-option>
-        </ion-select>
-    </ion-item>
 
-    <p>Aktuelles Gewicht:</p>
-    <ion-item id="textfield"> 
-        <ion-input [(ngModel)]="currentWeight" formControlName="bodyweight" type="number" value=""></ion-input>
-        <ion-label color="primary" class="fixedLabel" fixed>kg</ion-label>
-    </ion-item>
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
 
-    <p>Mein Wochenfortschritt:</p>
-    <ion-item id="textfield">  
-        <ion-input [(ngModel)]="weightGain" type="number" formControlName="weightGains" maxlenght="4" pattern="[0-9]*" min="500" max="1500" value=""></ion-input>
-        <ion-label color="primary" class="fixedLabel" fixed>(500-1500gr)</ion-label>
-    </ion-item>
-    
+        <p></p>
+
+        <h3 ion-text color="primary">Obligatorisch:</h3>
+
+        <p>Benutzername:</p>
+        <ion-item id="textfield">
+            <ion-input [(ngModel)]="inputtext" formControlName="username" type="text" value=""></ion-input>
+        </ion-item>
+        <p id="text-benutzername">
+            Wählen Sie einen Namen, mit dem Sie in Zukunft durch GradUp angesprochen werden
+            möchten.
+        </p>
+        <p *ngIf="isSubmitted && !formGroup.controls.username.valid" class="error-message">
+            Bitte einen Benutzernamen eingeben.
+        </p>
+
+        <p>Tätigkeit:</p>
+        <ion-item id="select-popover">
+            <ion-label>Wählen Sie einen Tätigkeitsbereich, der am besten zutrifft:</ion-label>
+            <ion-select interface="popover" [(ngModel)]="userType" formControlName="occupationM">
+                <ion-option value="1">Sitzende Tätigkeit</ion-option>
+                <ion-option value="2">Handwerkliche Tätigkeit</ion-option>
+                <ion-option value="3">Student/-in</ion-option>
+                <ion-option value="4">Hausfrau/-mann</ion-option>
+                <ion-option value="5">Pflegende oder betreuende Tätigkeit</ion-option>
+            </ion-select>
+        </ion-item>
+        <p *ngIf="isSubmitted && !formGroup.controls.occupationM.valid" class="error-message">
+            Bitte wählen Sie einen Tätigkeitsbereich.
+        </p>
+
+        <p>Aktuelles Gewicht:</p>
+        <ion-item id="textfield">
+            <ion-input [(ngModel)]="currentWeight" formControlName="currentWeight" type="number" value="">
+            </ion-input>
+            <ion-label color="primary" class="fixedLabel" fixed>kg</ion-label>
+        </ion-item>
+        <p *ngIf="isSubmitted && !formGroup.controls.currentWeight.valid" class="error-message">
+            Bitte das aktuelle Gewicht korrekt eingeben.
+        </p>
+
+        <p>Mein Wochenfortschritt:</p>
+        <ion-item id="textfield">
+            <ion-input [(ngModel)]="weightGains" formControlName="weightGains" type="number" value="">
+            </ion-input>
+            <ion-label color="primary" class="fixedLabel" fixed>(500-1500gr)</ion-label>
+        </ion-item>
+        <p *ngIf="isSubmitted && !formGroup.controls.weightGains.valid" class="error-message">Bitte den
+            Wochenfortschritt korrekt eingeben.</p>
+
     </form>
 
     <h3 ion-text color="primary">Optional:</h3>
@@ -58,6 +78,7 @@
             </ion-item>
         </ion-list>
     </accordion-list>
+
     <accordion-list title="Wohnsituation">
         <ion-grid>
             <ion-row radio-group [(ngModel)]="residential_status">
@@ -68,57 +89,65 @@
                     </ion-item>
                 </ion-col>
                 <ion-row>
-                  <ion-col>
-                      <ion-item>
-                          <ion-label>Ich wohne mit</ion-label>
-                          <ion-radio value="live" item-left></ion-radio>
-                      </ion-item>
-                  </ion-col>
-                  <ion-col>   
-                      <ion-item>
-                          <ion-input [(ngModel)]="residential_input" id="input-number" type="number" item-left></ion-input>
-                          <ion-label item-right>Person/en zusammen</ion-label>
-                      </ion-item>
-                  </ion-col>
+                    <ion-col>
+                        <ion-item>
+                            <ion-label>Ich wohne mit</ion-label>
+                            <ion-radio value="live" item-left></ion-radio>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col>
+                        <ion-item>
+                            <ion-input [(ngModel)]="residential_input" id="input-number" type="number" item-left></ion-input>
+                            <ion-label item-right>Person/en zusammen</ion-label>
+                        </ion-item>
+                    </ion-col>
                 </ion-row>
             </ion-row>
         </ion-grid>
     </accordion-list>
+
     <accordion-list title="Haustiere">
         <ion-grid>
             <ion-row radio-group [(ngModel)]="pet_status">
-              <ion-row>
-                <ion-col col-6>
-                    <ion-item>
-                      <ion-label>Ja,</ion-label>
-                      <ion-radio value="yes" item-left></ion-radio>
-                    </ion-item>
-                </ion-col>
+                <ion-row>
+                    <ion-col col-6>
+                        <ion-item>
+                            <ion-label>Ja,</ion-label>
+                            <ion-radio value="yes" item-left></ion-radio>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col>
+                        <ion-input [(ngModel)]="pet_input" class="input-haustiere" type="text" placeholder="Welche"
+                            item-right></ion-input>
+                    </ion-col>
+                </ion-row>
                 <ion-col>
-                    <ion-input [(ngModel)]="pet_input" class="input-haustiere" type="text" placeholder="Welche" item-right></ion-input>
-                </ion-col>
-              </ion-row>  
-                <ion-col>
                     <ion-item>
-                      <ion-label>Nein</ion-label>
-                      <ion-radio value="no" item-left></ion-radio>
+                        <ion-label>Nein</ion-label>
+                        <ion-radio value="no" item-left></ion-radio>
                     </ion-item>
                 </ion-col>
             </ion-row>
         </ion-grid>
     </accordion-list>
+
     <accordion-list title="Hobbies">
-            <ion-item no-lines>
-                <ion-input [(ngModel)]="hobbies_status" class="input-hobbies" type="text" placeholder="Bitte ergänzen Sie Ihre Hobbies im Eingabefeld"></ion-input>
-            </ion-item>
+        <ion-item no-lines>
+            <ion-input [(ngModel)]="hobbies_status" class="input-hobbies" type="text" placeholder="Bitte ergänzen Sie Ihre Hobbies im Eingabefeld"></ion-input>
+        </ion-item>
     </accordion-list>
+
+    <p class="save-text">
+        * Der Benutzername, der Beziehungsstatus, die Wohnsituation, die Haustiere und die Hobbies werden lokal auf
+        Ihrem Smartphone gespeichert.
+    </p>
 
 </ion-content>
 
-    <ion-footer no-shadow>
-        <ion-toolbar position="bottom"> 
-            <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="saveData(); gotoWelcomeContactPage();">
-                Speichern
-            </button>
-        </ion-toolbar>
-    </ion-footer>
+<ion-footer no-shadow>
+    <ion-toolbar position="bottom">
+        <button ion-button [color]="primary" [outline]="false" [round]="true" (click)="saveData()">
+            Speichern
+        </button>
+    </ion-toolbar>
+</ion-footer>

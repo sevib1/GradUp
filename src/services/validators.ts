@@ -18,3 +18,26 @@ export function validateEmailIfNotEmpty(control: AbstractControl) {
   console.debug('validateEmailIfNotEmpty()', control.value, result);
   return result;
 }
+
+export function validateWeight(control: AbstractControl) {
+  const validateFn = Validators.compose([
+    Validators.required,
+    Validators.pattern(/^\d{2}\.\d{1}$/)
+  ]);
+
+  const result = validateFn(control);
+  console.debug('validateWeight()', control.value, result);
+  return result;
+}
+
+export function validateWeightGains(control: AbstractControl) {
+  const validateFn = Validators.compose([
+    Validators.required,
+    Validators.min(500),
+    Validators.max(1500)
+  ]);
+
+  const result = validateFn(control);
+  console.debug('validateWeightGains()', control.value, result);
+  return result;
+}

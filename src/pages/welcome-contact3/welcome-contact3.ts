@@ -4,7 +4,7 @@ import { WelcomeConnectPage } from '../welcome-connect/welcome-connect';
 import { WelcomeContactPage } from '../welcome-contact/welcome-contact';
 
 import { Storage } from '@ionic/storage';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { validatePhoneIfNotEmpty, validateEmailIfNotEmpty } from '../../services/validators';
 
 /**
