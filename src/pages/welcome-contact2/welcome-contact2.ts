@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WelcomeContact3Page } from '../welcome-contact3/welcome-contact3';
 import { WelcomeContactPage } from '../welcome-contact/welcome-contact';
@@ -31,6 +31,7 @@ export class WelcomeContact2Page {
   formGroup: FormGroup; 
 
   constructor(
+    private zone: NgZone,
     public navCtrl: NavController,
     public navParams: NavParams,
     private storage: Storage,
@@ -52,6 +53,9 @@ export class WelcomeContact2Page {
     this.isSubmitted = true;
  
     if (!this.formGroup.valid) {
+      this.zone.run(() => {
+        // force ui repaint
+      });
       return
     }
 

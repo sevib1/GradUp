@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ProfilePage } from '../profile/profile';
 
@@ -31,6 +31,7 @@ export class ProfileCustomizecontactsPage {
   formGroup: FormGroup;
 
   constructor(
+    private zone: NgZone,
     public navCtrl: NavController,
     public navParams: NavParams,
     private storage: Storage,
@@ -103,6 +104,9 @@ export class ProfileCustomizecontactsPage {
     this.isSubmitted = true;
  
     if (!this.formGroup.valid) {
+      this.zone.run(() => {
+        // force ui repaint
+      });
       return
     }
 

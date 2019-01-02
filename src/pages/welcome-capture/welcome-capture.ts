@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WelcomeContactPage } from '../welcome-contact/welcome-contact';
 import { Storage } from '@ionic/storage';
@@ -78,12 +78,13 @@ export class WelcomeCapturePage {
   formGroup: FormGroup;
 
   constructor(
+    private zone: NgZone,
     public navCtrl: NavController,
     public navParams: NavParams,
     private storage: Storage,
     private midataService: MidataService,
     private notificationService: NotificationService,
-    formBuilder: FormBuilder
+    formBuilder: FormBuilder    
   ) {
 
     //Form Validation
@@ -108,6 +109,9 @@ export class WelcomeCapturePage {
     this.isSubmitted = true;
 
     if (!this.formGroup.valid) {
+      this.zone.run(() => {
+        // force ui repaint
+      });
       return
     }
 

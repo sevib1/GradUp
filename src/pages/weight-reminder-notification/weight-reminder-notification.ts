@@ -35,11 +35,11 @@ export class WeightReminderNotificationPage {
 
 
   constructor(
+    private zone: NgZone,
     public navCtrl: NavController,
     public navParams: NavParams,
     private midataService: MidataService,
     private storage: Storage,
-    private zone: NgZone,
     formBuilder: FormBuilder
   ) {
     this.formGroup = formBuilder.group({
@@ -107,6 +107,9 @@ export class WeightReminderNotificationPage {
     this.isSubmitted = true;
 
     if (!this.formGroup.valid) {
+      this.zone.run(() => {
+        // force ui repaint
+      });
       return
     }
 

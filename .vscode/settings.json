@@ -11,6 +11,9 @@
         "**/plugins*": true,
         "**/.sourcemaps*": true
     },
+    "folder-indexing.exclude": [
+        "*\\node_modules\\*"
+    ],
     "editor.tabSize": 2,
     "editor.detectIndentation": true
 }

@@ -14,24 +14,26 @@
         <h1 ion-text color="primary">Willkommen zu GradUp</h1>
     </div>
 
-    <p style="color:red">
-        Für Entwicklung:
-    </p>
-
-    <ion-list class="with-borders">
-        <button ion-item (click)="gotoProfilePage()">
-            <span class="highlight">Zur Profil Seite (Login überspringen)</span>                
-        </button>
-        <button ion-item (click)="gotoWelcomeContactPage()">
-            <span class="highlight">Zur Kontakt erfassen Seite (Login überspringen)</span>                
-        </button>
-        <button ion-item (click)="gotoWelcomeConnectPage()">
-            <span class="highlight">Zur Sensor Seite (Login überspringen)</span>                
-        </button>
-        <button ion-item (click)="gotoTabsPage()">
-            <span class="highlight">Zur Home Seite (Login überspringen)</span>                
-        </button>
-    </ion-list>
+    <!-- anzeigen mit block, ausblenden mit none -->
+    <div style="display: block">
+        <p style="color:red">
+            Für Entwicklung:
+        </p>
+        <ion-list class="with-borders">
+            <button ion-item (click)="gotoProfilePage()">
+                <span class="highlight">Zur Profil Seite (Login überspringen)</span>                
+            </button>
+            <button ion-item (click)="gotoWelcomeContactPage()">
+                <span class="highlight">Zur Kontakt erfassen Seite (Login überspringen)</span>                
+            </button>
+            <button ion-item (click)="gotoWelcomeConnectPage()">
+                <span class="highlight">Zur Sensor Seite (Login überspringen)</span>                
+            </button>
+            <button ion-item (click)="gotoTabsPage()">
+                <span class="highlight">Zur Home Seite (Login überspringen)</span>                
+            </button>
+        </ion-list>
+    </div>
 
     <h3 ion-text color="primary">Was:</h3>
     <p>GradUp ist eine App für an Anorexie erkrankte Personen.</p>
