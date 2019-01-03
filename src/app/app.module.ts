@@ -174,4 +174,13 @@ import { PhotoProvider } from '../providers/photo/photo';
     //PhotoProvider
   ]
 })
-export class AppModule {}
+export class AppModule {
+
+  constructor(private statusBar: StatusBar) {
+        // let status bar overlay webview
+    this.statusBar.overlaysWebView(true);
+
+    // set status bar to white
+    this.statusBar.backgroundColorByHexString('#ffffff');
+  }
+}
