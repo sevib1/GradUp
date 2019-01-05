@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { ProfilePage } from '../profile/profile';
 import { TabsPage } from '../tabs/tabs';
 import { BiovotionConnector, BiovotionSensor, BatteryInformation, SensorDataType, SensorDataEntry, SENSORDATATYPE } from '@ionic-native/biovotion-connector';
@@ -84,6 +84,7 @@ export class WelcomeConnectPage {
     private biovotion: BiovotionConnector,
     private storage: Storage,
     private midataService: MidataService,
+    private alertCtrl: AlertController,
     private toastCtrl: ToastController) {
 
     // set toggle to isConnectedToSensor
@@ -139,8 +140,51 @@ export class WelcomeConnectPage {
 
     } else {
       console.log("about to connect to sensor...");
-      this.connectSensor(); //false -> connect
+      this.askUserPermission();
+      //this.connectSensor(); //false -> connect
     }
+  }
+
+    /**
+   * Popup to ask user for permission to connect the sensor.
+   */
+  askUserPermission(){
+    let alert = this.alertCtrl.create({
+      title: 'Verbindung mit Sensor',
+      subTitle: 'GradUp möchte eine Bluetooth-Verbindung zu Ihrem Biovotion Everion Sensor herstellen.',
+      buttons: [
+        {
+          text: 'Erlauben',
+          handler: () =>{
+          this.connectSensor();
+        }
+      },
+      {
+        text: 'Abbrechen',
+        handler: () =>{
+          this.isToggled = false;
+         let subAlert = this.alertCtrl.create({
+            title: 'Verbindung mit Sensor',
+            subTitle: 'Sie sind nicht einverstanden damit, Ihren Biovotion Everion Sensor mit GradUp zu verbinden. <br>'
+            +'Falls Sie dies zu einem späteren Zeitpunkt trotzdem möchten, können Sie dies in Ihrem Profil problemlos nachholen.',
+            buttons: [
+              {
+                text: 'OK',
+                handler: () => {
+                  //do nothing
+                }
+              }
+            ]
+          });
+          subAlert.present();
+        }
+
+      }
+  ]
+});
+
+alert.present();
+  
   }
 
   /**
