@@ -10,33 +10,45 @@
 
 
 <ion-content class = "no-scroll" padding>
-<form [formGroup]="formgroup" (ngSubmit)="onSubmit()"> 
+<!--<form [formGroup]="formgroup" (ngSubmit)="onSubmit()"> -->
     <br>
     <div class = "JEntryDiv">
         <ion-item>
         <ion-label><b>Datum:</b></ion-label> <!--must be an ion-label here!-->
-        <ion-datetime displayFormat ="DD.MM.YYYY" pickerFormat = "DD MM YYYY" [(ngModel)]="journalEntry.entryDate" formControlName="date" placeholder =""></ion-datetime> 
+        <ion-datetime displayFormat ="DD.MM.YYYY" pickerFormat = "DD MM YYYY" [(ngModel)]="journalEntry.entryDate" placeholder =""></ion-datetime> <!--formControlName="date"-->
         </ion-item>
 
     <!--<input type="date" [ngModel]= "dt" placeholder = "">-->
         <ion-item>
-        <ion-textarea [(ngModel)]="journalEntry.entryText" formControlName="text" placeholder = "Erfassen Sie hier Ihr heutiges Erlebnis." rows ="5"></ion-textarea> <!--[ngModelOptions]="{standalone: true}"-->
+        <ion-textarea [(ngModel)]="journalEntry.entryText" placeholder = "Erfassen Sie hier Ihr heutiges Erlebnis." rows ="5"></ion-textarea> <!--[ngModelOptions]="{standalone: true}" formControlName="text"-->
         </ion-item>
 
     <!--Platzhalter für Foto-->
+
+
     <ion-item no-lines> <!--*ngIf = "myPhoto" alleine funktioniert nicht richtig -> thumbnail wird nicht aktualisiert.-->
         <ion-thumbnail item-start>
             <ion-img src="{{ myPhoto||'assets/imgs/photo_placeholder.jpg' }}" imageViewer="{{ myPhoto||'assets/imgs/photo_placeholder.jpg' }}"></ion-img> <!--[(ngModel)]="journalEntry.entryPhoto" formControlName="photo"-->
         </ion-thumbnail>
     </ion-item>
 
+
+    <ion-fab class = "fab1" #fab1>
+        <button ion-fab mini (click) = "clickMainFAB()"><ion-icon name ="add"></ion-icon></button>
+            <ion-fab-list side ="right">
+                <button ion-fab (click)="takePhoto('camera', fab1)"><ion-icon name = "camera"></ion-icon></button>
+                <button ion-fab (click)="getImage('gallery', fab1)"><ion-icon name = "images"></ion-icon></button>
+            </ion-fab-list>
+    </ion-fab>
+
+
+
     </div>
     <br>
-</form>
+<!--</form>-->
 
 
-    
-    
+
     <div text-left >
         <p>Wie haben Sie sich dabei gefühlt?</p>
         <button ion-button icon-only clear class ="smileyBtn" (click)="addSubjConditionInput(0)" name="happy">
@@ -52,13 +64,7 @@
         </button>
     </div>
 <!--</div>-->
-   <ion-fab class = "fab1" #fab1>
-        <button ion-fab mini (click) = "clickMainFAB()"><ion-icon name ="add"></ion-icon></button>
-            <ion-fab-list>
-                <button ion-fab (click)="takePhoto('camera', fab1)"><ion-icon name = "camera"></ion-icon></button>
-                <button ion-fab (click)="getImage('gallery', fab1)"><ion-icon name = "images"></ion-icon></button>
-            </ion-fab-list>
-    </ion-fab>
+   
 
     
        
@@ -77,7 +83,7 @@
                 </button>
         </ion-buttons>
         
-        <button ion-button class = "saveBtn" [color]="primary" [outline]="false" [round]="true" [disabled]="!formgroup.valid" (click)="saveEntry();">
+        <button ion-button class = "saveBtn" [color]="primary" [outline]="false" [round]="true" [disabled]="!journalEntry.entryDate" (click)="saveEntry();">
             Speichern
         </button>
     </ion-toolbar>

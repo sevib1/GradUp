@@ -4,7 +4,7 @@ import { JournalPage } from '../journal/journal';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
 //Form Validation
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+//import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 
 //import Providers
 import { DatabaseProvider } from '../../providers/database/database';
@@ -31,9 +31,9 @@ import { JournalDeletePage } from '../journal-delete/journal-delete'; //not sure
 export class JournalEntryPage {
 
   //Form Validation 
-  formgroup:FormGroup;
-  date:AbstractControl;
-  text:AbstractControl;
+  //formgroup:FormGroup;
+  //date:AbstractControl;
+  //text:AbstractControl;
   //photo:AbstractControl;
   //smilie:AbstractControl;
 
@@ -72,20 +72,20 @@ export class JournalEntryPage {
     private midataService: MidataService,
     public dbp: DatabaseProvider,
     private camera: Camera,
-    private formBuilder: FormBuilder,
+    //private formBuilder: FormBuilder,
     public events: Events) {
 
     //Form Validation
-    this.formgroup = formBuilder.group({
-      date:['', Validators.required],
-      text:['', Validators.required],
+    //this.formgroup = formBuilder.group({
+      //date:['', Validators.required],
+      //text:['', Validators.required],
       //photo:['', Validators.required]
       //smilie:['', Validators.required]
-    });
+    //});
 
     //controls
-    this.date = this.formgroup.controls['date'];
-    this.text = this.formgroup.controls['text'];
+    //this.date = this.formgroup.controls['date'];
+    //this.text = this.formgroup.controls['text'];
     //this.photo = this.formgroup.controls['photo'];
     //this.smilie = this.formgroup.controls['smilie'];
 
