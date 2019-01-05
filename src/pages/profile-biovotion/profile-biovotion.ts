@@ -4,6 +4,7 @@ import { ProfilePage } from '../profile/profile';
 import { TabsPage } from '../tabs/tabs';
 import { BiovotionConnector, BiovotionSensor, BatteryInformation, SensorDataType, SensorDataEntry, SENSORDATATYPE } from '@ionic-native/biovotion-connector';
 import { Storage } from '@ionic/storage';
+import { ToastController } from 'ionic-angular';
 
 //#MIDATA imports
 import { MidataService } from '../../services/MidataService';
@@ -82,7 +83,8 @@ export class ProfileBiovotionPage {
     public navParams: NavParams, 
     private biovotion: BiovotionConnector,
     private storage: Storage,
-    private midataService: MidataService) {
+    private midataService: MidataService,
+    private toastCtrl: ToastController) {
 
     // set toggle to isConnectedToSensor
     //this.biovotion.isConnected().then((connectionState: boolean) => {
@@ -124,9 +126,9 @@ export class ProfileBiovotionPage {
    */
   handleSensorConnection() {
 
-    this.storage.set(this.key_toggle, this.isToggled);
+    //this.storage.set(this.key_toggle, this.isToggled);
     this.storage.get(this.key_toggle).then((value) => {
-      console.log('storage -> isToggled?:', value);
+      console.log('handleSensorConnection() -> storage -> isToggled?:', value);
     });
 
     console.log("handleSensorConnection() -> sensor connected?:", this.isConnectedToSensor);
@@ -158,8 +160,12 @@ export class ProfileBiovotionPage {
           this.storage.get(this.key_sensor).then((value) => {
           console.log('storage -> isConnectedToSensor?:', value);
           });
+
+          this.storage.set(this.key_toggle, this.isToggled); //in trial
           
           console.log("connectSensor() -> sensor connected?: ", this.isConnectedToSensor);
+          console.log("battery state:", this.biovotion.getBatteryState);
+          this.presentToast();
           //this.isToggled = true;
 
           let dataToRequest: SENSORDATATYPE[] = [];
@@ -219,12 +225,49 @@ export class ProfileBiovotionPage {
           console.log('storage -> isConnectedToSensor?:', value);
           });
 
+      this.storage.set(this.key_toggle, this.isToggled); //in trial
+
       console.log('sensor disconnected' + this.isConnectedToSensor);
        }).catch(error => {
       console.log("Error: " + error);
        });
 
   }
+
+    /**
+   * Present a Toast based on the sensor connection.
+   */
+  public presentToast(){
+    let toastMessage:string="";
+    let toastDuration:number;
+  
+      if(this.isConnectedToSensor){
+        console.log("isConnectedToSensor:?", this.isConnectedToSensor);
+        toastMessage = "Sensor erfolgreich verbunden";
+        toastDuration = 3000;
+      }
+  
+      else{
+        console.log("else");
+        toastMessage = "Sensor konnte nicht verbunden werden. Prüfen Sie u. a., ob bei Ihrem Gerät Bluetooth und GPS aktiviert ist.";
+        toastDuration = 5000;
+      }
+  
+      
+  
+      let toast = this.toastCtrl.create({
+        message: toastMessage,
+        duration: toastDuration,
+        position: 'bottom',
+        cssClass: 'toast' //not working at the moment
+      });
+  
+      toast.onDidDismiss(() => {
+        console.log('Dismissed toast');
+      })
+  
+      toast.present();
+    }
 
   /**
    * save a new heart rate value to Midata.
@@ -325,6 +368,8 @@ export class ProfileBiovotionPage {
       }
       );
   }
+
+
 
 
   public gotoTabsPage() {
