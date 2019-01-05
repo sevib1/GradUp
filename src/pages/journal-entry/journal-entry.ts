@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Events } from 'ionic-angular';
 import { JournalPage } from '../journal/journal';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
@@ -65,6 +65,16 @@ export class JournalEntryPage {
    */
   myPhoto:any;
 
+  /**
+   * For popup ionViewCanLeave
+   */
+  showAlertMessage:boolean;
+
+  /**
+   * For popup ionViewCanLeave
+   */
+  backBtnClicked:boolean;
+
 
   
   constructor(public navCtrl: NavController, 
@@ -72,6 +82,7 @@ export class JournalEntryPage {
     private midataService: MidataService,
     public dbp: DatabaseProvider,
     private camera: Camera,
+    private alertCtrl: AlertController,
     //private formBuilder: FormBuilder,
     public events: Events) {
 
@@ -94,6 +105,9 @@ export class JournalEntryPage {
 
     //#MIDATA
     this.subjectiveConditionData = new Array<{ date: Date, value: number }>();
+
+    this.showAlertMessage = true;
+    this.backBtnClicked = false;
   
   }
 
@@ -107,6 +121,7 @@ export class JournalEntryPage {
     //this.journalEntryId = this.navParams.data; //-> fetches data from "journal-deletePage" --> do not delete!, otherwise delete won't work properly
    
     this.journalEntry = this.navParams.data;
+
     console.log("ionViewWillEnter() -> journalEntry:", this.journalEntry);
     this.myPhoto = this.journalEntry.entryPhoto;
 
@@ -116,6 +131,46 @@ export class JournalEntryPage {
     //#MIDATA -> load the elements
     this.loadData();
     
+  }
+
+  ionViewCanLeave(){
+
+    //only show this alert, when back btn is clicked
+
+    if(this.backBtnClicked){
+
+    if(this.showAlertMessage){
+      let alert = this.alertCtrl.create({
+        title: 'Achtung!',
+        subTitle: 'Eintrag/Änderungen verwerfen?',
+        buttons: [
+          {
+            text: 'Ja',
+            handler: () =>{
+            alert.dismiss().then(() => {
+              this.exitPage();
+            })
+          }
+        },
+        {
+          text: 'Nein',
+          handler: () => {
+          }
+        }
+    ]
+  });
+
+  alert.present();
+      return false; //return false to avoid the page to be popped up
+  }
+
+}
+
+}
+
+  private exitPage(){
+    this.showAlertMessage = false;
+    this.navCtrl.pop();
   }
 
   /**
@@ -185,6 +240,8 @@ export class JournalEntryPage {
 
         console.log("mental condition: " + mentalCondition);
         }
+
+        this.backBtnClicked = false; //otherwise popup is shown, when user beforhand tried to leave the page.
       
     //this.addMentalCondition();
     //console.log("addMentalCondition is called");
@@ -261,6 +318,7 @@ export class JournalEntryPage {
   }
 
   public gotoJournalPage() {
+    this.backBtnClicked=true;
     this.navCtrl.push(JournalPage, {});
 
     for (let entry of this.subjectiveConditionData){
