@@ -16,18 +16,21 @@
     
     <ion-item>
         <ion-label> Biovotion Everion Sensor </ion-label>
-            <ion-toggle checked = "isToggled" [(ngModel)]="isToggled" (ngModelChange)="handleSensorConnection()" ></ion-toggle>
+            <ion-toggle [(ngModel)]="isToggled" (ngModelChange)="handleSensorConnection()"></ion-toggle> <!--checked = "isToggled"  -->
     </ion-item>
+
+    <!--Entwicklung -> isToggled?: {{ isToggled }}-->
+
+    <ion-footer class="footer-no-borders">
+        <ion-buttons left>                   
+                <p>Sie können diesen Sensor im Profil auch später noch verbinden</p>
+                <p></p>
+        </ion-buttons>
+    </ion-footer>  
         
-
-        <ion-footer class="footer-no-borders">
-                <ion-buttons left>                   
-                        <p>Sie können diesen Sensor im Profil auch später noch verbinden</p>
-                        <p></p>
-                </ion-buttons>
-            </ion-footer>          
-
 </ion-content>
+
+ 
 
 <ion-footer no-shadow>
     <ion-toolbar position="bottom">

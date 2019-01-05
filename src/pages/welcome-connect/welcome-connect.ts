@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ProfilePage } from '../profile/profile';
 import { TabsPage } from '../tabs/tabs';
 import { BiovotionConnector, BiovotionSensor, BatteryInformation, SensorDataType, SensorDataEntry, SENSORDATATYPE } from '@ionic-native/biovotion-connector';
+import { Storage } from '@ionic/storage';
 
 //#MIDATA imports
 import { MidataService } from '../../services/MidataService';
@@ -25,10 +27,31 @@ import * as Globals from '../../../typings/globals';
 })
 export class WelcomeConnectPage {
 
+  /**
+   * name of this sensor
+   */
   sensor1: BiovotionSensor;
+
+  /**
+   * Indicates, if the Biovotion Everion Sensor is connected to GradUp.
+   * Default -> false
+   */
   isConnectedToSensor: boolean = false;
 
-  isToggled: boolean;
+   /**
+   * key for local storage of isConnectedToSensor value
+   */
+  key_sensor:string="isConnectedToSensor";
+
+  /**
+   * toggle value -> true if toggled, false if not
+   */
+  isToggled: boolean = false;
+
+  /**
+   * key for local storage of isToggled value
+   */
+  key_toggle:string="isToggled";
 
   /**
    * not in use at the moment
@@ -55,8 +78,10 @@ export class WelcomeConnectPage {
   stepData: Array<{date: Date, value: number }>;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
     private biovotion: BiovotionConnector,
+    private storage: Storage,
     private midataService: MidataService) {
 
     // set toggle to isConnectedToSensor
@@ -73,6 +98,18 @@ export class WelcomeConnectPage {
     this.stepData = new Array<{ date: Date, value: number }>();
   }
 
+  ionViewWillEnter(){
+    this.storage.get(this.key_toggle).then((value) => {
+      this.isToggled = value;
+      console.log('ionViewWillEnter -> isToggled?:', value);
+    });
+
+    this.storage.get(this.key_sensor).then((value) => {
+      this.isConnectedToSensor = value;
+      console.log('ionViewWillEnter -> isConnectedToSensor?:', value);
+    });
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad WelcomeConnectPage');
     
@@ -86,6 +123,14 @@ export class WelcomeConnectPage {
    * otherwise calls disconnectSensor()
    */
   handleSensorConnection() {
+
+    this.storage.set(this.key_toggle, this.isToggled);
+    this.storage.get(this.key_toggle).then((value) => {
+      console.log('storage -> isToggled?:', value);
+    });
+
+    console.log("handleSensorConnection() -> sensor connected?:", this.isConnectedToSensor);
+
     if(this.isConnectedToSensor) {
       console.log("about to disconnect from sensor...");
       this.disconnectSensor();
@@ -106,9 +151,16 @@ export class WelcomeConnectPage {
        // for now we only want to connect with this specific sensor
        if (this.sensor1.address == "FE:10:32:95:6C:08") {
         this.biovotion.connect(this.sensor1).then(() => {
+
           this.isConnectedToSensor = true;
-          console.log("sensor connected: " + this.isConnectedToSensor);
-          this.isToggled = true;
+
+          this.storage.set(this.key_sensor, this.isConnectedToSensor);
+          this.storage.get(this.key_sensor).then((value) => {
+          console.log('storage -> isConnectedToSensor?:', value);
+          });
+          
+          console.log("connectSensor() -> sensor connected?: ", this.isConnectedToSensor);
+          //this.isToggled = true;
 
           let dataToRequest: SENSORDATATYPE[] = [];
           dataToRequest.push(SENSORDATATYPE.heartRate);
@@ -151,8 +203,7 @@ export class WelcomeConnectPage {
   measureData(){
     console.log("about to measure data...")
 
-    
-
+  
   }
 
   /**
@@ -162,6 +213,12 @@ export class WelcomeConnectPage {
 
     this.biovotion.disconnect().then(() => {
       this.isConnectedToSensor = false;
+
+      this.storage.set(this.key_sensor, this.isConnectedToSensor);
+          this.storage.get(this.key_sensor).then((value) => {
+          console.log('storage -> isConnectedToSensor?:', value);
+          });
+
       console.log('sensor disconnected' + this.isConnectedToSensor);
        }).catch(error => {
       console.log("Error: " + error);
@@ -272,6 +329,10 @@ export class WelcomeConnectPage {
 
   public gotoTabsPage() {
     this.navCtrl.push(TabsPage, {});
+  }
+
+  public gotoProfilePage(){
+    this.navCtrl.push(ProfilePage, {});
   }
 
 }
