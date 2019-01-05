@@ -128,9 +128,39 @@ export class JournalEntryPage {
     this.subjectiveCondition = this.journalEntry.entrySubjCondition;
     console.log("ionViewWillEnter() -> subj. Condition:", this.journalEntry.entrySubjCondition);
 
+    this.dbp.getJournalEntryCollection().then((val) => {
+      if(val == null) {
+        // There's no journalEntry
+        console.log("ionViewWillEnter() -> val == null?:", val);
+        this.showUserInformation();
+      }
+
+      });
+
     //#MIDATA -> load the elements
     this.loadData();
+
     
+    
+  }
+
+  showUserInformation(){
+    let alert = this.alertCtrl.create({
+      title: 'Infos über die Datenspeicherung',
+      subTitle: 'Ihre Text- und Bilddateneinträge werden nur lokal gespeichert und nicht für die Forschung verwendet.' 
+      +'<br> Angaben über Ihren Gemütszustand (Smilie) werden auf MIDATA gespeichert. Diese Angaben sind jedoch optional. ',
+      buttons: [
+        {
+          text: 'OK',
+          handler: () =>{
+          //do nothing
+        }
+      }
+  ]
+});
+
+alert.present();
+  
   }
 
   ionViewCanLeave(){
