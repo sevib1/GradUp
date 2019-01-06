@@ -39,10 +39,17 @@ img {
     p {
         font-size: 1.2em;
         margin: 0.1em 0 1em 0;
-    }    
+    }  
+    
+    p.information-text {
+        font-size: 1.0em;
+        margin: -1em 0 1em 0;
+        font-style: italic;
+        color: #666;
+    }  
 
     p.save-text {
-        font-size: 0.9em;
+        font-size: 1.0em;
         margin: 0 0 1em 0;
         font-style: italic;
         color: #666;

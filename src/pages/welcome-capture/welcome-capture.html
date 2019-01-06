@@ -20,9 +20,8 @@
         <ion-item id="textfield">
             <ion-input [(ngModel)]="inputtext" formControlName="username" type="text" value=""></ion-input>
         </ion-item>
-        <p id="text-benutzername">
-            Wählen Sie einen Namen, mit dem Sie in Zukunft durch GradUp angesprochen werden
-            möchten.
+        <p class="information-text">
+            Wählen Sie einen Namen, mit dem Sie in Zukunft durch GradUp angesprochen werden möchten.
         </p>
         <p *ngIf="isSubmitted && !formGroup.controls.username.valid" class="error-message">
             Bitte einen Benutzernamen eingeben.
@@ -30,7 +29,7 @@
 
         <p>Tätigkeit:</p>
         <ion-item id="select-popover">
-            <ion-label>Wählen Sie einen Tätigkeitsbereich, der am besten zutrifft:</ion-label>
+                <ion-label>     </ion-label>   
             <ion-select interface="popover" [(ngModel)]="userType" formControlName="occupationM">
                 <ion-option value="1">Sitzende Tätigkeit</ion-option>
                 <ion-option value="2">Handwerkliche Tätigkeit</ion-option>
@@ -38,7 +37,11 @@
                 <ion-option value="4">Hausfrau/-mann</ion-option>
                 <ion-option value="5">Pflegende oder betreuende Tätigkeit</ion-option>
             </ion-select>
+      
         </ion-item>
+        <p class="information-text">
+            Wählen Sie einen Tätigkeitsbereich, der am Besten auf Sie zutrifft.
+        </p>
         <p *ngIf="isSubmitted && !formGroup.controls.occupationM.valid" class="error-message">
             Bitte wählen Sie einen Tätigkeitsbereich.
         </p>
@@ -133,7 +136,7 @@
 
     <accordion-list title="Hobbies">
         <ion-item no-lines>
-            <ion-input [(ngModel)]="hobbies_status" class="input-hobbies" type="text" placeholder="Bitte ergänzen Sie Ihre Hobbies im Eingabefeld"></ion-input>
+            <ion-input [(ngModel)]="hobbies_status" class="input-hobbies" type="text" placeholder="Bitte ergänzen Sie Ihre Hobbies:"></ion-input>
         </ion-item>
     </accordion-list>
 

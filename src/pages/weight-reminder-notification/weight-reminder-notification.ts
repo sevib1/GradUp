@@ -94,7 +94,7 @@ export class WeightReminderNotificationPage {
       })
       .catch((error) => {
         console.error('ionViewDidLoad() : failed to load previousGoal', error);
-        this.previousGoal = 0;
+        this.previousGoal = 500;
       });
 
     this.storage.get("username").then(username => {
