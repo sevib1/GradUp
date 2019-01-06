@@ -175,7 +175,7 @@ export class WelcomeConnectPage {
               {
                 text: 'OK',
                 handler: () => {
-                  //do nothing
+                  this.gotoTabsPage();
                 }
               }
             ]
