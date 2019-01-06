@@ -54,6 +54,8 @@ export class ProfileBiovotionPage {
    */
   key_toggle:string="isToggled";
 
+  isPermitted:boolean = false;
+
   /**
    * not in use at the moment
    * Stores the current heart rate.
@@ -141,7 +143,7 @@ export class ProfileBiovotionPage {
     } else {
       console.log("about to connect to sensor...");
       this.askUserPermission();
-      //this.connectSensor(); //false -> connect
+
     }
   }
 
@@ -149,6 +151,8 @@ export class ProfileBiovotionPage {
    * Popup to ask user for permission to connect the sensor.
    */
   askUserPermission(){
+    console.log("askUserPermission() called");
+
     let alert = this.alertCtrl.create({
       title: 'Verbindung mit Sensor',
       subTitle: 'GradUp möchte eine Bluetooth-Verbindung zu Ihrem Biovotion Everion Sensor herstellen.',
@@ -156,7 +160,13 @@ export class ProfileBiovotionPage {
         {
           text: 'Erlauben',
           handler: () =>{
+          console.log("askUserPermission() -> permission ok");
+          this.isPermitted = true;
           this.connectSensor();
+          /*if(!this.isConnectedToSensor)
+          {
+            this.isToggled = false; //in trial
+          }*/
         }
       },
       {
@@ -177,6 +187,9 @@ alert.present();
    * Connects to sensor after toggle change and then navigates to tabsPage.
    */
   connectSensor() {
+    console.log("connectSensor() called");
+
+    //if(this.isPermitted){
 
     this.biovotion.scan().subscribe((sensor: BiovotionSensor) => {
       this.sensor1 = sensor;
@@ -221,7 +234,8 @@ alert.present();
 
           this.navCtrl.push(TabsPage, {});
         }).catch(error => {
-          console.log("Error: " + error);
+          console.log("Connection Error: " + error);
+          this.isToggled = false;  //in trial
         });
 
           //this.measureData();
@@ -229,11 +243,18 @@ alert.present();
       }
 
  
-    },(error) => { console.log(error) });
-      
-     
+    },(error) => { console.log(error);
+      this.isToggled = false; // in trial
+      console.log("scanError: connectSensor() -> is Toggled:?", this.isToggled);
+      this.presentToast();
     
-   //this.navCtrl.push(TabsPage, {});
+    });
+      
+    
+    //this.navCtrl.push(TabsPage, {});
+    //}
+    //console.log("no permission to connect!");
+    //this.isToggled = false; //in trial
   }
 
   measureData(){
@@ -257,7 +278,8 @@ alert.present();
 
       this.storage.set(this.key_toggle, this.isToggled); //in trial
 
-      console.log('sensor disconnected' + this.isConnectedToSensor);
+      console.log('disconnectSensor() -> sensor connected:?', this.isConnectedToSensor);
+      console.log('disconnectSensor() -> isToggled:?', this.isToggled);
        }).catch(error => {
       console.log("Error: " + error);
        });
@@ -279,7 +301,7 @@ alert.present();
   
       else{
         console.log("else");
-        toastMessage = "Sensor konnte nicht verbunden werden. Prüfen Sie u. a., ob bei Ihrem Gerät Bluetooth und GPS aktiviert ist.";
+        toastMessage = "Sensor konnte nicht verbunden werden. Prüfen Sie u. a., ob bei Ihrem Gerät Bluetooth und/oder GPS aktiviert ist.";
         toastDuration = 5000;
       }
   
