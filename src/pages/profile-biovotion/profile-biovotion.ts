@@ -301,7 +301,7 @@ alert.present();
   
       else{
         console.log("else");
-        toastMessage = "Sensor konnte nicht verbunden werden. Prüfen Sie u. a., ob bei Ihrem Gerät Bluetooth und/oder GPS aktiviert ist.";
+        toastMessage = "Sensor konnte nicht verbunden werden. Prüfen Sie u. a., ob bei Ihrem Gerät Bluetooth und/oder GPS aktiviert ist sowie ob der Sensor eingeschaltet ist.";
         toastDuration = 5000;
       }
   

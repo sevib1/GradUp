@@ -54,6 +54,8 @@ export class WelcomeConnectPage {
    */
   key_toggle:string="isToggled";
 
+  isPermitted:boolean = false;
+
   /**
    * not in use at the moment
    * Stores the current heart rate.
@@ -104,12 +106,12 @@ export class WelcomeConnectPage {
   ionViewWillEnter(){
     this.storage.get(this.key_toggle).then((value) => {
       this.isToggled = value;
-      console.log('ionViewWillEnter -> isToggled?:', value);
+      console.log('ionViewWillEnter() -> isToggled?:', value);
     });
 
     this.storage.get(this.key_sensor).then((value) => {
       this.isConnectedToSensor = value;
-      console.log('ionViewWillEnter -> isConnectedToSensor?:', value);
+      console.log('ionViewWillEnter() -> isConnectedToSensor?:', value);
     });
   }
 
@@ -156,6 +158,8 @@ export class WelcomeConnectPage {
         {
           text: 'Erlauben',
           handler: () =>{
+          console.log("askUserPermission() -> permission ok");
+          this.isPermitted = true;
           this.connectSensor();
         }
       },
@@ -191,6 +195,7 @@ alert.present();
    * Connects to sensor after toggle change and then navigates to tabsPage.
    */
   connectSensor() {
+    console.log("connectSensor() called");
 
     this.biovotion.scan().subscribe((sensor: BiovotionSensor) => {
       this.sensor1 = sensor;
@@ -235,7 +240,8 @@ alert.present();
 
           this.navCtrl.push(TabsPage, {});
         }).catch(error => {
-          console.log("Error: " + error);
+          console.log("Connection Error: " + error);
+          this.isToggled = false;  //in trial
         });
 
           //this.measureData();
@@ -243,10 +249,12 @@ alert.present();
       }
 
  
-    },(error) => { console.log(error) });
-      
+    },(error) => { console.log(error);
+    this.isToggled = false; // in trial
+    console.log("scanError: connectSensor() -> is Toggled:?", this.isToggled);
+    this.presentToast();
      
-    
+  });
    //this.navCtrl.push(TabsPage, {});
   }
 
@@ -271,7 +279,8 @@ alert.present();
 
       this.storage.set(this.key_toggle, this.isToggled); //in trial
 
-      console.log('sensor disconnected' + this.isConnectedToSensor);
+      console.log('disconnectSensor() -> sensor connected:?', this.isConnectedToSensor);
+      console.log('disconnectSensor() -> isToggled:?', this.isToggled);
        }).catch(error => {
       console.log("Error: " + error);
        });
@@ -293,7 +302,7 @@ alert.present();
   
       else{
         console.log("else");
-        toastMessage = "Sensor konnte nicht verbunden werden. Prüfen Sie u. a., ob bei Ihrem Gerät Bluetooth und GPS aktiviert ist.";
+        toastMessage = "Sensor konnte nicht verbunden werden. Prüfen Sie u. a., ob bei Ihrem Gerät Bluetooth und/oder GPS aktiviert ist sowie ob der Sensor eingeschaltet ist.";
         toastDuration = 5000;
       }
   
