@@ -25,6 +25,7 @@ export class WeightReminderNotificationPage {
   state = 'FORM';
   message: string;
   currentWeight: any;
+  //currentGoal: any;
   weightGains: any;
   previousWeight: any;
   previousGoal: any;
@@ -79,18 +80,18 @@ export class WeightReminderNotificationPage {
     //const code = 'http://loinc.org|3141-9';
     
     this.midataService
-      .search('Observation/$lastn', {
-        max: 1, 
-        _sort: '-date', 
-        code: code,
-        patient: userId
-      })
+      .search('Goal', { category: 'dietary' })
       .then(response => {
-        (response || []).forEach((measure: Goal) => {
-          let value = measure.getProperty('valueQuantity');
-          this.previousGoal = value['value'];
-          console.log('ionViewDidLoad() : previousGoal:=', this.previousGoal);
-        });
+        let val = response[0].getProperty('target').detailQuantity.value;
+        let unit = response[0].getProperty('target').detailQuantity.unit;
+        //this.currentGoal = `${val}`+ unit;
+        console.log(response);
+        console.log('newest goal', val, unit); 
+        // (response || []).forEach((measure: Goal) => {
+        //   let value = measure.getProperty('detailQuantity');
+        //   this.previousGoal = value['value'];
+        //   console.log('ionViewDidLoad() : previousGoal:=', this.previousGoal);
+        // });
       })
       .catch((error) => {
         console.error('ionViewDidLoad() : failed to load previousGoal', error);
