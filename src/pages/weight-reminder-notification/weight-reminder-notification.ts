@@ -74,28 +74,25 @@ export class WeightReminderNotificationPage {
         this.previousWeight = 0;
       });
 
-    // TODO: how to we get it from the resources/goal.ts object?
-    // new Goal().getDescription().coding.system?
-    const code = 'http://snomed.info/sct|8943002';
-    //const code = 'http://loinc.org|3141-9';
-    
     this.midataService
-      .search('Goal', { category: 'dietary' })
+      .search('Goal', { 
+        //max: 1,
+        //_sort: '-date',
+        category: 'dietary'
+      })
       .then(response => {
-        let val = response[0].getProperty('target').detailQuantity.value;
-        let unit = response[0].getProperty('target').detailQuantity.unit;
-        //this.currentGoal = `${val}`+ unit;
-        console.log(response);
-        console.log('newest goal', val, unit); 
-        // (response || []).forEach((measure: Goal) => {
-        //   let value = measure.getProperty('detailQuantity');
-        //   this.previousGoal = value['value'];
-        //   console.log('ionViewDidLoad() : previousGoal:=', this.previousGoal);
-        // });
+        let goal = response[0];
+        let detailQuantity = goal.getProperty('target').detailQuantity;
+        let val = detailQuantity.value;
+        let unit = detailQuantity.unit;
+        console.log('ionViewDidLoad() : val:=', val, unit);
+
+        this.previousGoal = parseInt(val);
+        console.log('ionViewDidLoad() : previousGoal:=', this.previousGoal);
       })
       .catch((error) => {
         console.error('ionViewDidLoad() : failed to load previousGoal', error);
-        this.previousGoal = 500;
+        this.previousGoal = 0;
       });
 
     this.storage.get("username").then(username => {
@@ -123,9 +120,9 @@ export class WeightReminderNotificationPage {
       return;
     }
 
-    let weightChange = (a - b) * 1000;
-
+    let weightChange = Math.round((a - b) * 1000);
     let message = '';
+
     if (weightChange == this.previousGoal) {
       message = `Super ${this.userName} Du hast Dein Ziel erreicht, mach weiter so!`;
     } else if (weightChange > this.previousGoal) {
