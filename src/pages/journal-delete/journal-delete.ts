@@ -133,6 +133,8 @@ export class JournalDeletePage {
               this.dbp.getJournalEntryCollection().then(valArray => {
                 this.journalEntryCollection = valArray;
               })
+
+              this.gotoJournalPage();
             }
           })
           }

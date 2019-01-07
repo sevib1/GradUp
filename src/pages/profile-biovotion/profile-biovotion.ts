@@ -173,6 +173,7 @@ export class ProfileBiovotionPage {
         text: 'Abbrechen',
         handler: () =>{
           this.isToggled = false;
+          this.gotoProfilePage();
         }
 
       }
