@@ -7,6 +7,7 @@ import { ProfileCustomizePage } from '../profile-customize/profile-customize';
 import { ProfileCustomizecontactsPage } from '../profile-customizecontacts/profile-customizecontacts';
 import { ProfileBiovotionPage } from '../profile-biovotion/profile-biovotion';
 import { JournalPage } from '../journal/journal';
+import { Storage } from '@ionic/storage';
 import { MidataService } from '../../services/MidataService';
 
 
@@ -17,14 +18,34 @@ import { MidataService } from '../../services/MidataService';
 })
 export class ProfilePage {
 
+   /**
+   * Indicates, if the Biovotion Everion Sensor is connected to GradUp.
+   * Default -> false
+   */
+  isConnectedToSensor: boolean = false;
+
+    /**
+   * key for local storage of isConnectedToSensor value
+   */
+  key_sensor:string="isConnectedToSensor";
+
   constructor(
     public app: App,
     private midataService: MidataService,
     public navCtrl: NavController,
     private menuCtrl: MenuController,
     private loadingCtrl: LoadingController,
-    public navParams: NavParams
+    public navParams: NavParams,
+    private storage: Storage
   ) {}
+
+  ionViewWillEnter(){
+
+    this.storage.get(this.key_sensor).then((value) => {
+      this.isConnectedToSensor = value;
+      console.log('profile.ts ionViewWillEnter() -> isConnectedToSensor?:', value);
+    });
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
@@ -58,6 +79,11 @@ export class ProfilePage {
     const user = this.midataService.getUser();
     const result = user && (parseInt(user.id) > 0);
     return result;
+  }
+
+  public checkSensorConnection(): boolean {
+
+    return this.isConnectedToSensor; //true, if connected
   }
 
   // Logout
