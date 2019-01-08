@@ -36,8 +36,8 @@
     <ion-fab class = "fab1" #fab1>
         <button ion-fab mini (click) = "clickMainFAB()"><ion-icon name ="add"></ion-icon></button>
             <ion-fab-list side ="right">
-                <button ion-fab (click)="takePhoto('camera', fab1)"><ion-icon name = "camera"></ion-icon></button>
-                <button ion-fab (click)="getImage('gallery', fab1)"><ion-icon name = "images"></ion-icon></button>
+                <button ion-fab (click)="takePhoto($event, fab1)"><ion-icon name = "camera"></ion-icon></button>
+                <button ion-fab (click)="getImage($event, fab1)"><ion-icon name = "images"></ion-icon></button>
             </ion-fab-list>
     </ion-fab>
 

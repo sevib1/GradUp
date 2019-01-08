@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, FabContainer, Events } from 'ionic-angular';
 import { JournalPage } from '../journal/journal';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
@@ -364,7 +364,7 @@ alert.present();
   /**
    * Gets image from Android photo gallery and fills the image placeholder with the respective image.
    */
-  getImage(){
+  getImage(event, fab1: FabContainer){
 
     const options: CameraOptions = {
       quality: 70,
@@ -372,7 +372,7 @@ alert.present();
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
       saveToPhotoAlbum:false
     }
-    
+    fab1.close(); //close fab btn in the meantime
     this.camera.getPicture(options).then((imageData) => {
      // imageData is either a base64 encoded string or a file URI
      // If it's base64 (DATA_URL):
@@ -390,7 +390,7 @@ alert.present();
   /**
    * Activates the Android camera funtion and fills the image placeholder with the taken picture.
    */
-  takePhoto(){
+  takePhoto(event, fab1: FabContainer){
     const options: CameraOptions = {
       quality: 70,
       destinationType: this.camera.DestinationType.DATA_URL,//this.camera.DestinationType.FILE_URI,
@@ -398,7 +398,8 @@ alert.present();
       mediaType: this.camera.MediaType.PICTURE,
       saveToPhotoAlbum:true
     }
-    
+
+    fab1.close(); //close fab btn in the meantime
     this.camera.getPicture(options).then((imageData) => {
      // imageData is either a base64 encoded string or a file URI
      // If it's base64 (DATA_URL):
