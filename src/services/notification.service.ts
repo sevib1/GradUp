@@ -68,7 +68,7 @@ export class NotificationService {
     };
 
     this.schedule({
-      text: `Hallo {{UserName}}, es sind schon wieder 7 Tage vergangen. Klicke auf diese Nachricht um die neuen Werte aktuelles Gewicht und Wochenfortschritt einzugeben.`,
+      text: `Hallo {{UserName}}, es sind schon wieder 7 Tage vergangen. Klicke auf diese Nachricht, um die neuen Werte Aktuelles Gewicht und Wochenfortschritt einzugeben.`,
       trigger: trigger,
       data: 'ENTER_WEIGHT'
     });

@@ -124,11 +124,11 @@ export class WeightReminderNotificationPage {
     let message = '';
 
     if (weightChange == this.previousGoal) {
-      message = `Super ${this.userName} Du hast Dein Ziel erreicht, mach weiter so!`;
+      message = `Super ${this.userName}, Du hast Dein Ziel erreicht, mach weiter so!`;
     } else if (weightChange > this.previousGoal) {
-      message = `Super ${this.userName} Du hast Dein Ziel übertroffen, mach weiter so!`;
+      message = `Super ${this.userName}, Du hast Dein Ziel übertroffen, mach weiter so!`;
     } else {
-      message = `Schade ${this.userName} leider hast Du Dein Ziel nicht erreicht. Bitte schau nächtste Woche besser zu Dir und Deinem Körper.`;
+      message = `Schade ${this.userName}, leider hast Du Dein Ziel nicht erreicht. Bitte schau nächtste Woche besser zu Dir und Deinem Körper.`;
     }
 
     console.log("saveData() : ", weightChange, "gr.", message);
