@@ -10,6 +10,10 @@ import { JournalEntryPage } from '../journal-entry/journal-entry';
 //import Providers
 import { DatabaseProvider } from '../../providers/database/database';
 
+/**
+ * Generated class for the JournalDeletePage page.
+ * @author kochd1
+ */
 @IonicPage()
 @Component({
   selector: 'page-journal-delete',

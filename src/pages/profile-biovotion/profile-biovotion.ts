@@ -16,11 +16,8 @@ import * as Globals from '../../../typings/globals';
 
 /**
  * Generated class for the WelcomeConnectPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
+ * @author kochd1 
  */
-
 @IonicPage()
 @Component({
   selector: 'page-profile-biovotion',
@@ -281,6 +278,8 @@ alert.present();
 
       console.log('disconnectSensor() -> sensor connected:?', this.isConnectedToSensor);
       console.log('disconnectSensor() -> isToggled:?', this.isToggled);
+      this.presentToast();
+      
        }).catch(error => {
       console.log("Error: " + error);
        });
@@ -294,9 +293,15 @@ alert.present();
     let toastMessage:string="";
     let toastDuration:number;
   
-      if(this.isConnectedToSensor){
+      if(this.isConnectedToSensor){ //connectSensor()
         console.log("isConnectedToSensor:?", this.isConnectedToSensor);
         toastMessage = "Sensor erfolgreich verbunden";
+        toastDuration = 3000;
+      }
+
+      else if(!this.isConnectedToSensor){ //disconnectSensor()
+        console.log("isConnectedToSensor:?", this.isConnectedToSensor);
+        toastMessage = "Sensor erfolgreich getrennt";
         toastDuration = 3000;
       }
   
@@ -305,8 +310,6 @@ alert.present();
         toastMessage = "Sensor konnte nicht verbunden werden. Prüfen Sie u. a., ob bei Ihrem Gerät Bluetooth und/oder GPS aktiviert ist sowie ob der Sensor eingeschaltet ist.";
         toastDuration = 5000;
       }
-  
-      
   
       let toast = this.toastCtrl.create({
         message: toastMessage,

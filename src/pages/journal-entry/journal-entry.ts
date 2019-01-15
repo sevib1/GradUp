@@ -22,7 +22,10 @@ import { JournalEntry } from '../../classes/journalEntry';
 //import journalDeletePage
 import { JournalDeletePage } from '../journal-delete/journal-delete'; //not sure if needed...
 
-
+/**
+ * Generated class for the JournalEntryPage page.
+ * @author kochd1
+ */
 @IonicPage()
 @Component({
   selector: 'page-journal-entry',
